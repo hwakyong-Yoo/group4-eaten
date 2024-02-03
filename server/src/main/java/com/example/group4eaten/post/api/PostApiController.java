@@ -31,11 +31,25 @@ public class PostApiController {
 
     //새 게시물 작성
     @PostMapping("/posts")
-    public ResponseEntity<PostDto> create(@RequestParam String userId, @RequestBody PostDto dto) {
-        PostDto createdDto = postService.create(userId, dto);
+    public ResponseEntity<PostDto> create(@RequestBody PostDto dto) {
+        PostDto createdDto = postService.create(dto);
         return ResponseEntity.status(HttpStatus.OK).body(createdDto);
     }
 
 
+    //게시물 수정
+    @PutMapping("/posts/{postId}")
+    public ResponseEntity<PostDto> update(@RequestParam Long postId, @RequestBody PostDto dto){
+        PostDto updatedDto = postService.update(postId, dto);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedDto);
+    }
+
+
+    //게시물 삭제
+    @DeleteMapping("/posts/{postId}")
+    public ResponseEntity<PostDto> delete(@RequestParam Long postId){
+        PostDto deletedDto = postService.delete(postId);
+        return ResponseEntity.status(HttpStatus.OK).body(deletedDto);
+    }
 
 }

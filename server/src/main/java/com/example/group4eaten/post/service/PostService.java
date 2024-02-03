@@ -21,10 +21,12 @@ public class PostService {
     @Autowired
     private UserRepository userRepository;
 
+    //전체 게시물 조회
     public List<Post> index() {
         return postRepository.findAll();
     }
 
+    //상세 페이지 조회
     public Post show(Long postId) {
         return postRepository.findById(postId).orElse(null);
     }
@@ -37,14 +39,38 @@ public class PostService {
 //        return postRepository.save(post);
 //    }
 
+    //게시물 생성
     @Transactional
-    public PostDto create(String userId, PostDto dto) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("Post 생성 실패!"));
+    public PostDto create(PostDto dto) {
+        User user = userRepository.findById(dto.getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("Post 생성 실패! User not found"));
         Post post = Post.createPost(dto, user);
+        //Post post = dto.toEntity(user);
         Post created = postRepository.save(post);
         return PostDto.createPostDto(created);
     }
+
+
+    //게시물 수정
+    @Transactional
+    public PostDto update(Long postId, PostDto dto) {
+        Post target = postRepository.findById(postId)
+                .orElseThrow(() -> new IllegalArgumentException("Post not found!"));
+        target.patch(dto);
+        Post updated = postRepository.save(target);
+        return PostDto.createPostDto(updated);
+    }
+
+
+    //게시물 삭제
+    @Transactional
+    public PostDto delete(Long postId) {
+        Post target = postRepository.findById(postId)
+                .orElseThrow(() -> new IllegalArgumentException("Post not found!"));
+        postRepository.delete(target);
+        return PostDto.createPostDto(target);
+    }
+
 }
 
 
