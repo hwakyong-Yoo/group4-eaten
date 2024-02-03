@@ -1,10 +1,10 @@
-package com.example.group4eaten.service;
+package com.example.group4eaten.post.service;
 
-import com.example.group4eaten.dto.PostDto;
+import com.example.group4eaten.post.dto.PostDto;
 import com.example.group4eaten.entity.Post;
 import com.example.group4eaten.entity.User;
-import com.example.group4eaten.repository.PostRepository;
-import com.example.group4eaten.repository.UserRepository;
+import com.example.group4eaten.post.repository.PostRepository;
+import com.example.group4eaten.user.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

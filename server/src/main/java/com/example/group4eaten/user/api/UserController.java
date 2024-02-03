@@ -1,8 +1,9 @@
-package com.example.group4eaten.user;
+package com.example.group4eaten.user.api;
 
-import com.example.group4eaten.user.UserForm;
-import jakarta.servlet.http.HttpSession;
-import lombok.Getter;
+import com.example.group4eaten.entity.User;
+import com.example.group4eaten.user.dto.UserForm;
+import com.example.group4eaten.user.repository.UserRepository;
+import com.example.group4eaten.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,7 +1,8 @@
-package com.example.group4eaten.user;
+package com.example.group4eaten.user.service;
 
+import com.example.group4eaten.entity.User;
+import com.example.group4eaten.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 @Service
@@ -10,7 +11,7 @@ public class UserService {
     private UserRepository userRepository;
     private BCryptPasswordEncoder passwordEncoder;
 
-    public void registerUser(Long userId, String password) {
+    public void registerUser(String userId, String password) {
         // 비밀번호를 해시화하여 저장
         String hashedPassword = passwordEncoder.encode(password);
 

@@ -1,25 +1,34 @@
 package com.example.group4eaten.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
-@Entity
-@Getter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-
+@ToString
+@Entity
+@Getter
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String userId;
+    @GeneratedValue
+    String userId;
 
     @Column
-    private String nickname;
+    String password;
 
     @Column
-    private String password;
+    String nickname;
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
 }
