@@ -21,7 +21,7 @@ public class UserService {
 
         userRepository.save(newUser);
     }
-    public boolean login(Long userId, String password) {
+    public boolean login(String userId, String password) {
         User user = userRepository.findByUserId(userId);
 
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {

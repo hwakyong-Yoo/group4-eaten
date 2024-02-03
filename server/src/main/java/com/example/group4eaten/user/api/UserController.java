@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
-    public String login(@RequestParam Long userId, @RequestParam String password) {
+    public String login(@RequestParam String userId, @RequestParam String password) {
         if (userService.login(userId, password)) {
             return  "";
         } else {
