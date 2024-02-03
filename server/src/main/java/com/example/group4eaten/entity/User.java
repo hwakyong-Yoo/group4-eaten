@@ -31,4 +31,7 @@ public class User {
         this.userId = userId;
     }
 
+    public String getId() {
+        return userId;
+    }
 }

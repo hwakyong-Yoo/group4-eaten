@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
-    public String login(@RequestParam Long userId, @RequestParam String password) {
+    public String login(@RequestParam String userId, @RequestParam String password) {
         if (userService.login(userId, password)) {
             return  "";
         } else {
@@ -53,7 +53,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{userId}/edit") //닉네임 수정 페이지 연결
-    public String edit(@PathVariable Long userId, Model model) {
+    public String edit(@PathVariable String userId, Model model) {
         User userEntity = userRepository.findById(userId).orElse(null);
         model.addAttribute("user", userEntity);
         return "";
@@ -71,7 +71,7 @@ public class UserController {
     }
 
     @GetMapping("user/{userId}/delete")
-    public String delete(@PathVariable Long userId, RedirectAttributes rttr, Model model) {
+    public String delete(@PathVariable String userId, RedirectAttributes rttr, Model model) {
         log.info("삭제 요청이 들어왔습니다!!");
         //삭제 대상 가져오기
         User target = userRepository.findById(userId).orElse(null);
