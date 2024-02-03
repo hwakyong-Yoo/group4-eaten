@@ -6,6 +6,7 @@ import com.example.group4eaten.user.repository.UserRepository;
 import com.example.group4eaten.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +21,12 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/signup")
+   /* @GetMapping("/signup")
     public String signUpPage() {
         return "user/new";
-    }
+    }*/
     @PostMapping("/user/create") //회원가입
-    public String createUser(UserForm userForm) {
+    public String createUser(@RequestBody UserForm userForm) {
         log.info(userForm.toString());
 
         User user = userForm.toEntity();
@@ -37,30 +38,36 @@ public class UserController {
         return "";
     }
 
-    @GetMapping("/user/login") // 로그인 화면 리턴
-    public String loginForm() {
-        return "";
+    @GetMapping("/userId/exists") //아이디 중복 확인
+    public ResponseEntity<Boolean> checkUserIdDuplicate(@RequestHeader("userId") String userId) {
+        boolean isDuplicate = userService.checkUserIdDuplicate(userId);
+        return ResponseEntity.ok(isDuplicate);
     }
 
-    @PostMapping("/user/login")
+    /*@GetMapping("/user/login") // 로그인 화면 리턴
+    public String loginForm() {
+        return "";
+    }*/
+
+    @PostMapping("/user/login") //로그인
     public String login(@RequestParam String userId, @RequestParam String password) {
         if (userService.login(userId, password)) {
-            return  "";
+            return  ""; //성공 시 이동할 페이지의 이름 또는 경로
         } else {
             //로그인 실패
-            return "";
+            return ""; //실패 시 다시 로그인 화면으로 이동
         }
     }
 
     @GetMapping("/user/{userId}/edit") //닉네임 수정 페이지 연결
-    public String edit(@PathVariable String userId, Model model) {
+    public String edit(@RequestHeader("userId") String userId, Model model) {
         User userEntity = userRepository.findById(userId).orElse(null);
         model.addAttribute("user", userEntity);
         return "";
     }
 
     @PostMapping("/user/{userId}/edit") //닉네임 수정 결과 POST
-    public String update(UserForm form) {
+    public String update(@RequestHeader("userId") String userId, @RequestBody UserForm form) {
         log.info(form.toString());
         User userEntity = form.toEntity();
         User target = userRepository.findById(userEntity.getId()).orElse(null);
@@ -70,8 +77,24 @@ public class UserController {
         return "";
     }
 
-    @GetMapping("user/{userId}/delete")
-    public String delete(@PathVariable String userId, RedirectAttributes rttr, Model model) {
+    /*@PutMapping("/user/{userId}/edit")
+    public String update(@PathVariable String userId, @RequestBody UserForm form) {
+        log.info(form.toString());
+
+        User userEntity = userRepository.findById(userId).orElse(null);
+        if (userEntity != null) {
+            // 수정하고자 하는 정보를 업데이트
+            userEntity.setUsername(form.getUsername());
+
+            // userRepository.save()를 호출하지 않아도 JPA는 영속성 컨텍스트에서 변경을 감지하고 업데이트를 수행합니다.
+        }
+
+        return "";
+    }*/
+
+
+    @GetMapping("user/{userId}/delete") //회원 삭제
+    public String delete(@RequestHeader("userId") String userId, RedirectAttributes rttr, Model model) {
         log.info("삭제 요청이 들어왔습니다!!");
         //삭제 대상 가져오기
         User target = userRepository.findById(userId).orElse(null);

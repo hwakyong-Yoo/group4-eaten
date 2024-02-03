@@ -31,4 +31,8 @@ public class UserService {
         }
     }
 
+    public boolean checkUserIdDuplicate(String userId) {
+        return userRepository.existsById(userId);
+    }
+
 }
