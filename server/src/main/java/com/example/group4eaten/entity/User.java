@@ -1,10 +1,7 @@
 package com.example.group4eaten.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,6 +19,10 @@ public class User {
     @Column
     String nickname;
 
+    public String getPassword() {
+        return this.password;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
@@ -30,5 +31,7 @@ public class User {
         this.userId = userId;
     }
 
-
+    public String getId() {
+        return userId;
+    }
 }
