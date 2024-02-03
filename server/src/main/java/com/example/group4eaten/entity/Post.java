@@ -1,7 +1,6 @@
 package com.example.group4eaten.entity;
 
-import com.example.group4eaten.dto.PostDto;
-import com.example.group4eaten.entity.User;
+import com.example.group4eaten.post.dto.PostDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

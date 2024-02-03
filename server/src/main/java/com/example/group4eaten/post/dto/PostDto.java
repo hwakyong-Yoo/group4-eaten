@@ -1,4 +1,4 @@
-package com.example.group4eaten.dto;
+package com.example.group4eaten.post.dto;
 
 import com.example.group4eaten.entity.Post;
 import com.example.group4eaten.entity.User; // User 엔터티 임포트

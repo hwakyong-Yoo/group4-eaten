@@ -1,5 +1,6 @@
-package com.example.group4eaten.user;
+package com.example.group4eaten.user.dto;
 
+import com.example.group4eaten.entity.User;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.ToString;

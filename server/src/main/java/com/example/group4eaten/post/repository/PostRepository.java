@@ -1,4 +1,4 @@
-package com.example.group4eaten.repository;
+package com.example.group4eaten.post.repository;
 
 import com.example.group4eaten.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;

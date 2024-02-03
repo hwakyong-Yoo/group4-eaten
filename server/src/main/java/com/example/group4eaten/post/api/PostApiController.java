@@ -1,8 +1,8 @@
-package com.example.group4eaten.api;
+package com.example.group4eaten.post.api;
 
-import com.example.group4eaten.dto.PostDto;
+import com.example.group4eaten.post.dto.PostDto;
 import com.example.group4eaten.entity.Post;
-import com.example.group4eaten.service.PostService;
+import com.example.group4eaten.post.service.PostService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,7 +36,6 @@ public class PostApiController {
         return ResponseEntity.status(HttpStatus.OK).body(createdDto);
     }
 
-    //
 
 
 }
