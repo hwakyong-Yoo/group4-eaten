@@ -4,4 +4,11 @@ Eaten은 당신이 즐긴 맛있는 순간을 사진으로 기록하고, 사용�
 ## 팀원 소개
 사진, 이름, 역할, 한줄소개
 ## 기술 소개
+### Back-End
+| Spec | <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat-square&logo=Spring%20Boot&logoColor=black"/> | <img src="https://img.shields.io/badge/Spring%20Boot-ffffff?style=for-the-badge&logo=3.1.0&logoColor=#6DB33F"/>|
+| :--: | :--:| :--: |
+| Description | 2 | 3|
 ## 🎨 Color Scheme
+| 색1 |  2 | 3 |
+| :--: | :--:| :--: |
+| 1 | 2 | 3|
