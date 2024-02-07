@@ -4,6 +4,7 @@ import com.example.group4eaten.entity.User;
 import com.example.group4eaten.user.dto.UserForm;
 import com.example.group4eaten.user.repository.UserRepository;
 import com.example.group4eaten.user.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -50,13 +51,23 @@ public class UserController {
     }*/
 
     @PostMapping("/user/login") //로그인
-    public String login(@RequestParam String userId, @RequestParam String password) {
+    public String login(@RequestParam String userId, @RequestParam String password, HttpSession session) {
         if (userService.login(userId, password)) {
+            session.setAttribute("userId", userId); // 세션에 사용자 ID 저장
             return  ""; //성공 시 이동할 페이지의 이름 또는 경로
         } else {
             //로그인 실패
             return ""; //실패 시 다시 로그인 화면으로 이동
         }
+    }
+
+    @GetMapping("/user/logout") //로그아웃
+    public String logout(HttpSession session) {
+        // 세션에서 사용자 정보 제거
+        session.removeAttribute("userId");
+
+        // 로그아웃 후 로그인 화면으로 이동하도록 설정
+        return "";
     }
 
     @GetMapping("/user/{userId}/edit") //닉네임 수정 페이지 연결
