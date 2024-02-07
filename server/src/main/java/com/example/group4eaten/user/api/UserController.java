@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
-@Controller
+@RestController
 public class UserController {
     @Autowired
     UserRepository userRepository;
@@ -26,6 +26,12 @@ public class UserController {
     public String signUpPage() {
         return "user/new";
     }*/
+
+    @GetMapping("/api/hello")
+    public String hello() {
+        return "hello world!";
+    }
+
     @PostMapping("/user/create") //회원가입
     public String createUser(@RequestBody UserForm userForm) {
         log.info(userForm.toString());
