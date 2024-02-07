@@ -10,7 +10,7 @@ import lombok.*;
 @Getter
 public class User {
     @Id
-    @GeneratedValue
+    @Column(name = "userId")
     String userId;
 
     @Column
