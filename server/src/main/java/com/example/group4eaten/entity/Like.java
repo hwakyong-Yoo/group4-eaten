@@ -28,8 +28,4 @@ public class Like {
     public void setLikeId(int like_id) {
         this.like_id = like_id;
     }
-
-    public int getLikeId() {
-        return like_id;
-    }
 }
