@@ -13,25 +13,32 @@ public class LikeService {
     @Autowired
     private LikeRepository likeRepository;
 
-    // 좋아요 추가 또는 삭제 로직
-    public void toggleLike(String userId, Long postId) {
+    // 좋아요 추가
+    public void setLike(String userId, Long postId, int like_id) {
         LikePK likePK = new LikePK(userId, postId);
         Optional<Like> existingLike = likeRepository.findById(likePK);
 
         if (existingLike.isPresent()) {
-            // 이미 좋아요를 눌렀다면 삭제
-            likeRepository.deleteById(likePK);
+            // 이미 좋아요를 눌렀다면 업데이트
+            existingLike.get().setLikeId(like_id);
+            likeRepository.save(existingLike.get());
         } else {
             // 좋아요 추가
             Like newLike = new Like();
             newLike.setLikePK(likePK);
+            newLike.setLikeId(like_id);
             likeRepository.save(newLike);
         }
     }
+
     //좋아요 취소
-    public void unlikePost(String userId, Long postId) {
+    public void deleteLike(String userId, Long postId, int like_id) {
         LikePK likePK = new LikePK(userId, postId);
-        likeRepository.deleteById(likePK);
+        Optional<Like> existingLike = likeRepository.findById(likePK);
+        //눌렀던 좋아요 누를 시 삭제
+        if (existingLike.isPresent() && existingLike.get().getLikeId() == like_id) {
+            likeRepository.deleteById(likePK);
+        }
     }
 
     public boolean isLiked(String userId, Long postId) {
