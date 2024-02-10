@@ -1,7 +1,7 @@
 // Header.jsx
 import React from 'react'
 import {Link, useNavigate} from 'react-router-dom'
-import logo from './image/logo.png'
+import logo from '../image/logo.png'
 
 interface HeaderProps {
   isLoggedIn: boolean

@@ -103,6 +103,35 @@ body {
   cursor: pointer;
 }
 
+.new-post {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.new-post textarea {
+  width: 25vw;
+  height: 60vh;
+  font-size: 4em;
+}
+
+.upload-button {
+  display: inline-block;
+  width: 40vw;
+  height: 60vh;
+  background-color: white;
+  background-image: url('./image/Add_Image.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  color: black;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 10px solid rgba(255, 178, 14, 0.5);
+}
+
+#file-upload {
+  display: none;
+}
+
 .popular-posts {
   width: 100%;
   margin: 20px auto;
@@ -166,11 +195,12 @@ body {
 }
 
 .footer {
-  background-color: rgba(255, 178, 14, 0.26);
-  color: #ffad84;
+  background-color: #ffad84;
+  color: black;
   text-align: left;
-  bottom: 0;
+  bottom: 0px;
   width: 100%;
+  height: 20vh;
 }
 
 .only-header {
@@ -236,6 +266,38 @@ body {
   background-color: white;
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+.click-modal {
+  font-size: 2vw;
+  position: absolute; /* 절대 위치 지정 */
+  left: 50vw;
+  top: 50vh;
+  height: 60%;
+  width: 25vw;
+  background-image: url('./image/click-modal.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 178, 14, 0);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.click-modal button {
+  background-color: white;
+  border: none;
+}
+
+#nickname-text {
+  color: black;
+  font-size: 0.5em;
+}
+
+.check {
+  background-image: url('./image/check.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 178, 14, 0);
 }
 
 .fork {

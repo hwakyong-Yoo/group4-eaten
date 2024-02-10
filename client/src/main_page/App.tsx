@@ -2,16 +2,17 @@
 import React, {useState} from 'react'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
 import Header from './Header'
-import PopularPosts from './PopularPosts'
-import PostList, {PostsType} from './PostList'
-import Create from './Create'
-
-import Login from './Login'
-import MyPage from './MyPage'
-import MyPageHeader from './MyPageHeader'
-import New from './New'
-import NewHeader from './NewHeader'
-import './App.css' // 스타일 파일 불러오기
+import PopularPosts from '../post/PopularPosts'
+import PostList from '../post/PostList'
+import Create from '../create_page/Create'
+import PostPage from '../post/PostPage'
+import Login from '../login_page/Login'
+import MyPage from '../my_page/MyPage'
+import MyPageHeader from '../my_page/MyPageHeader'
+import PageFooter from '../post/PageFooter'
+import New from '../newPost_page/New'
+import NewHeader from '../newPost_page/NewHeader'
+import '../App.css' // 스타일 파일 불러오기
 
 interface UserInfo {
   nickname: string
@@ -122,6 +123,7 @@ const App: React.FC = () => {
                 />
                 <div>
                   <New />
+                  <PageFooter />
                 </div>
               </>
             }
@@ -161,6 +163,7 @@ const App: React.FC = () => {
               </>
             }
           />
+          <Route path="/post/:postId" Component={PostPage} />
         </Routes>
       </div>
     </Router>
