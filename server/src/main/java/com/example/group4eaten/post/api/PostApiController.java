@@ -29,6 +29,7 @@ public class PostApiController {
         return postService.show(postId);
     }
 
+
     //새 게시물 작성
     @PostMapping("/posts")
     public ResponseEntity<PostDto> create(@RequestBody PostDto dto) {
@@ -39,7 +40,7 @@ public class PostApiController {
 
     //게시물 수정
     @PutMapping("/posts/{postId}")
-    public ResponseEntity<PostDto> update(@RequestParam Long postId, @RequestBody PostDto dto){
+    public ResponseEntity<PostDto> update(@PathVariable Long postId, @RequestBody PostDto dto){
         PostDto updatedDto = postService.update(postId, dto);
         return ResponseEntity.status(HttpStatus.OK).body(updatedDto);
     }
@@ -47,7 +48,7 @@ public class PostApiController {
 
     //게시물 삭제
     @DeleteMapping("/posts/{postId}")
-    public ResponseEntity<PostDto> delete(@RequestParam Long postId){
+    public ResponseEntity<PostDto> delete(@PathVariable Long postId){
         PostDto deletedDto = postService.delete(postId);
         return ResponseEntity.status(HttpStatus.OK).body(deletedDto);
     }

@@ -40,4 +40,37 @@ public class LikeApiController {
         return new ResponseEntity<>("Post unliked successfully.", HttpStatus.OK);
     }
 
+    @PutMapping("/like/{postId}")   //좋아요 수정
+    public ResponseEntity<String> updateLike(@RequestHeader(name= "userId",required = false) String userId,
+                                             @RequestBody int like_id,
+                                             @PathVariable Long postId) {
+        // 세션 값이 없으면 좋아요를 수정할 수 없음
+        if (userId == null || userId.isEmpty()) {
+            return new ResponseEntity<>("Session not found. Unable to update the like.", HttpStatus.UNAUTHORIZED);
+        }
+
+        // userId와 postId, like_id를 사용하여 좋아요 수정
+        likeService.updateLike(userId, postId, like_id);
+
+        // 성공적으로 좋아요가 수정되었을 경우
+        return new ResponseEntity<>("Like updated successfully.", HttpStatus.OK);
+    }
+
+    @GetMapping("/like/{postId}")   //내가 누른 좋아요 확인
+    //좋아요를 누른 경우 -> 해당 좋아요의 like_id 반환, 누르지 않은 경우 -> 좋아요 누르지 않았다는 메시지 반환
+    public ResponseEntity<String> getMyLike(@RequestHeader(name= "userId", required = false) String userId,
+                                            @PathVariable Long postId){
+        // 세션 값이 없으면 내가 누른 좋아요를 확인할 수 없음
+        if (userId == null || userId.isEmpty()) {
+            return new ResponseEntity<>("Session not found. Unable to update the like.", HttpStatus.UNAUTHORIZED);
+        }
+
+        Integer pressedLikeId = likeService.getLikeIdIfLiked(userId, postId);
+
+        if(pressedLikeId != null){
+            return new ResponseEntity<>("My like for this post: " + pressedLikeId, HttpStatus.OK);
+        } else{
+            return new ResponseEntity<>("User has not liked this post.", HttpStatus.OK);
+        }
+    }
 }

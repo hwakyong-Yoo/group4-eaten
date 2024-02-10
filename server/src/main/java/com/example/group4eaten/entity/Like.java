@@ -24,4 +24,8 @@ public class Like {
 
     public void setLikePK(LikePK likePK) {
     }
+
+    public void setLikeId(int like_id) {
+        this.like_id = like_id;
+    }
 }
