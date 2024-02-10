@@ -36,7 +36,7 @@ public class LikeService {
         LikePK likePK = new LikePK(userId, postId);
         Optional<Like> existingLike = likeRepository.findById(likePK);
         //눌렀던 좋아요 누를 시 삭제
-        if (existingLike.isPresent() && existingLike.get().getLikeId() == like_id) {
+        if (existingLike.isPresent() && existingLike.get().getLike_id() == like_id) {
             likeRepository.deleteById(likePK);
         }
     }
@@ -58,9 +58,21 @@ public class LikeService {
         Optional<Like> existingLike = likeRepository.findById(likePK);
 
         if (existingLike.isPresent()) {
-            // 이미 좋아요를 눌렀다면 업데이트
-            existingLike.get().setLikeId(like_id);
-            likeRepository.save(existingLike.get());
+            // 1.이미 좋아요를 눌렀다면 업데이트
+            if(existingLike.get().getLike_id() == like_id){
+                // 1-1. 같은 like_id인 경우 -> 좋아요 삭제
+                likeRepository.delete(existingLike.get());
+            } else{
+                // 1-2. 다른 like_id인 경우 -> 업데이트
+                existingLike.get().setLikeId(like_id);
+                likeRepository.save(existingLike.get());
+            }
+        } else{
+            // 2. 좋아요가 없는 경우 -> 새로운 좋아요 추가
+            Like newLike = new Like();
+            newLike.setLikePK(new LikePK(userId, postId));
+            newLike.setLikeId(like_id);
+            likeRepository.save(newLike);
         }
     }
 
