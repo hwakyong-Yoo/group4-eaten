@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react'
 import {useParams} from 'react-router-dom'
 import {PostType} from './Post'
 
@@ -38,7 +38,7 @@ const PostPage = () => {
           <p>{post.text}</p>
         </div>
         <div className="post-metadata">
-          <p>작성자: {post.userId}</p>
+          <p>작성자: {post.nickname}</p>
           <p>작성일: {post.date}</p>
           <p>좋아요 수: {post.heart}</p>
         </div>

@@ -1,5 +1,4 @@
 // PostList.jsx
-import React from 'react'
 import Post, {PostType} from './Post'
 
 export type PostsType = PostType[]

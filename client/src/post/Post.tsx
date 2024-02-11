@@ -1,5 +1,4 @@
 // Post.tsx
-import React from 'react'
 import {Link} from 'react-router-dom'
 import internal from 'stream'
 
@@ -7,7 +6,7 @@ export type PostType = {
   id: number
   imageURL: string
   text: string
-  userId?: string
+  nickname?: string
   date?: string
 
   heart?: number
@@ -15,6 +14,15 @@ export type PostType = {
   wow?: number
   good?: number
   fire?: number
+}
+
+export const defaultPost: PostType = {
+  id: 0,
+  imageURL: '',
+  text: 'Default Text', // text가 없는 경우에는 'Default Text'로 설정
+  nickname: '익명',
+  date: '2024-02-11',
+  heart: 0,
 }
 
 const Post = ({post}: {post: PostType}) => {
