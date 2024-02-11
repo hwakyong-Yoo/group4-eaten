@@ -1,0 +1,36 @@
+.click-modal {
+  height: 60vh;
+  margin-top: 6vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background-color: rgba(255, 178, 14, 0.26);
+  text-align: center;
+}
+.modal-content {
+  font-size: 2vw;
+  position: absolute; /* 절대 위치 지정 */
+  left: 30vw;
+  top: 20vh;
+  width: 50vw;
+  height: 70vh;
+  background-image: url('../../image/click-modal.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+.click-modal button {
+  margin-top: 15vh;
+  background-color: white;
+  border: none;
+  font-weight: bold;
+}
+
+.check-button {
+  background-image: url('../../image/check.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 5vw;
+  height: 5vw;
+  background-color: rgba(255, 178, 14, 0);
+}
