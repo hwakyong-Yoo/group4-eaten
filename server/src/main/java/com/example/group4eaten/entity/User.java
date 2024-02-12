@@ -9,6 +9,7 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
+@Table(name="TB_USER")
 public class User {
     @Id
     @Column(name = "userId")
