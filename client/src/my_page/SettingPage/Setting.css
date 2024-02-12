@@ -1,5 +1,7 @@
 .click-modal {
-  height: 60vh;
+  position: fixed;
+  bottom: 0;
+  height: 68vh;
   margin-top: 6vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -8,9 +10,6 @@
 }
 .modal-content {
   font-size: 2vw;
-  position: absolute; /* 절대 위치 지정 */
-  left: 30vw;
-  top: 20vh;
   width: 50vw;
   height: 70vh;
   background-image: url('../../image/click-modal.png');
