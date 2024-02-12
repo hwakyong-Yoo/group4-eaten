@@ -20,9 +20,9 @@ BE|BE|FE|UI/UX|
 | :--: | :--:| :--: |
 | Description | 2 | 3|
 ### FE
-|SPEC |1 | 
-|:------:|:-----:|
-|1|1|
+|SPEC |1 |1 |
+|:------:|:-----:|:-----:|
+|Description|TypeScript|React|
 ### UI/UX
 |SPEC |FIGMA | 
 |:------:|:-----:|
