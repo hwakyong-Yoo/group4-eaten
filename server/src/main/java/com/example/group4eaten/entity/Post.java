@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 @ToString
 @Entity
 @Getter
+@Table(name="TB_POST")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
