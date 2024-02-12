@@ -1,7 +1,6 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import logo from '../image/logo.png'
-import Setting from '../modal/Setting'
 
 interface HeaderProps {
   isLoggedIn: boolean
@@ -15,21 +14,16 @@ interface UserInfo {
 
 const MyPageHeader: React.FC<HeaderProps> = ({isLoggedIn, userInfo, setLoggedIn}) => {
   const navigate = useNavigate()
-  const [modalOpen, setModalOpen] = useState(false)
   const handleLogout = () => {
     // 로그아웃 시
     setLoggedIn(false)
     navigate('/')
   }
   const navigateToBack = () => {
-    navigate('/')
+    navigate(-1)
   }
-  const handleModalOpen = () => {
-    setModalOpen(true)
-  }
-
-  const handleModalClose = () => {
-    setModalOpen(false)
+  const navigateToSetting = () => {
+    navigate('/mypage/setting')
   }
 
   return (
@@ -41,8 +35,7 @@ const MyPageHeader: React.FC<HeaderProps> = ({isLoggedIn, userInfo, setLoggedIn}
       <div>
         <p className="mypage-nickname">{userInfo?.nickname}님</p>
       </div>
-      <button className="gear-button" onClick={handleModalOpen}></button>
-      {modalOpen && <Setting onClose={handleModalClose} />}
+      <button className="gear-button" onClick={navigateToSetting}></button>
       <button className="logout-button" onClick={handleLogout}></button>
     </header>
   )

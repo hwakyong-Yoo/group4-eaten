@@ -1,13 +1,15 @@
-// MyPostList.jsx
-import React from 'react'
+// MyPostList.tsx
 import Post, {PostType} from '../post/Post'
+import './MyPage.css'
 
 export type PostsType = PostType[]
 
 const MyPostList = ({posts}: {posts: PostsType}) => {
   return (
     <div className="post-list">
-      {posts && posts.map(post => <Post key={post.id} post={post} />)}
+      {posts?.map(post =>
+        post ? <Post key={post.id} post={post} /> : <div>Error: Post does not exist</div>,
+      )}
     </div>
   )
 }
