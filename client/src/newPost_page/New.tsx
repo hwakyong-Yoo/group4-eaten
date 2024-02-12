@@ -1,16 +1,20 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 
 const New: React.FC = () => {
   // 상태 설정
-  const [image, setImage] = useState<File | null>(null)
+  const [image, setImage] = useState<string | null>(null)
   const [content, setContent] = useState('')
   const navigate = useNavigate()
   // 이미지 변경 핸들러
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (file) {
-      setImage(file)
+      const reader = new FileReader()
+      reader.onload = () => {
+        setImage(reader.result as string) // 이미지 파일의 Data URL 저장
+      }
+      reader.readAsDataURL(file) // 선택한 파일을 Data URL로 읽기
     }
   }
 
@@ -39,6 +43,14 @@ const New: React.FC = () => {
           accept="image/*"
           onChange={handleImageChange}
         />
+        {image && (
+          <img
+            src={image}
+            alt="Uploaded"
+            style={{width: '30vw', height: '30vw', borderRadius: '50%'}}
+          />
+        )}{' '}
+        {/* 이미지 미리보기 */}
       </div>
       <div>
         {/* 글 작성 칸 */}

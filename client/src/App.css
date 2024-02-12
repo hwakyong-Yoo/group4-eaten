@@ -9,6 +9,10 @@ body {
   text-align: left;
 }
 
+button:hover {
+  transform: scale(1.1); /* 크기를 10% 커지도록 스케일링 */
+}
+
 .header {
   display: grid;
   grid-template-rows: 7vh 30vh;
@@ -116,8 +120,8 @@ body {
 
 .upload-button {
   display: inline-block;
-  width: 40vw;
-  height: 60vh;
+  width: 30vw;
+  height: 30vw;
   background-color: white;
   background-image: url('./image/Add_Image.png');
   background-size: contain;
@@ -144,19 +148,8 @@ body {
   margin-top: 5vh;
 }
 
-.popular-posts {
-  background-color: white;
-}
-
 .recent-posts {
   background: linear-gradient(to bottom, white, #ffad84);
-}
-
-.post-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  background-color: rgba(255, 178, 14, 0.26);
 }
 
 .post {
@@ -220,39 +213,6 @@ body {
   height: 100vh;
   width: 100vw;
 }
-.signup-form {
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-
-  height: 50vh; /* 화면 높이 만큼 설정하여 세로 중앙 정렬 */
-  width: 30vw;
-  padding-top: 15vh;
-  margin-top: 8vh;
-  border: #ffad84; /* 왜 적용이 안 되지 */
-}
-
-.signup-form input {
-  align-items: center;
-  margin-left: 1vw;
-  margin-right: 10vw;
-}
-
-.signup-form label {
-  padding-left: 1vw;
-}
-
-.create-page {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  bottom: 0;
-  justify-content: space-between;
-}
-
-.create-page img {
-  width: 20vw;
-  bottom: 0;
-}
 
 .modal {
   font-size: 2vw;
@@ -261,43 +221,13 @@ body {
   top: 50vh;
   height: 20%;
   width: 25vw;
-  border: solid 5px #ffad84;
-  border-radius: 10%;
-  background-color: white;
   transform: translate(-50%, -50%);
   text-align: center;
-}
-
-.click-modal {
-  font-size: 2vw;
-  position: absolute; /* 절대 위치 지정 */
-  left: 50vw;
-  top: 50vh;
-  height: 60%;
-  width: 25vw;
-  background-image: url('./image/click-modal.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-color: rgba(255, 178, 14, 0);
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.click-modal button {
-  background-color: white;
-  border: none;
 }
 
 #nickname-text {
   color: black;
   font-size: 0.5em;
-}
-
-.check {
-  background-image: url('./image/check.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-color: rgba(255, 178, 14, 0);
 }
 
 .fork {
@@ -310,6 +240,17 @@ body {
   position: absolute; /* 절대 위치 지정 */
   right: 0;
   bottom: 0;
+}
+
+.submit-button {
+  background-image: url('./image/submit.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 178, 14, 0);
+  border: none;
+  width: 7vw;
+  height: 7vw;
+  text-align: center;
 }
 
 .mypage h1 {

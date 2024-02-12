@@ -36,9 +36,7 @@ const PopularPosts = ({posts}: {posts: PostsType}) => {
         ))}
       </div>
 
-      <button id="right-button" onClick={nextPage}>
-        {'>'}
-      </button>
+      <button id="right-button" onClick={nextPage}></button>
     </div>
   )
 }

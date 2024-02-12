@@ -65,7 +65,7 @@ const Create: React.FC<LoginProps> = ({isLoggedIn, setLoggedIn, setUserInfo}) =>
         <img src={logo} alt="로고 이미지" />
       </div>
       <div className="create-page">
-        // TODO: 회원가입, 로그인 창 디자인 수정
+        {/* TODO: 회원가입, 로그인 창 디자인 수정 */}
         <div>
           <img className="fork" src={fork} alt="fork 이미지" />
         </div>

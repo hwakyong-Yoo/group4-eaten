@@ -1,5 +1,4 @@
-// Header.jsx
-import React from 'react'
+// Header.tsx
 import {Link, useNavigate} from 'react-router-dom'
 import logo from '../image/logo.png'
 

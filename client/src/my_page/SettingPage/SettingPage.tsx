@@ -17,6 +17,7 @@ const SettingPage = () => {
       <div></div>
       <div className="modal-content">
         <button onClick={navigateToNickname}>닉네임 변경</button>
+
         <button onClick={navigateToDelete}>회원탈퇴</button>
       </div>
       <div></div>

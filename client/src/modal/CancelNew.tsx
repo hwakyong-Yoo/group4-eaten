@@ -1,4 +1,3 @@
-import React from 'react'
 import {useNavigate} from 'react-router-dom'
 
 type onCloseFunction = () => void
@@ -13,11 +12,15 @@ const CancelNew: React.FC<ModalProps> = ({onClose}) => {
     onClose() // 뒤로 가는 함수 호출
     navigate('/')
   }
+  const handleCloseModal = () => {
+    onClose()
+  }
 
   return (
     <div className="modal">
-      <p>작성 중인 내용이 삭제됩니다. 계속하시겠습니까?</p>
-      <button onClick={handleConfirm}>확인</button>
+      <p>게시글을 삭제하시겠습니까?</p>
+      <button onClick={handleConfirm}>예</button>
+      <button onClick={handleCloseModal}>아니요</button>
     </div>
   )
 }
