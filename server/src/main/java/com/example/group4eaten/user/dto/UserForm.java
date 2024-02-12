@@ -2,11 +2,14 @@ package com.example.group4eaten.user.dto;
 
 import com.example.group4eaten.entity.User;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
+@Data
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class UserForm {
     @NotBlank(message = "아이디를 입력해주세요.")
     private String userId;
@@ -15,8 +18,7 @@ public class UserForm {
     @NotBlank(message = "닉네임을 입력해주세요.")
     private String nickname;
 
-    public User toEntity() {
-        return new User();
-    }
+    public User toEntity() { return new User( userId, password, nickname );
 
+    }
 }
