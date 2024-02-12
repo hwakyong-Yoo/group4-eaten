@@ -1,10 +1,11 @@
 // Login.jsx
-import React, {useState} from 'react'
+import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import logo from '../image/logo.png'
 import spoon from '../image/spoon.png'
 import fork from '../image/fork.png'
 import CreateModal from '../modal/CreateModal'
+import '../create_page/Create.css'
 
 interface LoginProps {
   isLoggedIn: boolean
@@ -59,7 +60,7 @@ const Login: React.FC<LoginProps> = ({isLoggedIn, setLoggedIn, setUserInfo}) => 
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
-          <button onClick={handleLogin}>로그인</button>
+          <button className="submit-button" onClick={handleLogin}></button>
         </div>
         <div>
           <img className="spoon" src={spoon} />
