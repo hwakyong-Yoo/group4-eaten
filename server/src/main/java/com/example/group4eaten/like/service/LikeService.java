@@ -5,6 +5,7 @@ import com.example.group4eaten.entity.LikePK;
 import com.example.group4eaten.like.repository.LikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -14,6 +15,7 @@ public class LikeService {
     private LikeRepository likeRepository;
 
     // 좋아요 추가
+    @Transactional
     public void setLike(String userId, Long postId, int like_id) {
         LikePK likePK = new LikePK(userId, postId);
         Optional<Like> existingLike = likeRepository.findById(likePK);

@@ -22,7 +22,7 @@ public class Like {
     private int like_id;
 
 
-    public void setLikePK(LikePK likePK) {
+    public void setLikePK(LikePK likePK) { this.likePK = likePK;
     }
 
     public void setLikeId(int like_id) {

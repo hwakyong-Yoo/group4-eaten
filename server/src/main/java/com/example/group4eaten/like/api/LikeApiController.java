@@ -1,5 +1,6 @@
 package com.example.group4eaten.like.api;
 
+import com.example.group4eaten.like.dto.LikeDto;
 import com.example.group4eaten.like.service.LikeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class LikeApiController {
     LikeService likeService;
     @PostMapping("/like/{postId}")
     public ResponseEntity<String> likePost(@RequestHeader(name= "userId",required = false) String userId,
-                                           @RequestBody int like_id,
+                                           @RequestBody LikeDto likedto,
                                            @PathVariable Long postId) {
         // 세션 값이 없으면 좋아요를 누를 수 없음
         if (userId == null || userId.isEmpty()) {
@@ -23,7 +24,7 @@ public class LikeApiController {
         }
 
         // userId와 postId, like_id를 사용하여 좋아요
-        likeService.setLike(userId, postId, like_id);
+        likeService.setLike(userId, postId, likedto.getLike_id());
 
         // 성공적으로 좋아요가 추가되었을 경우
         return new ResponseEntity<>("Post liked successfully.", HttpStatus.OK);
