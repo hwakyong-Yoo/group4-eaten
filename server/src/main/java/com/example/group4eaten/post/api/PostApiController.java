@@ -33,6 +33,9 @@ public class PostApiController {
     //새 게시물 작성
     @PostMapping("/posts")
     public ResponseEntity<PostDto> create(@RequestBody PostDto dto) {
+        //dto의 postId 값 검증
+        if (dto.getPostId() != null)
+            throw new IllegalArgumentException("포스트 생성 실패! 포스트 아이디는 null이어야 합니다!");
         PostDto createdDto = postService.create(dto);
         return ResponseEntity.status(HttpStatus.OK).body(createdDto);
     }
