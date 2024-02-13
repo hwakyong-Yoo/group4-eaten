@@ -2,10 +2,7 @@ package com.example.group4eaten.entity;
 
 import com.example.group4eaten.post.dto.PostDto;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate; // LocalDate 임포트
 import java.time.format.DateTimeFormatter;
@@ -15,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 @ToString
 @Entity
 @Getter
+@Setter
 @Table(name="TB_POST")
 public class Post {
     @Id
