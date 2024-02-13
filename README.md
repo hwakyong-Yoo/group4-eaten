@@ -28,8 +28,7 @@ BE|BE|FE|UI/UX|
 ### UI/UX
 |SPEC |FIGMA | 
 |:------:|:-----:|
-|DESIGN|<img src="https://github.com/hwakyong-Yoo/group4-eaten/assets/144011726/d9ea3ecb-a09f-460b-a384-e5f50f9ca5be" />
-|
+|DESIGN|<img src="https://github.com/hwakyong-Yoo/group4-eaten/assets/144011726/d9ea3ecb-a09f-460b-a384-e5f50f9ca5be" />|
 ## 🎨 Color Scheme
 | #FFB20E|  #FFAD84 | #FFA800 |
 | :--: | :--:| :--: |
