@@ -64,22 +64,6 @@ public class UserController {
 
     }
 
-    @GetMapping("nickname/exists") // 닉네임 중복 체크
-    public ResponseEntity<Map<String, Object>> nicknameDuplicate(@RequestParam("nickname") String nickname) {
-        Map<String, Object> response = new HashMap<>();
-        if (userService.isDuplicateNickname(nickname)) {
-            log.error("닉네임이 이미 존재합니다.");
-            response.put("msg", "이미 사용중인 닉네임입니다.");
-            response.put("statusCode", 400);
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-        } else {
-            log.info("사용 가능한 닉네임입니다.");
-            response.put("msg", "사용 가능한 닉네임입니다.");
-            response.put("statusCode", 200);
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        }
-    }
-
     @PostMapping("/user/login") //로그인
     public ResponseEntity<Map<String, Object>> login(@RequestBody UserForm userForm, HttpSession session) throws NoSuchAlgorithmException {
         Map<String, Object> response = new HashMap<>();
@@ -120,7 +104,7 @@ public class UserController {
         // 세션에서 현재 로그인한 사용자의 ID
         String loggedInUserId = (String) session.getAttribute("userId");
 
-        if (loggedInUserId != null) {
+        if (loggedInUserId != null && loggedInUserId.equals(userId)) {
             // 세션에 로그인한 사용자 ID가 있는 경우에만 업데이트를 허용
             boolean updateResult = userService.updateUser(userId, nickname);
 
@@ -129,12 +113,13 @@ public class UserController {
                 response.put("statusCode", 200);
                 return new ResponseEntity<>(response, HttpStatus.OK);
             } else {
+                // 닉네임 수정에 실패한 경우
                 response.put("msg", "이미 존재하는 닉네임입니다.");
-                response.put("statusCode", 400);
-                return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+                response.put("statusCode", 500);
+                return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } else {
-            // 세션에 로그인한 사용자 ID가 없는 경우에는 업데이트를 거부
+            // 세션에 로그인한 사용자 ID가 없거나, 로그인한 사용자와 업데이트 대상 사용자가 일치하지 않는 경우
             response.put("msg", "로그인한 사용자만 업데이트를 수행할 수 있습니다.");
             response.put("statusCode", 401); // Unauthorized
             return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);

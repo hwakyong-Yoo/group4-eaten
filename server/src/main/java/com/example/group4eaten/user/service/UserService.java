@@ -52,11 +52,6 @@ public class UserService {
 
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            // 새로운 닉네임이 다른 사용자와 중복되는지 확인
-            if (isDuplicateNickname(nickname)) {
-                log.error("새로운 닉네임이 이미 존재합니다.");
-                return false; // 중복된 경우 업데이트 실패
-            }
             // 닉네임 업데이트
             user.setNickname(nickname);
 
@@ -66,7 +61,6 @@ public class UserService {
             // 사용자가 존재하지 않을 경우
             return false; // 업데이트 실패
         }
-
     }
 
     public void delete(String userId) {
@@ -82,10 +76,6 @@ public class UserService {
 
     public boolean isDuplicateUserId(String userId) {
         return userRepository.findByUserId(userId).isPresent();
-    }
-
-    public boolean isDuplicateNickname(String nickname) {
-        return userRepository.findByNickname(nickname).isPresent();
     }
 
     public String getNickname(String userId) {
