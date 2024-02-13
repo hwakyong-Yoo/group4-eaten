@@ -51,13 +51,9 @@ public class PostService {
     public PostDto update(Long postId, PostDto dto) {
         Post target = postRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("Post not found!"));
-        // imagepath에 변화가 있다면 업데이트
-        if (dto.getImagepath() != null && !dto.getImagepath().equals(target.getImagepath())) {
-            target.setImagepath(dto.getImagepath());
-        }
-        // dto를 사용하여 target 엔터티를 업데이트
-        target.setContent(dto.getContent());
-        target.setEdit_YN(dto.getEdit_YN());
+
+        // PostDto의 변경사항을 Post 엔티티에 적용
+        target.applyChanges(dto);
 
         Post updated = postRepository.save(target);
         return PostDto.createPostDto(updated);

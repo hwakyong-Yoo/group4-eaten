@@ -16,7 +16,7 @@ public class PostDto {
     private String content;
     private LocalDate date;
     private String imagepath;
-    private String edit_YN;
+    private Boolean edit_YN = false;
 
     //게시물 조회할 때 사용 - 기존에 저장된 Post 엔티티를 PostDto로 변환
     public static PostDto createPostDto(Post post) {
