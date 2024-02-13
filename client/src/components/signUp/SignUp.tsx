@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './SignUp.css';
-// import logo from '../../image/logo.png';
-// import spoon from '../image/spoon.png';
-// import fork from '../image/fork.png';
+import logo from '../../image/logo.png';
+import spoon from '../../image/spoon.png';
+import fork from '../../image/fork.png';
 
 interface UserInfo {
   nickname: string;
@@ -70,12 +70,12 @@ const Create = ({ isLoggedIn, setLoggedIn, setUserInfo }: LoginProps) => {
     <div className="login">
       <div className="only-header">
         <Link to="/">홈으로</Link>
-        <img src="" alt="로고 이미지" />
+        <img src={logo} alt="로고 이미지" />
       </div>
       <div className="create-page">
         {/* TODO: 회원가입, 로그인 창 디자인 수정 */}
         <div>
-          <img className="fork" src="" alt="fork 이미지" />
+          <img className="fork" src={fork} alt="fork 이미지" />
         </div>
         <div className="signup-form">
           <h2>회원가입</h2>
@@ -110,7 +110,7 @@ const Create = ({ isLoggedIn, setLoggedIn, setUserInfo }: LoginProps) => {
           </button>
         </div>
         <div>
-          <img className="spoon" src="" alt="spoon 이미지" />
+          <img className="spoon" src={spoon} alt="spoon 이미지" />
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CancelNew from '../modal/CancelNew';
-// import eaten from '../../image/eaten.png';
+import eaten from '../../image/eaten.png';
 
 interface HeaderProps {
   isLoggedIn: boolean;
@@ -39,7 +39,7 @@ export const AddHeader: React.FC<HeaderProps> = ({
       <button className="back-button" onClick={() => setModalOpen(true)}></button>
       {modalOpen && <CancelNew onClose={handleCloseModal} />}
       <div>
-        <img src="" alt="이튼 이미지" />
+        <img src={eaten} alt="이튼 이미지" />
       </div>
       <div>
         <p className="mypage-nickname">{userInfo?.nickname}님</p>

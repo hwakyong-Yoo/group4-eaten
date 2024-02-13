@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-// import logo from '../image/logo.png';
+import logo from '../../image/logo.png';
 
 interface HeaderProps {
   isLoggedIn: boolean;
@@ -29,7 +29,7 @@ const MyPageHeader: React.FC<HeaderProps> = ({ isLoggedIn, userInfo, setLoggedIn
     <header className="mypage-header">
       <button className="back-button" onClick={navigateToBack}></button>
       <div>
-        <img src="" alt="로고 이미지" />
+        <img src={logo} alt="로고 이미지" />
       </div>
       <div>
         <p className="mypage-nickname">{userInfo?.nickname}님</p>

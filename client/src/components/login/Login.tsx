@@ -1,9 +1,9 @@
-// Login.jsx
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import logo from '../image/logo.png';
-// import spoon from '../image/spoon.png';
-// import fork from '../image/fork.png';
+import logo from '../../image/logo.png';
+import spoon from '../../image/spoon.png';
+import fork from '../../image/fork.png';
 import CreateModal from '../modal/CreateModal';
 import '../signUp/SignUp.css';
 
@@ -47,11 +47,11 @@ const Login: React.FC<LoginProps> = ({ isLoggedIn, setLoggedIn, setUserInfo }) =
     <div className="login">
       <div className="only-header">
         <button className="back-button" onClick={navigateToBack}></button>
-        <img src="" alt="로고 이미지" />
+        <img src={logo} alt="로고 이미지" />
       </div>
       <div className="create-page">
         <div>
-          <img className="fork" src="" />
+          <img className="fork" src={fork} />
         </div>
         <div className="signup-form">
           <h2>로그인</h2>
@@ -66,7 +66,7 @@ const Login: React.FC<LoginProps> = ({ isLoggedIn, setLoggedIn, setUserInfo }) =
           <button className="submit-button" onClick={handleLogin}></button>
         </div>
         <div>
-          <img className="spoon" src="" />
+          <img className="spoon" src={spoon} />
         </div>
         <div>
           <CreateModal isVisible={isLoggedIn} />

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // TODO: import 깔끔하게 수정
-import { Add, AddHeader, Detail, Main } from './components';
+import { Add, AddHeader, Detail, Main } from './components/declaration';
 
 import Create from './components/signUp/SignUp';
 import Login from './components/login/Login';

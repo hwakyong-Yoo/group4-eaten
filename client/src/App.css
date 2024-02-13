@@ -9,6 +9,11 @@ body {
   text-align: left;
 }
 
+button:hover {
+  transform: scale(1.1); /* 크기를 10% 커지도록 스케일링 */
+}
+
+
 .header {
   display: grid;
   grid-template-rows: 7vh 30vh;

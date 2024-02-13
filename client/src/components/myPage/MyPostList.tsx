@@ -1,4 +1,4 @@
-// MyPostList.tsx
+
 import { Post, PostType } from '../post';
 import './MyPage.css';
 

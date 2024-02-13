@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-// import logo from '../image/logo.png';
+import logo from '../../image/logo.png';
 
 interface HeaderProps {
   isLoggedIn: boolean;
@@ -54,7 +54,7 @@ export const Header: React.FC<HeaderProps> = ({ isLoggedIn, userInfo, setLoggedI
           </>
         )}
       </div>
-      <div className="header-logo">{/* <img src={logo} alt="로고 이미지" /> */}</div>
+      <div className="header-logo">{<img src={logo} alt="로고 이미지" />}</div>
     </header>
   );
 };
