@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate; // LocalDate 임포트
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @AllArgsConstructor
@@ -26,7 +27,7 @@ public class Post {
     @Column
     private String content;     // 내용 (텍스트)
     @Column
-    private LocalDate date;     // 날짜에 대해 LocalDate 사용
+    private String date;     // 날짜에 대해 LocalDate 사용
     @Column
     private String imagepath;   // 이미지 업로드 URL
     @Column
@@ -35,11 +36,12 @@ public class Post {
     public static Post createPost(PostDto dto, User user) {
         if (!dto.getUserId().equals(user.getUserId())) // 문자열 비교를 위해 equals() 사용
             throw new IllegalArgumentException("포스트 생성 실패! 잘못된 사용자 아이디입니다.");
+
         return new Post(
                 dto.getPostId(),
                 user,
                 dto.getContent(),
-                LocalDate.parse(dto.getDate().toString(), DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+                dto.getDate(),
                 dto.getImagepath(),
                 dto.getEdit_YN()
         );
