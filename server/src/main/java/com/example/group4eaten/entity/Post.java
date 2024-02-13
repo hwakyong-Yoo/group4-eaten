@@ -30,7 +30,7 @@ public class Post {
     @Column
     private String imagepath;   // 이미지 업로드 URL
     @Column
-    private String edit_YN;     // 수정 상태
+    private Boolean edit_YN = false;     // 수정 상태, 기본값 false
 
     public static Post createPost(PostDto dto, User user) {
         if (!dto.getUserId().equals(user.getUserId())) // 문자열 비교를 위해 equals() 사용
@@ -51,6 +51,25 @@ public class Post {
         if (dto.getContent() != null) {
             this.content = dto.getContent();
             this.edit_YN = dto.getEdit_YN();
+        }
+    }
+
+    public void applyChanges(PostDto dto) {
+        // postId가 null이 아니면서 현재 객체의 postId와 다르다면 예외 발생
+        if (dto.getPostId() != null && !dto.getPostId().equals(this.postId)) {
+            throw new IllegalArgumentException("포스트 업데이트 실패! 잘못된 포스트 아이디입니다.");
+        }
+
+        // content가 null이 아니면 업데이트
+        if (dto.getContent() != null) {
+            this.content = dto.getContent();
+            this.edit_YN = true; // content가 업데이트되면 edit_YN을 true로 설정
+        }
+
+        // imagepath가 null이 아니면 업데이트
+        if (dto.getImagepath() != null) {
+            this.imagepath = dto.getImagepath();
+            this.edit_YN = true; // imagepath가 업데이트되면 edit_YN을 true로 설정
         }
     }
 }
