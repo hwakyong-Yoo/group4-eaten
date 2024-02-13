@@ -1,3 +1,5 @@
+<img src="https://github.com/hwakyong-Yoo/group4-eaten/assets/144011726/7a9876fa-35c8-48b3-9171-77a6e2b3e0c8" />
+
 # 맛있는 순간, 나만의 음식이야기 #EatenLife
 ![reversal](https://capsule-render.vercel.app/api?type=Venom&text=맛있는순간,나만의음식이야기&color=6:EEFF00,90:FF8A00&fontColor=F6A508&fontAlign=50&fontSize=30&descAlign=60&descAlignY=50)
 ## 프로젝트 소개
@@ -26,7 +28,7 @@ BE|BE|FE|UI/UX|
 ### UI/UX
 |SPEC |FIGMA | 
 |:------:|:-----:|
-|DESIGN|1|
+|DESIGN|<img src="https://github.com/hwakyong-Yoo/group4-eaten/assets/144011726/d9ea3ecb-a09f-460b-a384-e5f50f9ca5be" />|
 ## 🎨 Color Scheme
 | #FFB20E|  #FFAD84 | #FFA800 |
 | :--: | :--:| :--: |
