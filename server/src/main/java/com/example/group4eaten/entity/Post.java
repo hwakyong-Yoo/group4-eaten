@@ -35,8 +35,6 @@ public class Post {
     private String edit_YN;     // 수정 상태
 
     public static Post createPost(PostDto dto, User user) {
-        if (dto.getPostId() != null)
-            throw new IllegalArgumentException("포스트 생성 실패! 포스트 아이디는 null이어야 합니다!");
         if (!dto.getUserId().equals(user.getUserId())) // 문자열 비교를 위해 equals() 사용
             throw new IllegalArgumentException("포스트 생성 실패! 잘못된 사용자 아이디입니다.");
         return new Post(
