@@ -20,12 +20,7 @@ public class UserService {
     public void registerUser(UserForm userForm) throws NoSuchAlgorithmException {
         User user = userForm.toEntity();
 
-        // 아이디와 닉네임 중복 확인
-        if (isDuplicateUserId(user.getUserId()) || isDuplicateNickname(user.getNickname())) {
-            log.error("아이디 또는 닉네임이 이미 존재합니다.");
-            // 실패에 대한 처리 (예: 예외 던지기, 로그 남기기 등)
-            return;
-        }
+        // 사용자 등록 전에 이미 중복 체크를 API에서 수행하므로 중복 여부를 서비스에서 다시 확인할 필요 없음
 
         // SHA-256 사용해서 비밀번호 해시화
         String hashedPassword = SHA256.encrypt(user.getPassword());
@@ -93,4 +88,8 @@ public class UserService {
         return userRepository.findByNickname(nickname).isPresent();
     }
 
+    public String getNickname(String userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        return userOptional.map(User::getNickname).orElse(null);
+    }
 }

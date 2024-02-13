@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -27,20 +29,80 @@ public class UserController {
     }
 
     @PostMapping("/user/create") //회원가입
-    public ResponseEntity<String> createUser(@RequestBody UserForm userForm) throws NoSuchAlgorithmException {
-        userService.registerUser(userForm);
-        return new ResponseEntity<>("회원가입 성공", HttpStatus.OK);
+    public ResponseEntity<Map<String, Object>> createUser(@RequestBody UserForm userForm) throws NoSuchAlgorithmException {
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            userService.registerUser(userForm);
+            response.put("msg", "회원가입이 완료되었습니다.");
+            response.put("statusCode", 200);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            // 예외가 발생한 경우
+            response.put("msg", "회원가입 중 오류가 발생했습니다.");
+            response.put("statusCode", 500);
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/userId/exists") //아이디 중복 체크
+    public ResponseEntity<Map<String, Object>> userIdDuplicate(@RequestHeader("userId") String userId) {
+        Map<String, Object> response = new HashMap<>();
+
+        if (userService.isDuplicateUserId(userId)) {
+            log.error("아이디가 이미 존재합니다.");
+            response.put("msg", "이미 사용중인 아이디입니다.");
+            response.put("statusCode", 400);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+        else {
+            log.info("사용 가능한 아이디입니다.");
+            response.put("msg", "사용 가능한 아이디입니다.");
+            response.put("statusCode", 200);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+
+    }
+
+    @GetMapping("nickname/exists") // 닉네임 중복 체크
+    public ResponseEntity<Map<String, Object>> nicknameDuplicate(@RequestParam("nickname") String nickname) {
+        Map<String, Object> response = new HashMap<>();
+        if (userService.isDuplicateNickname(nickname)) {
+            log.error("닉네임이 이미 존재합니다.");
+            response.put("msg", "이미 사용중인 닉네임입니다.");
+            response.put("statusCode", 400);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        } else {
+            log.info("사용 가능한 닉네임입니다.");
+            response.put("msg", "사용 가능한 닉네임입니다.");
+            response.put("statusCode", 200);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
     }
 
     @PostMapping("/user/login") //로그인
-    public ResponseEntity<String> login(@RequestBody UserForm userForm, HttpSession session) throws NoSuchAlgorithmException {
+    public ResponseEntity<Map<String, Object>> login(@RequestBody UserForm userForm, HttpSession session) throws NoSuchAlgorithmException {
+        Map<String, Object> response = new HashMap<>();
+
         User user = userForm.toEntity();
-        if (userService.login(userForm)) {
-            session.setAttribute("userId", user.getUserId()); // 세션에 사용자 ID 저장
-            return new ResponseEntity<>("로그인 성공", HttpStatus.OK);
-        } else {
-            //로그인 실패
-            return new ResponseEntity<>("로그인 실패", HttpStatus.UNAUTHORIZED);
+
+        try {
+            if (userService.login(userForm)) {
+                session.setAttribute("userId", user.getUserId()); // 세션에 사용자 ID 저장
+                response.put("msg", "로그인이 완료되었습니다.");
+                response.put("statusCode", 200);
+                response.put("userId", user.getUserId());
+                response.put("nickname", userService.getNickname(user.getUserId()));
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            } else {
+                response.put("msg", "로그인에 실패했습니다. 아이디 또는 비밀번호를 확인해주세요.");
+                response.put("statusCode", 401);
+                return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+            }
+        } catch (Exception e) {
+            response.put("msg", "로그인 중 오류가 발생했습니다.");
+            response.put("statusCode", 500);
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -52,22 +114,49 @@ public class UserController {
     }
 
     @PutMapping("/user/{userId}/edit")
-    public ResponseEntity<String> update(@PathVariable String userId, @RequestBody String nickname) {
-        boolean updateResult = userService.updateUser(userId, nickname);
+    public ResponseEntity<Map<String, Object>> update(@PathVariable String userId, @RequestBody String nickname, HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
 
-        if (updateResult) {
-            return new ResponseEntity<>("업데이트 성공", HttpStatus.OK);
+        // 세션에서 현재 로그인한 사용자의 ID
+        String loggedInUserId = (String) session.getAttribute("userId");
+
+        if (loggedInUserId != null) {
+            // 세션에 로그인한 사용자 ID가 있는 경우에만 업데이트를 허용
+            boolean updateResult = userService.updateUser(userId, nickname);
+
+            if (updateResult) {
+                response.put("msg", "닉네임이 수정되었습니다.");
+                response.put("statusCode", 200);
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            } else {
+                response.put("msg", "이미 존재하는 닉네임입니다.");
+                response.put("statusCode", 400);
+                return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            }
         } else {
-            return new ResponseEntity<>("사용자를 찾을 수 없습니다.", HttpStatus.NOT_FOUND);
+            // 세션에 로그인한 사용자 ID가 없는 경우에는 업데이트를 거부
+            response.put("msg", "로그인한 사용자만 업데이트를 수행할 수 있습니다.");
+            response.put("statusCode", 401); // Unauthorized
+            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
         }
     }
 
     @DeleteMapping("user/{userId}/delete") //회원 삭제
-    public ResponseEntity<String> delete(@RequestHeader("userId") String userId, RedirectAttributes rttr, Model model) {
+    public ResponseEntity<Map<String, Object>> delete(@RequestHeader("userId") String userId, RedirectAttributes rttr, Model model) {
+        Map<String, Object> response = new HashMap<>();
+
         log.info("삭제 요청이 들어왔습니다!!");
-        userService.delete(userId);
-        rttr.addFlashAttribute("msg", "삭제되었습니다.");
-        return new ResponseEntity<>("회원 탈퇴 완료 ", HttpStatus.OK);
+        try {
+            userService.delete(userId);
+            rttr.addFlashAttribute("msg", "삭제되었습니다.");
+            response.put("msg", "회원탈퇴가 완료되었습니다.");
+            response.put("statusCode", 200); // Unauthorized
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            response.put("msg", "회원탈퇴 중 오류가 발생했습니다.");
+            response.put("statusCode", 500);
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
