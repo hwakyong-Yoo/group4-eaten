@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // TODO: import 깔끔하게 수정
-import { Add, AddHeader, Detail, Main } from './components/declaration';
-
-import Create from './components/signUp/SignUp';
-import Login from './components/login/Login';
+import { Add, AddHeader, Detail, Main, SignUp, Login} from './components/declaration';
 import MyPage from './components/myPage/MyPage';
 import MyPageHeader from './components/myPage/MyPageHeader';
+import Setting from './components/myPage/setting/Setting';
+import Nickname from './components/myPage/setting/Nickname';
+import Delete from './components/myPage/setting/Delete';
 import './App.css';
+import Footer from './components/myPage/Footer';
 
 interface UserInfo {
   nickname: string;
@@ -22,23 +23,11 @@ const App = () => {
       <div className="app">
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route
-            path="/create"
-            element={
-              <Create
-                isLoggedIn={isLoggedIn}
-                setLoggedIn={setLoggedIn}
-                setUserInfo={setUserInfo}
-              />
-            }
-          />
+          <Route path="/signup" element={<SignUp/>}/>
           <Route
             path="/login"
             element={
               <Login
-                isLoggedIn={isLoggedIn}
-                setLoggedIn={setLoggedIn}
-                setUserInfo={setUserInfo}
               />
             }
           />
@@ -53,6 +42,7 @@ const App = () => {
                 />
                 <div>
                   <Add />
+                  <Footer />
                 </div>
               </>
             }
@@ -72,6 +62,45 @@ const App = () => {
               </>
             }
           />
+           <Route
+            path="/mypage/setting"
+            element={
+              <>
+                <MyPageHeader
+                  isLoggedIn={isLoggedIn}
+                  userInfo={userInfo}
+                  setLoggedIn={setLoggedIn}
+                />
+                <Setting />
+              </>
+            }
+          />
+          <Route
+            path="/mypage/setting/nickname"
+            element={
+              <>
+                <MyPageHeader
+                  isLoggedIn={isLoggedIn}
+                  userInfo={userInfo}
+                  setLoggedIn={setLoggedIn}
+                />
+                <Nickname/>
+              </>
+            }
+          />
+          <Route
+            path="/mypage/setting/delete"
+            element={
+              <>
+                <MyPageHeader
+                  isLoggedIn={isLoggedIn}
+                  userInfo={userInfo}
+                  setLoggedIn={setLoggedIn}
+                />
+                <Delete />
+              </>
+            }
+            ></Route>
           <Route path="/post/:postId" Component={Detail} />
         </Routes>
       </div>

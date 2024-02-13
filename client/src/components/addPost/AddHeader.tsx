@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import CancelNew from '../modal/CancelNew';
 import eaten from '../../image/eaten.png';
 
@@ -14,18 +14,14 @@ interface UserInfo {
 }
 
 export const AddHeader: React.FC<HeaderProps> = ({
-  isLoggedIn,
   userInfo,
   setLoggedIn,
 }) => {
-  const navigate = useNavigate();
+
   const handleLogout = () => {
     // 로그아웃 시
-    setLoggedIn(false);
-    navigate('/');
-  };
-  const navigateToBack = () => {
-    navigate('/');
+    localStorage.setItem('login', 'false')
+    window.localStorage.removeItem('nickname')
   };
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -44,7 +40,8 @@ export const AddHeader: React.FC<HeaderProps> = ({
       <div>
         <p className="mypage-nickname">{userInfo?.nickname}님</p>
       </div>
-      <button className="logout-button" onClick={handleLogout}></button>
+      <Link to='/'><button className="logout-button" onClick={handleLogout}/></Link>
+      
     </header>
   );
 };

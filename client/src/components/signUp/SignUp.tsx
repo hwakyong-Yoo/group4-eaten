@@ -5,17 +5,8 @@ import logo from '../../image/logo.png';
 import spoon from '../../image/spoon.png';
 import fork from '../../image/fork.png';
 
-interface UserInfo {
-  nickname: string;
-}
 
-interface LoginProps {
-  isLoggedIn: boolean;
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-  setUserInfo: React.Dispatch<React.SetStateAction<UserInfo | null>>;
-}
-
-const Create = ({ isLoggedIn, setLoggedIn, setUserInfo }: LoginProps) => {
+export const SignUp: React.FC = () => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -54,22 +45,14 @@ const Create = ({ isLoggedIn, setLoggedIn, setUserInfo }: LoginProps) => {
       alert('입력 정보를 확인해주세요.');
       return;
     }
-
-    // setLoggedIn(true);
-    // setUserInfo({ nickname });
-    // const userInfo = {
-    //   isLoggedIn: true,
-    //   nickname,
-    // };
-    // localStorage.setItem('userInfo', JSON.stringify(userInfo));
-    localStorage.setItem('userInfo', nickname);
+    localStorage.setItem('nickname', nickname);
     navigate('/login');
   };
 
   return (
     <div className="login">
       <div className="only-header">
-        <Link to="/">홈으로</Link>
+        <Link to="/" className='back-button'></Link>
         <img src={logo} alt="로고 이미지" />
       </div>
       <div className="create-page">
@@ -106,7 +89,7 @@ const Create = ({ isLoggedIn, setLoggedIn, setUserInfo }: LoginProps) => {
             onChange={e => setNickname(e.target.value)}
           />
           <button className="submit-button" onClick={handleLogin}>
-            확인
+            
           </button>
         </div>
         <div>
@@ -116,5 +99,3 @@ const Create = ({ isLoggedIn, setLoggedIn, setUserInfo }: LoginProps) => {
     </div>
   );
 };
-
-export default Create;

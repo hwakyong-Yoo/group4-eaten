@@ -84,14 +84,19 @@ button:hover {
   background-size: contain;
   background-repeat: no-repeat;
   width: 6vw;
-  height: 5vh;
+  height: 10vh;
   border: none;
   cursor: pointer;
 }
 
 #header-signup-button {
+  position: absolute; /* 절대 위치 지정 */
+  right: 10vw;
   color: red;
   background-color: rgba(255, 178, 14, 0);
+  cursor: pointer;
+  width: 20vw;
+  height: 10vh;
 }
 
 #new-post {
@@ -119,13 +124,20 @@ button:hover {
   font-size: 4em;
 }
 
+input[type="file"] {
+  position: relative;
+  opacity: 0; /* 입력 요소를 투명하게 만듭니다. */
+  z-index: 1; /* 이미지 위로 위치하도록 합니다. */
+}
+
 .upload-button {
   display: inline-block;
   width: 40vw;
-  height: 60vh;
+  height: 40vw;
   background-color: white;
   background-image: url('./image/Add_Image.png');
-  background-size: contain;
+  background-size: 20%;
+  background-position: center;
   background-repeat: no-repeat;
   color: black;
   border-radius: 50%;
@@ -149,9 +161,6 @@ button:hover {
   margin-top: 5vh;
 }
 
-.popular-posts {
-  background-color: white;
-}
 
 .recent-posts {
   background: linear-gradient(to bottom, white, #ffad84);
@@ -201,8 +210,7 @@ button:hover {
 
 .footer {
   background-color: #ffad84;
-  color: black;
-  text-align: left;
+position: fixed;
   bottom: 0px;
   width: 100%;
   height: 20vh;
@@ -225,39 +233,6 @@ button:hover {
   height: 100vh;
   width: 100vw;
 }
-.signup-form {
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-
-  height: 50vh; /* 화면 높이 만큼 설정하여 세로 중앙 정렬 */
-  width: 30vw;
-  padding-top: 15vh;
-  margin-top: 8vh;
-  border: #ffad84; /* 왜 적용이 안 되지 */
-}
-
-.signup-form input {
-  align-items: center;
-  margin-left: 1vw;
-  margin-right: 10vw;
-}
-
-.signup-form label {
-  padding-left: 1vw;
-}
-
-.create-page {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  bottom: 0;
-  justify-content: space-between;
-}
-
-.create-page img {
-  width: 20vw;
-  bottom: 0;
-}
 
 .modal {
   font-size: 2vw;
@@ -273,25 +248,6 @@ button:hover {
   text-align: center;
 }
 
-.click-modal {
-  font-size: 2vw;
-  position: absolute; /* 절대 위치 지정 */
-  left: 50vw;
-  top: 50vh;
-  height: 60%;
-  width: 25vw;
-  background-image: url('./image/click-modal.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-color: rgba(255, 178, 14, 0);
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-.click-modal button {
-  background-color: white;
-  border: none;
-}
 
 #nickname-text {
   color: black;

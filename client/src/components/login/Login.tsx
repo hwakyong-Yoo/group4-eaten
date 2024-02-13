@@ -4,23 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import logo from '../../image/logo.png';
 import spoon from '../../image/spoon.png';
 import fork from '../../image/fork.png';
-import CreateModal from '../modal/CreateModal';
+//import CreateModal from '../modal/CreateModal';
 import '../signUp/SignUp.css';
 
-interface LoginProps {
-  isLoggedIn: boolean;
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-  setUserInfo: React.Dispatch<React.SetStateAction<UserInfo | null>>;
-}
+// interface UserInfo {
+//   nickname: string;
+// }
 
-interface UserInfo {
-  nickname: string;
-}
-
-const Login: React.FC<LoginProps> = ({ isLoggedIn, setLoggedIn, setUserInfo }) => {
+export const Login = () => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [nickname, setNickname] = useState('');
   const navigate = useNavigate();
   const navigateToBack = () => {
@@ -31,11 +24,8 @@ const Login: React.FC<LoginProps> = ({ isLoggedIn, setLoggedIn, setUserInfo }) =
     // 간단한 로그인 처리 로직
     if (id && password) {
       // 로그인 성공 시
-      const userInfo = {
-        isLoggedIn: false,
-        nickname: '',
-      };
-      localStorage.setItem('login', JSON.stringify(userInfo));
+      localStorage.setItem('login', JSON.stringify(true));
+      localStorage.setItem('nickname', nickname)
       navigate('/'); // 메인 페이지로 이동
     } else {
       // 로그인 실패 시
@@ -68,12 +58,10 @@ const Login: React.FC<LoginProps> = ({ isLoggedIn, setLoggedIn, setUserInfo }) =
         <div>
           <img className="spoon" src={spoon} />
         </div>
-        <div>
+        {/* <div>
           <CreateModal isVisible={isLoggedIn} />
-        </div>
+        </div> */}
       </div>
     </div>
   );
 };
-
-export default Login;

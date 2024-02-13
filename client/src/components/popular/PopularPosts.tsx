@@ -5,7 +5,7 @@ import { POSTS_PER_PAGE } from './popularPosts.const';
 import './PopularPosts.css';
 
 export const PopularPosts = ({ posts }: { posts: PostsType }) => {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const prevPage = () => {
     if (currentPage > 0) {
@@ -34,9 +34,7 @@ export const PopularPosts = ({ posts }: { posts: PostsType }) => {
           <Post key={post.id} post={post} />
         ))}
       </div>
-      <button id="right-button" onClick={nextPage}>
-        {'>'}
-      </button>
+      <button id="right-button" onClick={nextPage}/>
     </div>
   );
 };
