@@ -1,10 +1,9 @@
 package com.example.group4eaten.post.dto;
 
 import com.example.group4eaten.entity.Post;
-import com.example.group4eaten.entity.User; // User 엔터티 임포트
+import com.example.group4eaten.entity.User;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -23,7 +22,6 @@ public class PostDto {
 
     //게시물 조회할 때 사용 - 기존에 저장된 Post 엔티티를 PostDto로 변환
     public static PostDto createPostDto(Post post) {
-
         return new PostDto(
                 post.getPostId(),
                 post.getUser().getUserId(),
@@ -39,7 +37,7 @@ public class PostDto {
     public PostDto(String userId, String content, String imagepath) {
         this.userId = userId;
         this.content = content;
-        this.date = getCurrentFormattedDate(); // Use the method to set the date
+        this.date = getCurrentFormattedDate();
         this.imagepath = imagepath;
     }
 
@@ -56,7 +54,7 @@ public class PostDto {
         return new Post(postId, user, content, date, imagepath, edit_YN);
     }
 
-    // 추가된 메서드: 현재 시간을 "yyyy-MM-dd HH:mm" 형식으로 반환
+    //현재 시간을 "yyyy-MM-dd HH:mm" 형식으로 반환
     public static String getCurrentFormattedDate() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
