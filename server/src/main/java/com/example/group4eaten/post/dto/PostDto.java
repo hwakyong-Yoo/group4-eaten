@@ -12,9 +12,11 @@ import java.time.format.DateTimeFormatter;
 @Getter
 @Setter
 @ToString
+@Builder
 public class PostDto {
     private Long postId;
     private String userId;
+    private String nickname;
     private String content;
     private String date;
     private String imagepath;
@@ -22,23 +24,26 @@ public class PostDto {
 
     //게시물 조회할 때 사용 - 기존에 저장된 Post 엔티티를 PostDto로 변환
     public static PostDto createPostDto(Post post) {
-        return new PostDto(
-                post.getPostId(),
-                post.getUser().getUserId(),
-                post.getContent(),
-                post.getDate(),
-                post.getImagepath(),
-                post.getEdit_YN()
-        );
+        return PostDto.builder()
+                .postId(post.getPostId())
+                .userId(post.getUser().getUserId())
+                .nickname(post.getUser().getNickname())
+                .content(post.getContent())
+                .date(post.getDate())
+                .imagepath(post.getImagepath())
+                .edit_YN(post.getEdit_YN())
+                .build();
     }
 
     //생성자를 통한 게시물 생성 - 객체를 생성하면서 필요한 필드만 선택적으로 초기화
     @Builder
-    public PostDto(String userId, String content, String imagepath) {
+    public PostDto(String userId, String nickname, String content, String date, String imagepath, Boolean edit_YN) {
         this.userId = userId;
+        this.nickname = nickname;
         this.content = content;
-        this.date = getCurrentFormattedDate();
+        this.date = date;
         this.imagepath = imagepath;
+        this.edit_YN = edit_YN;
     }
 
     //게시물 수정 - 주어진 파라미터로 객체의 상태를 업데이트
@@ -47,7 +52,6 @@ public class PostDto {
         this.content = content;
         this.imagepath = imagepath;
     }
-
 
     //PostDto를 Post 엔티티로 변환
     public Post toEntity(User user) {
