@@ -36,6 +36,7 @@ public class PostApiController {
         //dto의 postId 값 검증
         if (dto.getPostId() != null)
             throw new IllegalArgumentException("포스트 생성 실패! 포스트 아이디는 null이어야 합니다!");
+        dto.setDate(PostDto.getCurrentFormattedDate());
         PostDto createdDto = postService.create(dto);
         return ResponseEntity.status(HttpStatus.OK).body(createdDto);
     }
