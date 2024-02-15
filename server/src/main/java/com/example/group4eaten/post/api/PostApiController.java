@@ -9,7 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -56,5 +58,44 @@ public class PostApiController {
         PostDto deletedDto = postService.delete(postId);
         return ResponseEntity.status(HttpStatus.OK).body(deletedDto);
     }
+
+    //게시물에 눌린 좋아요 수 확인
+    @GetMapping("/posts/like/{postId}")
+    public ResponseEntity<Map<String, Object>> getLikesForPost(@PathVariable Long postId) {
+        try {
+            Map<Integer, Integer> likeCounts = postService.fetchLikeCounts(postId);
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("likeCounts", likeCounts);
+            response.put("msg", "좋아요 수 확인");
+            response.put("statusCode", 200);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("error", "좋아요 수 확인 불가");
+            errorResponse.put("statusCode", 500);
+            return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    //인기 게시물 조회
+    @GetMapping("/hot-posts")
+    public ResponseEntity<Map<String, Object>> getHotPosts() {
+        try {
+            List<Post> topPosts = postService.getTopPostsByLikeCounts();
+            Map<String, Object> response = new HashMap<>();
+            response.put("posts", topPosts);
+            response.put("msg", "인기 게시물 조회");
+            response.put("statusCode", 200);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("error", "인기 게시물 조회 실패");
+            errorResponse.put("statusCode", 400);
+            return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
+        }
+    }
+
 
 }
