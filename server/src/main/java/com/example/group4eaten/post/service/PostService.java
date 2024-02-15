@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.Map;
 
 @Slf4j
@@ -27,15 +28,73 @@ public class PostService {
     @Autowired
     private LikeRepository likeRepository;
 
-    //전체 게시물 조회
-    public List<Post> index() {
-        return postRepository.findAll();
+//전체 게시물 조회
+    public List<Map<String, Object>> getAllPosts(){
+        List<Post> allPosts = postRepository.findAll();
+        // Post 엔티티를 Map<String, Object>로 변환
+        return allPosts.stream()
+                .map(post -> {
+                    Map<String, Object> postMap = new HashMap<>();
+                    postMap.put("postId", post.getPostId());
+                    postMap.put("nickname", post.getUser().getNickname());  // userId 대신 nickname 사용
+                    postMap.put("content", post.getContent());
+                    postMap.put("date", post.getDate());
+                    postMap.put("imagepath", post.getImagepath());
+                    postMap.put("edit_YN", post.getEdit_YN());
+                    return postMap;
+                })
+                .collect(Collectors.toList());
+
     }
+//public List<PostDto> index() {
+//    List<Post> allPosts = postRepository.findAll();
+//
+//    // Post 엔티티를 PostDto로 변환하면서 필요한 정보만 포함시킴
+//    return allPosts.stream()
+//            .map(post -> PostDto.builder()
+//                    .postId(post.getPostId())
+//                    .nickname(post.getUser().getNickname())  // userId 대신 nickname 사용
+//                    .content(post.getContent())
+//                    .date(post.getDate())
+//                    .imagepath(post.getImagepath())
+//                    .edit_YN(post.getEdit_YN())
+//                    .build())
+//            .collect(Collectors.toList());
+//}
 
     //상세 페이지 조회
-    public Post show(Long postId) {
-        return postRepository.findById(postId).orElse(null);
+    public Map<String, Object> getPostDetails(Long postId) {
+        Post post = postRepository.findById(postId).orElse(null);
+        if (post != null) {
+            // Post 엔티티를 Map<String, Object>로 변환
+            return Map.of(
+                    "postId", post.getPostId(),
+                    "nickname", post.getUser().getNickname(),  // userId 대신 nickname 사용
+                    "content", post.getContent(),
+                    "date", post.getDate(),
+                    "imagepath", post.getImagepath(),
+                    "edit_YN", post.getEdit_YN()
+            );
+        } else {
+            return null;
+        }
     }
+//    public PostDto show(Long postId) {
+//        Post post = postRepository.findById(postId).orElse(null);
+//        if (post != null) {
+//            // Post 엔티티를 PostDto로 변환하면서 필요한 정보만 포함시킴
+//            return PostDto.builder()
+//                    .postId(post.getPostId())
+//                    .nickname(post.getUser().getNickname())  // userId 대신 nickname 사용
+//                    .content(post.getContent())
+//                    .date(post.getDate())
+//                    .imagepath(post.getImagepath())
+//                    .edit_YN(post.getEdit_YN())
+//                    .build();
+//        } else {
+//            return null;
+//        }
+//    }
 
     //게시물 생성
     @Transactional
@@ -75,6 +134,28 @@ public class PostService {
         return PostDto.createPostDto(target);
     }
 
+//내 페이지 조회 (내가 작성한 게시물 조회가능)
+public List<PostDto> getMyPosts(String userId) {
+    // userId를 이용하여 유저 정보를 확인
+    User user = userRepository.findById(userId)
+            .orElseThrow(() -> new IllegalArgumentException("해당 유저를 찾을 수 없습니다. userId: " + userId));
+
+    // 현재 사용자가 작성한 게시물 목록 조회
+    List<Post> myPosts = postRepository.findByUserId(userId);
+
+    // Post 엔티티를 PostDto로 변환
+    return myPosts.stream()
+            .map(post -> PostDto.builder()
+                    .postId(post.getPostId())
+                    .nickname(user.getNickname())  // userId 대신 nickname 사용
+                    .content(post.getContent())
+                    .date(post.getDate())
+                    .imagepath(post.getImagepath())
+                    .edit_YN(post.getEdit_YN())
+                    .build())
+            .collect(Collectors.toList());
+}
+
     //좋아요 수 확인
     public Map<Integer, Integer> fetchLikeCounts(Long postId) {
         List<Like> likes = likeRepository.findByLikePKPostId(postId);
@@ -95,8 +176,23 @@ public class PostService {
 
         return likeCounts;
     }
-    public List<Post> getTopPostsByLikeCounts() {
-        return postRepository.findTopPosts();
+    // 인기 게시물 조회
+    public List<Map<String, Object>> getTopPostsByLikeCounts() {
+        List<Post> topPosts = postRepository.findTopPosts();
+
+        // Post 엔티티를 Map<String, Object>로 변환
+        return topPosts.stream()
+                .map(post -> {
+                    Map<String, Object> postMap = new HashMap<>();
+                    postMap.put("postId", post.getPostId());
+                    postMap.put("nickname", post.getUser().getNickname());  // userId 대신 nickname 사용
+                    postMap.put("content", post.getContent());
+                    postMap.put("date", post.getDate());
+                    postMap.put("imagepath", post.getImagepath());
+                    postMap.put("edit_YN", post.getEdit_YN());
+                    return postMap;
+                })
+                .collect(Collectors.toList());
     }
 }
 
