@@ -1,5 +1,7 @@
 package com.example.group4eaten.post.service;
 
+import com.example.group4eaten.entity.Like;
+import com.example.group4eaten.like.repository.LikeRepository;
 import com.example.group4eaten.post.dto.PostDto;
 import com.example.group4eaten.entity.Post;
 import com.example.group4eaten.entity.User;
@@ -9,10 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -22,6 +23,9 @@ public class PostService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private LikeRepository likeRepository;
 
     //전체 게시물 조회
     public List<Post> index() {
@@ -71,6 +75,29 @@ public class PostService {
         return PostDto.createPostDto(target);
     }
 
+    //좋아요 수 확인
+    public Map<Integer, Integer> fetchLikeCounts(Long postId) {
+        List<Like> likes = likeRepository.findByLikePKPostId(postId);
+
+        // Initialize the map with default values
+        Map<Integer, Integer> likeCounts = new HashMap<>();
+        likeCounts.put(1, 0);
+        likeCounts.put(2, 0);
+        likeCounts.put(3, 0);
+        likeCounts.put(4, 0);
+        likeCounts.put(5, 0);
+
+        //좋아요 종류별 개수
+        for (Like like : likes) {
+            Integer likeType = like.getLike_id();
+            likeCounts.put(likeType, likeCounts.get(likeType) + 1);
+        }
+
+        return likeCounts;
+    }
+    public List<Post> getTopPostsByLikeCounts() {
+        return postRepository.findTopPosts();
+    }
 }
 
 
