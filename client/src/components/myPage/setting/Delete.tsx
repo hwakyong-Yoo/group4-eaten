@@ -1,27 +1,27 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { SettingBody, SettingForm } from './styles';
+import {MyPageHeader} from '../MyPageHeader';
 
-const Delete = () => {
-  const navigate = useNavigate()
-  const navigateToMain = () => {
-    navigate('/')
-  }
-
-  const navigateToMypage = () => {
-    navigate('/mypage')
-  }
+export const Delete = () => {
 
   return (
-    <SettingBody>
-      <div></div>
-      <SettingForm>
-        <p>회원을 탈퇴하시겠습니까?</p>
-        <button onClick={navigateToMain}>예</button>
-        <button onClick={navigateToMypage}>아니요</button>
-      </SettingForm>
-      <div></div>
-    </SettingBody>
+    <div>
+      <div>
+        <MyPageHeader />
+      </div>
+      <SettingBody>
+        <div></div>
+        <SettingForm>
+          <p>회원을 탈퇴하시겠습니까?</p>
+          <Link to="/">
+            <button>예</button>
+          </Link>
+          <Link to="/mypage">
+            <button>아니요</button>
+          </Link>
+        </SettingForm>
+        <div></div>
+      </SettingBody>
+    </div>
   );
 }
-
-export default Delete;

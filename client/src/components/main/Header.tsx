@@ -12,12 +12,7 @@ import {
   AddPost,
 } from './styles';
 
-interface HeaderProps {
-  isLoggedIn: boolean;
-  userInfo: string | null;
-}
-
-export const Header: React.FC<HeaderProps> = () => {
+export const Header: React.FC = () => {
   const handleLogout = () => {
     // 로그아웃 시
     localStorage.setItem('login', JSON.stringify(false));

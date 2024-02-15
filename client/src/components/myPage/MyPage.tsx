@@ -1,15 +1,19 @@
 import MyPostList from './MyPostList'
 import {MyPosts} from '../../mock.const';
+import {MyPageHeader} from './MyPageHeader';
 import {H1} from './styles'
 
 
-const MyPage = () => {
+export const MyPage = () => {
   return (
     <div>
-      <H1>My Page</H1>
-      <MyPostList posts={MyPosts} />
+      <div>
+        <MyPageHeader />
+      </div>
+      <div>
+        <H1>My Page</H1>
+        <MyPostList posts={MyPosts} />
+      </div>
     </div>
-  )
+  );
 }
-
-export default MyPage

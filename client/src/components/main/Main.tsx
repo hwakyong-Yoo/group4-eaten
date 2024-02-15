@@ -5,12 +5,9 @@ import { Header } from './Header';
 import { PopularPost, NewPost } from './styles';
 
 export function Main() {
-  const LoggedIn = localStorage.getItem('login');
-  const isLoggedIn = LoggedIn === 'true';
-  const nickname = localStorage.getItem('nickname');
   return (
     <>
-      <Header isLoggedIn={isLoggedIn} userInfo={nickname} />
+      <Header/>
       <PopularPost>
         <h2>인기 게시물</h2>
         <PopularPosts posts={mockPopularPosts} />

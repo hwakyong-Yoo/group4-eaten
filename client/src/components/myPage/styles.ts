@@ -10,6 +10,7 @@ export const H1 = styled.h1`
 export const Header = styled.header`
   background-color: white;
   text-align: center;
+  height: 20vh;
 `;
 
 export const EatenImage = styled.img`

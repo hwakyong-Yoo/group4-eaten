@@ -3,6 +3,11 @@ import Add_Image from '../../image/Add_Image.png';
 import post_submit from '../../image/post_submit.png';
 import back from '../../image/back.png';
 
+export const AddPage = styled.div`
+  display: grid;
+  grid-templage-rows: 1fr 4fr 1fr;
+`;
+
 export const AddPost = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
