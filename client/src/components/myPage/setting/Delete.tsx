@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import './Setting.css';
+import { SettingBody, SettingForm } from './styles';
 
 const Delete = () => {
   const navigate = useNavigate()
@@ -12,16 +12,16 @@ const Delete = () => {
   }
 
   return (
-    <div className="click-modal">
+    <SettingBody>
       <div></div>
-      <div className="modal-content">
+      <SettingForm>
         <p>회원을 탈퇴하시겠습니까?</p>
         <button onClick={navigateToMain}>예</button>
         <button onClick={navigateToMypage}>아니요</button>
-      </div>
+      </SettingForm>
       <div></div>
-    </div>
-  )
+    </SettingBody>
+  );
 }
 
 export default Delete;

@@ -1,5 +1,6 @@
 import { PostsType } from '../myPage';
 import { Post } from '../post';
+import {PostList} from './styles'
 
 interface NewPostListProps {
   posts: PostsType;
@@ -7,12 +8,12 @@ interface NewPostListProps {
 
 export const NewPostList = ({ posts }: NewPostListProps) => {
   return (
-    <div className="post-list">
+    <PostList>
       {posts.length === 0 ? (
         <div>게시글이 없습니다.</div>
       ) : (
         posts.map(post => <Post key={post.id} post={post} />)
       )}
-    </div>
+    </PostList>
   );
 };

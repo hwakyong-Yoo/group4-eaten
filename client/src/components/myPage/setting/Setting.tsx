@@ -1,17 +1,21 @@
 import { Link } from 'react-router-dom';
-import './Setting.css';
+import { SettingBody, Button, SettingForm } from './styles';
 
 const Setting = () => {
 
   return (
-    <div className="click-modal">
+    <SettingBody>
       <div></div>
-      <div className="modal-content">
-        <Link to='/mypage/setting/nickname'><button>닉네임 변경</button></Link>
-        <Link to='/mypage/setting/delete'><button>회원탈퇴</button></Link>
-      </div>
+      <SettingForm>
+        <Link to="/mypage/setting/nickname">
+          <Button>닉네임 변경</Button>
+        </Link>
+        <Link to="/mypage/setting/delete">
+          <Button>회원탈퇴</Button>
+        </Link>
+      </SettingForm>
       <div></div>
-    </div>
+    </SettingBody>
   );
 };
 
