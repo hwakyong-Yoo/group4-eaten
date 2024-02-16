@@ -7,6 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,29 +27,16 @@ public class PostApiController {
 
     //전체 게시물 조회
     @GetMapping("/posts")
-    public ResponseEntity<List<Map<String, Object>>> getAllPosts() {
+    public ResponseEntity<Map<String, Object>> getAllPosts(@RequestParam int pagenum) {
         try {
-            List<Map<String, Object>> allPosts = postService.getAllPosts();
+            Pageable pageable = PageRequest.of(pagenum - 1, 10);
+            Map<String, Object> responseMap = postService.getAllPosts(pageable);
 
-            // userId를 nickname으로 변경
-            List<Map<String, Object>> responsePosts = allPosts.stream()
-                    .map(postMap -> {
-                        Map<String, Object> modifiedPostMap = new HashMap<>(postMap);
-                        modifiedPostMap.put("nickname", postMap.get("nickname"));
-                        modifiedPostMap.remove("userId");
-                        return modifiedPostMap;
-                    })
-                    .collect(Collectors.toList());
-
-            return ResponseEntity.status(HttpStatus.OK).body(responsePosts);
+            return ResponseEntity.status(HttpStatus.OK).body(responseMap);
         } catch (Exception e) {
-            // 예외 처리
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-//    public List<PostDto> index(){
-//        return postService.index();
-//    }
 
     //상세 페이지 조회
     @GetMapping("/posts/{postId}")
@@ -69,16 +59,6 @@ public class PostApiController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-//    public ResponseEntity<PostDto> show(@PathVariable Long postId) {
-//        PostDto post = postService.show(postId);
-//
-//        if (post != null) {
-//            return ResponseEntity.status(HttpStatus.OK).body(post);
-//        } else {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-//        }
-//    }
-
 
     //새 게시물 작성
     @PostMapping("/posts")
@@ -158,12 +138,6 @@ public class PostApiController {
     }
 
 
-//    //내 페이지 (내가 작성한 게시물 조회 가능)
-//    @GetMapping("/mypage")
-//    public ResponseEntity<List<PostDto>> getmypage(@RequestHeader(name="sessionId") String sessionId){
-//        List<PostDto> myPosts = postService.getMyPosts(sessionId);
-//        return ResponseEntity.status(HttpStatus.OK).body(myPosts);
-//    }
 
     // 내 페이지 (내가 작성한 게시물 조회 가능)
     @GetMapping("/mypage")
