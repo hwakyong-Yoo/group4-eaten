@@ -19,17 +19,11 @@ public class LikeService {
         LikePK likePK = new LikePK(userId, postId);
         Optional<Like> existingLike = likeRepository.findById(likePK);
 
-        if (existingLike.isPresent()) {
-            // 이미 좋아요를 눌렀다면 업데이트
-            existingLike.get().setLikeId(like_id);
-            likeRepository.save(existingLike.get());
-        } else {
-            // 좋아요 추가
-            Like newLike = new Like();
-            newLike.setLikePK(likePK);
-            newLike.setLikeId(like_id);
-            likeRepository.save(newLike);
-        }
+        // 좋아요 추가
+        Like newLike = new Like();
+        newLike.setLikePK(likePK);
+        newLike.setLikeId(like_id);
+        likeRepository.save(newLike);
     }
 
     //좋아요 취소
