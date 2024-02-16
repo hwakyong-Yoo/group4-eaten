@@ -9,8 +9,13 @@ import com.example.group4eaten.post.repository.PostRepository;
 import com.example.group4eaten.user.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,15 +33,16 @@ public class PostService {
     @Autowired
     private LikeRepository likeRepository;
 
-//전체 게시물 조회
-    public List<Map<String, Object>> getAllPosts(){
-        List<Post> allPosts = postRepository.findAll();
-        // Post 엔티티를 Map<String, Object>로 변환
-        return allPosts.stream()
+// 전체 게시물 조회 (페이징 처리)
+    public Map<String, Object> getAllPosts(Pageable pageable) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "postId");
+        Pageable pageableWithSort = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);
+        Page<Post> postPage = postRepository.findAll(pageableWithSort);
+        List<Map<String, Object>> postList = postPage.getContent().stream()
                 .map(post -> {
                     Map<String, Object> postMap = new HashMap<>();
                     postMap.put("postId", post.getPostId());
-                    postMap.put("nickname", post.getUser().getNickname());  // userId 대신 nickname 사용
+                    postMap.put("nickname", post.getUser().getNickname());
                     postMap.put("content", post.getContent());
                     postMap.put("date", post.getDate());
                     postMap.put("imagepath", post.getImagepath());
@@ -45,22 +51,15 @@ public class PostService {
                 })
                 .collect(Collectors.toList());
 
+        Map<String, Object> result = new HashMap<>();
+        result.put("pagenum", postPage.getNumber() + 1);
+        result.put("posts", postList);
+        result.put("totalPages", postPage.getTotalPages());
+        result.put("totalPosts", postPage.getTotalElements());
+        result.put("numberOfPostsInThisPage", postPage.getNumberOfElements());
+
+        return result;
     }
-//public List<PostDto> index() {
-//    List<Post> allPosts = postRepository.findAll();
-//
-//    // Post 엔티티를 PostDto로 변환하면서 필요한 정보만 포함시킴
-//    return allPosts.stream()
-//            .map(post -> PostDto.builder()
-//                    .postId(post.getPostId())
-//                    .nickname(post.getUser().getNickname())  // userId 대신 nickname 사용
-//                    .content(post.getContent())
-//                    .date(post.getDate())
-//                    .imagepath(post.getImagepath())
-//                    .edit_YN(post.getEdit_YN())
-//                    .build())
-//            .collect(Collectors.toList());
-//}
 
     //상세 페이지 조회
     public Map<String, Object> getPostDetails(Long postId) {
@@ -79,22 +78,6 @@ public class PostService {
             return null;
         }
     }
-//    public PostDto show(Long postId) {
-//        Post post = postRepository.findById(postId).orElse(null);
-//        if (post != null) {
-//            // Post 엔티티를 PostDto로 변환하면서 필요한 정보만 포함시킴
-//            return PostDto.builder()
-//                    .postId(post.getPostId())
-//                    .nickname(post.getUser().getNickname())  // userId 대신 nickname 사용
-//                    .content(post.getContent())
-//                    .date(post.getDate())
-//                    .imagepath(post.getImagepath())
-//                    .edit_YN(post.getEdit_YN())
-//                    .build();
-//        } else {
-//            return null;
-//        }
-//    }
 
     //게시물 생성
     @Transactional
