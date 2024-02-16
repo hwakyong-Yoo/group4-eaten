@@ -62,14 +62,14 @@ public class Post {
             throw new IllegalArgumentException("포스트 업데이트 실패! 잘못된 포스트 아이디입니다.");
         }
 
-        // content가 null이 아니면 업데이트
-        if (dto.getContent() != null) {
+        // content가 null이 아니고 원래의 content와 다르다면 업데이트
+        if (dto.getContent() != null && !dto.getContent().equals(this.content)) {
             this.content = dto.getContent();
             this.edit_YN = true; // content가 업데이트되면 edit_YN을 true로 설정
         }
 
-        // imagepath가 null이 아니면 업데이트
-        if (dto.getImagepath() != null) {
+        // imagepath가 null이 아니고 원래의 imagepath와 다르다면 업데이트
+        if (dto.getImagepath() != null && !dto.getImagepath().equals(this.imagepath)) {
             this.imagepath = dto.getImagepath();
             this.edit_YN = true; // imagepath가 업데이트되면 edit_YN을 true로 설정
         }
