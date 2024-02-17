@@ -1,8 +1,8 @@
 package com.example.group4eaten.post.api;
 
 import com.example.group4eaten.post.dto.PostDto;
+import com.example.group4eaten.post.repository.PostRepository;
 import com.example.group4eaten.post.service.PostService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,8 @@ public class PostApiController {
     @Value("${upload.path}")
     private String uploadPath;
 
-
+    @Autowired
+    private PostRepository postRepository;
 
     //전체 게시물 조회
     @GetMapping("/posts")
@@ -163,15 +164,13 @@ public class PostApiController {
 
     // 내 페이지 (내가 작성한 게시물 조회 가능)
     @GetMapping("/mypage")
-    public ResponseEntity<List<PostDto>> getmypage(@RequestHeader(name = "sessionId") String sessionId, HttpServletRequest request) {
+    public ResponseEntity<List<PostDto>> getmypage(@RequestHeader(name = "sessionId") String sessionId, HttpSession session) {
         List<PostDto> myPosts;
-
-        // 세션 얻기
-        HttpSession session = request.getSession(false);
-
-        if (session != null && session.getId().equals(sessionId)) {
+        //session을 바로 받아오는 방식 사용
+        if (session != null) {
             // 세션에서 userId 가져오기
             String userId = (String) session.getAttribute("userId");
+            log.info("현재 로그인한 사용자의 id: {}", userId);
 
             // userId를 이용하여 작성된 post들을 가져오는 로직 추가
             myPosts = postService.getMyPosts(userId);
