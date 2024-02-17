@@ -3,6 +3,7 @@ package com.example.group4eaten.post.dto;
 import com.example.group4eaten.entity.Post;
 import com.example.group4eaten.entity.User;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,6 +22,7 @@ public class PostDto {
     private String date;
     private String imagepath;
     private Boolean edit_YN = false;
+    private MultipartFile imageFile;
 
     //게시물 조회할 때 사용 - 기존에 저장된 Post 엔티티를 PostDto로 변환
     public static PostDto createPostDto(Post post) {

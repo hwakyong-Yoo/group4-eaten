@@ -27,6 +27,7 @@ dependencies {
 	implementation 'org.projectlombok:lombok:1.18.26'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
 
 }
 
