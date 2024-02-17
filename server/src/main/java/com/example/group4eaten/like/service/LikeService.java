@@ -17,7 +17,6 @@ public class LikeService {
     @Transactional
     public void setLike(String userId, Long postId, int like_id) {
         LikePK likePK = new LikePK(userId, postId);
-        Optional<Like> existingLike = likeRepository.findById(likePK);
 
         // 좋아요 추가
         Like newLike = new Like();
