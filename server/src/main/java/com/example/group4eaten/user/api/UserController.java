@@ -98,9 +98,10 @@ public class UserController {
     }
 
     @PutMapping("/user/{userId}/edit")
-    public ResponseEntity<Map<String, Object>> update(@PathVariable String userId, @RequestBody String nickname, HttpSession session) {
+    public ResponseEntity<Map<String, Object>> update(@PathVariable String userId, @RequestBody UserForm userForm, HttpSession session) {
         Map<String, Object> response = new HashMap<>();
 
+        String nickname = userForm.getNickname();
         // 세션에서 현재 로그인한 사용자의 ID
         String loggedInUserId = (String) session.getAttribute("userId");
 
@@ -111,10 +112,11 @@ public class UserController {
             if (updateResult) {
                 response.put("msg", "닉네임이 수정되었습니다.");
                 response.put("statusCode", 200);
+                response.put("nickname", nickname);
                 return new ResponseEntity<>(response, HttpStatus.OK);
             } else {
                 // 닉네임 수정에 실패한 경우
-                response.put("msg", "이미 존재하는 닉네임입니다.");
+                response.put("msg", "닉네임 수정 실패.");
                 response.put("statusCode", 500);
                 return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
             }
