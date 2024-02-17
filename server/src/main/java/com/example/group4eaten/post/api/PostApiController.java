@@ -1,19 +1,24 @@
 package com.example.group4eaten.post.api;
 
 import com.example.group4eaten.post.dto.PostDto;
-import com.example.group4eaten.entity.Post;
+import com.example.group4eaten.post.repository.PostRepository;
 import com.example.group4eaten.post.service.PostService;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +29,12 @@ import java.util.stream.Collectors;
 public class PostApiController {
     @Autowired
     private PostService postService;
+
+    @Value("${upload.path}")
+    private String uploadPath;
+
+    @Autowired
+    private PostRepository postRepository;
 
     //전체 게시물 조회
     @GetMapping("/posts")
@@ -63,12 +74,24 @@ public class PostApiController {
     //새 게시물 작성
     @PostMapping("/posts")
     public ResponseEntity<PostDto> create(@RequestBody PostDto dto) {
-        //dto의 postId 값 검증
-        if (dto.getPostId() != null)
-            throw new IllegalArgumentException("포스트 생성 실패! 포스트 아이디는 null이어야 합니다!");
-        dto.setDate(PostDto.getCurrentFormattedDate());
-        PostDto createdDto = postService.create(dto);
-        return ResponseEntity.status(HttpStatus.OK).body(createdDto);
+        try {
+            //dto의 postId 값 검증
+            if (dto.getPostId() != null)
+                throw new IllegalArgumentException("포스트 생성 실패! 포스트 아이디는 null이어야 합니다!");
+
+            // 이미지를 업로드하고 이미지 경로를 얻어옴
+            ResponseEntity<String> uploadResponse = handleFileUpload(dto.getImageFile());
+            if (uploadResponse.getStatusCode() == HttpStatus.OK) {
+                // 이미지 업로드 성공 시 이미지 경로를 설정
+                dto.setImagepath(uploadResponse.getBody());
+            }
+            dto.setDate(PostDto.getCurrentFormattedDate());
+            PostDto createdDto = postService.create(dto);
+
+            return ResponseEntity.status(HttpStatus.OK).body(createdDto);
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
 
@@ -141,15 +164,13 @@ public class PostApiController {
 
     // 내 페이지 (내가 작성한 게시물 조회 가능)
     @GetMapping("/mypage")
-    public ResponseEntity<List<PostDto>> getmypage(@RequestHeader(name = "sessionId") String sessionId, HttpServletRequest request) {
+    public ResponseEntity<List<PostDto>> getmypage(@RequestHeader(name = "sessionId") String sessionId, HttpSession session) {
         List<PostDto> myPosts;
-
-        // 세션 얻기
-        HttpSession session = request.getSession(false);
-
-        if (session != null && session.getId().equals(sessionId)) {
+        //session을 바로 받아오는 방식 사용
+        if (session != null) {
             // 세션에서 userId 가져오기
             String userId = (String) session.getAttribute("userId");
+            log.info("현재 로그인한 사용자의 id: {}", userId);
 
             // userId를 이용하여 작성된 post들을 가져오는 로직 추가
             myPosts = postService.getMyPosts(userId);
@@ -160,4 +181,35 @@ public class PostApiController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
+    // 이미지 업로드
+    @PostMapping("/upload")
+    public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
+        try {
+            // 이미지만 업로드 가능
+            if (file != null && !file.isEmpty() && file.getContentType() != null && file.getContentType().startsWith("image/")) {
+                // 업로드할 디렉토리 생성
+                File uploadDir = new File(uploadPath);
+                if (!uploadDir.exists()) {
+                    uploadDir.mkdirs();
+                }
+
+                // 업로드할 파일 경로 설정
+                String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+                File dest = new File(uploadDir.getAbsolutePath() + File.separator + fileName);
+
+                // 파일 업로드
+                Files.copy(file.getInputStream(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                // 업로드 성공 시 파일 경로 반환
+                return ResponseEntity.ok(dest.getAbsolutePath());
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid or no image file provided");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 업로드 실패 시 에러 반환
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload file.");
+        }
+    }
+
 }
