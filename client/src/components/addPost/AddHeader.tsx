@@ -4,23 +4,14 @@ import CancelNew from '../modal/CancelNew';
 import eaten from '../../image/eaten.png';
 import { Header, EatenImage, BackButton, NickName, Logout } from './styles';
 
-interface HeaderProps {
-  isLoggedIn: boolean;
-  userInfo: UserInfo | null;
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-interface UserInfo {
-  nickname: string;
-}
-
-export const AddHeader: React.FC<HeaderProps> = ({ userInfo, setLoggedIn }) => {
+export const AddHeader: React.FC = () => {
   const handleLogout = () => {
     // 로그아웃 시
     localStorage.setItem('login', 'false');
     window.localStorage.removeItem('nickname');
   };
   const [modalOpen, setModalOpen] = useState(false);
+  const nickname = localStorage.getItem('nickname');
 
   const handleCloseModal = () => {
     setModalOpen(false);
@@ -34,7 +25,7 @@ export const AddHeader: React.FC<HeaderProps> = ({ userInfo, setLoggedIn }) => {
         <EatenImage src={eaten} alt="이튼 이미지" />
       </div>
       <div>
-        <NickName>{userInfo?.nickname}님</NickName>
+        <NickName>{nickname}님</NickName>
       </div>
       <Link to="/">
         <Logout onClick={handleLogout} />

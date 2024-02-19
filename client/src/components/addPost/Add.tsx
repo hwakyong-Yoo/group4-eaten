@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AddPost, FileUpload, TextArea, ImageUpload, Image, Submit, Footer } from './styles';
+import { AddPost, AddPage,  FileUpload, TextArea, ImageUpload, Image, Submit, Footer } from './styles';
+import { AddHeader } from './AddHeader';
 
 export const Add: React.FC = () => {
   // 상태 설정
@@ -24,27 +25,34 @@ export const Add: React.FC = () => {
   };
 
   return (
-    <AddPost>
+    <AddPage>
       <div>
-        {/* 이미지 업로드 칸 */}
-        <FileUpload htmlFor="file-upload"></FileUpload>
-        <ImageUpload type="file" accept="image/*" onChange={handleImageChange} />
-        {image && <Image src={image} alt="Uploaded" />} {/* 이미지 미리보기 */}
+        <AddHeader />
       </div>
-      <div>
-        {/* 글 작성 칸 */}
-        <TextArea
-          value={content}
-          onChange={handleContentChange}
-          placeholder="게시글을 작성하세요..."
-          rows={5}></TextArea>
+      <AddPost>
+        <div>
+          {/* 이미지 업로드 칸 */}
+          <FileUpload htmlFor="file-upload"></FileUpload>
+          <ImageUpload type="file" accept="image/*" onChange={handleImageChange} />
+          {image && <Image src={image} alt="Uploaded" />} {/* 이미지 미리보기 */}
+        </div>
+        <div>
+          {/* 글 작성 칸 */}
+          <TextArea
+            value={content}
+            onChange={handleContentChange}
+            placeholder="게시글을 작성하세요..."
+            rows={5}></TextArea>
 
-        {/* 완료 버튼 */}
-        <Link to="/">
-          <Submit />
-        </Link>
+          {/* 완료 버튼 */}
+          <Link to="/">
+            <Submit />
+          </Link>
+        </div>
+      </AddPost>
+      <div>
+        <Footer />
       </div>
-      <Footer/>
-    </AddPost>
+    </AddPage>
   );
 };

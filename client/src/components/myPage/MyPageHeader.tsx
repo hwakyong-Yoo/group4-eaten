@@ -9,17 +9,7 @@ import {
   LogoutButton,
 } from './styles';
 
-interface HeaderProps {
-  isLoggedIn: boolean;
-  userInfo: UserInfo | null;
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-interface UserInfo {
-  nickname: string;
-}
-
-const MyPageHeader: React.FC<HeaderProps> = ({ setLoggedIn }) => {
+export const MyPageHeader: React.FC = () => {
   const handleLogout = () => {
     // 로그아웃 시
     localStorage.setItem('login', 'false')
@@ -48,5 +38,3 @@ const MyPageHeader: React.FC<HeaderProps> = ({ setLoggedIn }) => {
     </Header>
   );
 };
-
-export default MyPageHeader;
