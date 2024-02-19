@@ -4,10 +4,6 @@ import com.example.group4eaten.post.dto.PostDto;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate; // LocalDate 임포트
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -21,7 +17,7 @@ public class Post {
     private Long postId;
 
     @ManyToOne
-    @JoinColumn(name = "userId") // 외래 키 생성, User 엔터티의 기본 키(userId)와 매핑
+    @JoinColumn(name = "userId", nullable = true) // 외래 키 생성, User 엔터티의 기본 키(userId)와 매핑
     private User user;
 
     @Column
