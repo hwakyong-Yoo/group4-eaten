@@ -178,7 +178,7 @@ public List<PostDto> getMyPosts(String userId) {
                 .map(post -> {
                     Map<String, Object> postMap = new HashMap<>();
                     postMap.put("postId", post.getPostId());
-                    postMap.put("nickname", post.getUser().getNickname());  // userId 대신 nickname 사용
+                    postMap.put("nickname", post.getUser() != null ? post.getUser().getNickname() : "탈퇴함");  // userId 대신 nickname 사용
                     postMap.put("content", post.getContent());
                     postMap.put("date", post.getDate());
                     postMap.put("imagepath", post.getImagepath());
