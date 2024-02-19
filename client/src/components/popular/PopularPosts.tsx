@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Post, defaultPost } from '../post';
+import { PostType } from '../post';
 import { PostsType } from '../myPage';
 import { POSTS_PER_PAGE } from './popularPosts.const';
 import { PostSlider, LeftButton, RightButton, PostList } from './styles';
+import { HotPosts } from '../../api/post/popular';
 
 export const PopularPosts = ({ posts }: { posts: PostsType }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,6 +22,16 @@ export const PopularPosts = ({ posts }: { posts: PostsType }) => {
     }
   };
 
+  const [hotPosts, setHotPosts] = useState<PostType[]>([]);
+
+  useEffect(() => {
+    const getHotPosts = async () => {
+      const posts = await HotPosts();
+      setHotPosts(posts);
+    };
+    getHotPosts();
+  }, []);
+
   const startIdx = currentPage * POSTS_PER_PAGE;
   const endIdx = startIdx + POSTS_PER_PAGE;
   const currentPosts = posts.slice(startIdx, endIdx);
@@ -33,6 +45,9 @@ export const PopularPosts = ({ posts }: { posts: PostsType }) => {
         {postsToDisplay.map(post => (
           <Post key={post.id} post={post} />
         ))}
+        {/* {hotPosts.map(post => (
+          <Post key={post.id} post={post} />
+        ))} */}
       </PostList>
       <RightButton onClick={nextPage} />
     </PostSlider>

@@ -14,7 +14,7 @@ const App = () => {
            <Route path="/mypage/setting" element={<Setting />}/>
             <Route path="/mypage/setting/nickname" element={ <Nickname/>}/>
             <Route path="/mypage/setting/delete" element={ <Delete />} />
-          <Route path="/post/:postId" Component={Detail} />
+          <Route path="/post/:postId" element={<Detail/>}/>
         </Routes>
     </Router>
   );

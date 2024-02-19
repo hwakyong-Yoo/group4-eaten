@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import create from '../../image/create.png';
+import orange_recipe from '../../image/orange_recipe.png';
 import submit from '../../image/submit.png';
 import back from '../../image/back.png';
 
@@ -29,9 +29,9 @@ export const SignupBody = styled.div`
 `;
 
 export const SignupForm = styled.div`
-  width: 30vw;
+  width: 40vw;
   height: 80vh;
-  background-image: url(${create});
+  background-image: url(${orange_recipe});
   background-size: contain;
   background-repeat: no-repeat;
   background-color: rgba(255, 178, 14, 0);
@@ -42,14 +42,14 @@ export const Input = styled.input`
   border-left: none;
   border-right: none;
   border-top: none;
+  width: 30vw;
 
   align-items: center;
-  margin-left: 1vw;
-  margin-right: 10vw;
+  margin-left: 6vw;
 `;
 
 export const Label = styled.label`
-  padding-left: 1vw;
+  padding-left: 6vw;
 `;
 
 export const Submit = styled.button`
@@ -60,7 +60,10 @@ export const Submit = styled.button`
   border: none;
   width: 7vw;
   height: 7vw;
-  text-align: center;
+
+  position: absolute;
+  left: 50%;
+  bottom: 15%;
 `;
 
 export const H2 = styled.h2`
@@ -98,4 +101,6 @@ export const Back = styled.button`
 export const CheckMsg = styled.p`
   color: orange;
   font-size: 1em;
+  width: 40vw;
+  margin-right: 30vw;
 `;
