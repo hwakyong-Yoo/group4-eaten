@@ -4,7 +4,7 @@ import { PostType } from '../../components/post';
 
 export async function fetchNewPosts(): Promise<PostType[]> {
   try {
-    const response = await fetch(`https://${API}/posts`);
+    const response = await fetch(`http://${API}/posts`);
     if (!response.ok) {
       throw new Error('Failed to fetch initial posts');
     }
@@ -18,7 +18,7 @@ export async function fetchNewPosts(): Promise<PostType[]> {
 
 export async function fetchNextPage(page: number): Promise<PostType[]> {
   try {
-    const response = await fetch(`https://${API}/posts`);
+    const response = await fetch(`http://${API}/posts`);
     if (!response.ok) {
       throw new Error('Failed to fetch next page');
     }

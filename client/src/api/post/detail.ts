@@ -4,7 +4,7 @@ import { API } from '../api.const';
 
 export async function detail(postId: number): Promise<PostType> {
   try {
-    const response = await fetch(`https://${API}/posts/${postId}`);
+    const response = await fetch(`http://${API}/posts/${postId}`);
     if (!response.ok) {
       throw new Error('Failed to fetch post');
     }
