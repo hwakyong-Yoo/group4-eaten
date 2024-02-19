@@ -18,16 +18,14 @@ import {
   Back,
   CheckMsg,
 } from './styles';
-import IdExists from '../../api/signUp/IdExists';
+import checkUserIdExists from '../../api/signUp/IdExists'; // 수정된 파일 경로로 변경
 import CreateSignUp from '../../api/signUp/SignUp';
-
 
 export const SignUp: React.FC = () => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [nickname, setNickname] = useState('');
-  const [userId, setUserId] = useState('');
   const [isChecking, setIsChecking] = useState(false);
   const [isDuplicate, setIsDuplicate] = useState(false);
   const navigate = useNavigate();
@@ -37,57 +35,45 @@ export const SignUp: React.FC = () => {
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value.trim());
-    if (e.target.value.length >= 8) {
-      setShowErrorMessage(false);
-    } else {
-      setShowErrorMessage(true);
-    }
+    setShowErrorMessage(e.target.value.length < 8);
   };
 
   const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setConfirmPassword(e.target.value);
+    setShowMessage(password !== e.target.value);
+  };
 
-    if (password !== e.target.value) {
-      setShowMessage(true);
-    } else {
-      setShowMessage(false);
+  const handleCheckDuplicate = async () => {
+    setIsChecking(true);
+    try {
+      const { success, message } = await checkUserIdExists(id); // 함수 반환값 변경
+      setIsDuplicate(!success);
+      alert(message);
+    } catch (error) {
+      console.error('Error checking if user ID exists:', error);
+    } finally {
+      setIsChecking(false);
     }
   };
 
-  //아이디 중복 체크
- const handleCheckDuplicate = async () => {
-   setIsChecking(true);
-   try {
-     const exists = await IdExists(userId);
-     setIsDuplicate(exists);
-   } catch (error) {
-     console.error('Error checking if user ID exists:', error);
-   } finally {
-     setIsChecking(false);
-   }
- };
-
-  // 로그인 로직
-  const handleLogin = async  () => {
+  const handleLogin = async () => {
     const isValidId = id.trim().length > 0;
     const isValidPassword =
       password.trim().length >= 8 && password.trim() === confirmPassword.trim();
     const isValidNickname = nickname.trim().length > 0;
 
-    if (!(isValidId && isValidPassword && isValidNickname)) {
+    if (!(isValidId && isValidPassword && isValidNickname && !isDuplicate)) {
       alert('입력 정보를 확인해주세요.');
       return;
     }
+
     localStorage.setItem('nickname', nickname);
     navigate('/login');
 
     try {
-      // 사용자 정보를 AWS 서버에 전송하여 저장
-      await CreateSignUp(nickname, userId, password);
-      // 회원가입 성공 시 알림 메시지 등을 보여줄 수 있음
+      await CreateSignUp(nickname, id, password); // userId -> id로 수정
       alert('회원가입에 성공했습니다.');
     } catch (error) {
-      // 회원가입 실패 시 에러 메시지 출력
       alert('회원가입에 실패했습니다. 다시 시도해주세요.');
       console.error(error);
     }
@@ -102,7 +88,6 @@ export const SignUp: React.FC = () => {
         <EatenImage src={logo} />
       </Header>
       <SignupBody>
-        {/* TODO: 회원가입, 로그인 창 디자인 수정 */}
         <div>
           <Fork src={fork} />
         </div>
@@ -120,12 +105,10 @@ export const SignUp: React.FC = () => {
           )}
           <br />
           <br />
-
           <Label>비밀번호</Label>
           {showErrorMessage && <CheckMsg>비밀번호를 8자 이상 입력해 주세요.</CheckMsg>}
           <br />
           <Input type="password" value={password} onChange={handlePasswordChange} />
-
           <br />
           <br />
           <Label>비밀번호 확인</Label>

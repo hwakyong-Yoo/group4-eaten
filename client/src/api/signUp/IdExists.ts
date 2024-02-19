@@ -4,21 +4,29 @@ import axios from 'axios';
 import { API } from '../api.const';
 
 // 유저 아이디의 중복 여부를 확인하는 함수
-const IdExists = async (userId: string): Promise<boolean> => {
+const checkUserIdExists = async (
+  userId: string,
+): Promise<{ success: boolean; message: string }> => {
   try {
     // 서버에 요청을 보냄
-    const response = await axios.get(`https://${API}/userId/exists`);
+    const response = await axios.get(`https://${API}/userId/exists/${userId}`);
 
     // 응답 데이터에서 중복 여부를 가져옴
     const { exists } = response.data;
 
-    // 중복 여부를 반환
-    return exists;
+    // 중복 여부에 따라 메시지 설정
+    const message = exists ? '이미 사용중인 아이디입니다.' : '사용가능한 아이디입니다.';
+
+    // 결과 반환
+    return { success: !exists, message };
   } catch (error) {
     console.error('Error checking if user ID exists:', error);
     // 에러가 발생하면 false를 반환하여 중복 여부를 확인할 수 없음을 알림
-    return false;
+    return {
+      success: false,
+      message: '서버 오류로 인해 아이디 중복 여부를 확인할 수 없습니다.',
+    };
   }
 };
 
-export default IdExists;
+export default checkUserIdExists;
