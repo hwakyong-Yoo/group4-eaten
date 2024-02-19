@@ -1,48 +1,63 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { PostType } from '../post/Post';
+
+import {DetailHeater} from './DetailHeader'
+import { DetailPost, DetailPage, Footer, Img, Text } from './styles';
+
 
 export const Detail = () => {
-  const { postId } = useParams<{ postId: string }>();
-  const [post, setPost] = useState<PostType | null>(null);
+  // const { postId } = useParams<{ postId: string }>();
+  // if (!postId) {
+  //   return <div>포스트 ID가 존재하지 않습니다.</div>;
+  // }
+  // const post = posts.find(post => post.id === parseInt(postId, 10));
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const response = await fetch(`/api/posts/${postId}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch post');
-        }
-        const postData = await response.json();
-        setPost(postData);
-      } catch (error) {
-        console.error('Error fetching post:', error);
-      }
-    };
+  // postId와 일치하는 포스트 찾기
 
-    fetchPost();
-  }, [postId]);
+  // const [post, setPost] = useState<PostType | null>(null);
 
-  if (!post) {
-    return <div>Loading...</div>;
-  }
+  // useEffect(() => {
+  //   const fetchPost = async () => {
+  //     try {
+  //       const response = await fetch(`/api/posts/${postId}`);
+  //       if (!response.ok) {
+  //         throw new Error('Failed to fetch post');
+  //       }
+  //       const postData = await response.json();
+  //       setPost(postData);
+  //     } catch (error) {
+  //       console.error('Error fetching post:', error);
+  //     }
+  //   };
+
+  //   fetchPost();
+  // }, [postId]);
+
+  // if (!post) {
+  //   return <div>Loading...</div>;
+  // }
+
+  const imgURL = 'https://placekitten.com/204/204';
+  const text = '맛있어요 어쩌구 저쩌구';
+  const nickname = 'user12345';
+  const date = '2024-12-10';
 
   return (
-    <div className="post-page">
-      <h1>Post Details</h1>
-      <div className="post">
-        <div className="post-image">
-          <img src={post.imageURL} alt="게시물 이미지" />
-        </div>
-        <div className="post-content">
-          <p>{post.text}</p>
-        </div>
-        <div className="post-metadata">
-          <p>작성자: {post.nickname}</p>
-          <p>작성일: {post.date}</p>
-          <p>좋아요 수: {post.heart}</p>
-        </div>
+    <DetailPage>
+      <div>
+        <DetailHeater />
       </div>
-    </div>
+      <DetailPost>
+        <div>
+          <Img src={imgURL} />
+        </div>
+        <Text>
+          <p>{text}</p>
+          <p>{nickname}</p>
+          <p>{date}</p>
+        </Text>
+      </DetailPost>
+      <div>
+        <Footer />
+      </div>
+    </DetailPage>
   );
 };
