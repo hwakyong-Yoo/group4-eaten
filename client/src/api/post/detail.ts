@@ -1,17 +1,16 @@
-import internal from 'stream';
 import { PostType } from '../../components/post';
 import { API } from '../api.const';
 
 export async function detail(postId: number): Promise<PostType> {
   try {
-    const response = await fetch(`https://${API}/posts/${postId}`);
+    const response = await fetch(`http://${API}/posts/${postId}`);
     if (!response.ok) {
-      throw new Error('Failed to fetch post');
+      throw new Error('존재하지 않는 게시물입니다.');
     }
     const data = await response.json();
-    return data.post;
+    return data;
   } catch (error) {
-    console.error('Error fetching post:', error);
+    console.error('게시물을 불러오는 데 실패했습니다:', error);
     throw error;
   }
 }

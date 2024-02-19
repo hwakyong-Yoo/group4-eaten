@@ -8,7 +8,7 @@ const CreateSignUp = async (
   nickname: string,
   userId: string,
   password: string,
-): Promise<void> => {
+): Promise<{ msg: string; statusCode: number }> => {
   try {
     const url = `https://${API}/user/create`;
 
@@ -24,9 +24,10 @@ const CreateSignUp = async (
 
     // 응답 처리
     console.log('User created successfully:', response.data);
+    return { msg: '회원가입이 완료되었습니다', statusCode: 200 };
   } catch (error) {
     console.error('Error creating user:', error);
-    throw new Error('Failed to create user');
+    return { msg: '회원가입 중 오류가 발생했습니다.', statusCode: 500 };
   }
 };
 
