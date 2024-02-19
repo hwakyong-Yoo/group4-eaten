@@ -14,7 +14,7 @@ export const addPost = async (
     // 현재 날짜를 ISO 포맷으로 가져옴
     const date = new Date().toISOString();
     // 서버로 요청을 보내서 새 게시물을 생성하고 그 결과를 받아옴
-    const response = await axios.post(`http://${API}/posts`, {
+    const response = await axios.post(`https://${API}/posts`, {
       userId,
       content,
       imagePath,
