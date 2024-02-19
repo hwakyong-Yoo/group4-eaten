@@ -11,7 +11,7 @@ export const MyPage = () => {
 
   const [myPosts, setMyPosts] = useState<PostType[]>([]);
   //const userId = localStorage.getItem('userId')
-  const userId = '12345'
+  const userId = 'ewha1'
 
   useEffect(() => {
     const fetchMyPosts = async () => {
