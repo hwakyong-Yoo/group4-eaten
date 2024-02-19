@@ -1,6 +1,6 @@
 import { PostType } from '../post';
 import { Post } from '../post';
-import {PostList} from './styles'
+import { PostList } from './styles';
 import { useEffect, useState } from 'react';
 import { fetchNewPosts, fetchNextPage } from '../../api/post/newPost';
 

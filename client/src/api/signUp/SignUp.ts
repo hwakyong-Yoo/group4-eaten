@@ -10,7 +10,7 @@ const CreateSignUp = async (
   password: string,
 ): Promise<void> => {
   try {
-    const url = `http://${API}/user/create`;
+    const url = `https://${API}/user/create`;
 
     // POST 요청을 보낼 데이터
     const data = {
