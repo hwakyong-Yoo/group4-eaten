@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Post, defaultPost } from '../post';
 import { PostsType } from '../myPage';
 import { POSTS_PER_PAGE } from './popularPosts.const';
-import './PopularPosts.css';
+import { PostSlider, LeftButton, RightButton, PostList } from './styles';
 
 export const PopularPosts = ({ posts }: { posts: PostsType }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,14 +27,14 @@ export const PopularPosts = ({ posts }: { posts: PostsType }) => {
   const postsToDisplay = currentPosts.length === 0 ? [defaultPost] : currentPosts;
 
   return (
-    <div className="post-slider">
-      <button id="left-button" onClick={prevPage} />
-      <div className={`post-list ${currentPage > 0 ? 'slide-left' : ''}`}>
+    <PostSlider>
+      <LeftButton onClick={prevPage} />
+      <PostList>
         {postsToDisplay.map(post => (
           <Post key={post.id} post={post} />
         ))}
-      </div>
-      <button id="right-button" onClick={nextPage}/>
-    </div>
+      </PostList>
+      <RightButton onClick={nextPage} />
+    </PostSlider>
   );
 };

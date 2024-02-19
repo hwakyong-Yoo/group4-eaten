@@ -1,15 +1,23 @@
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../image/logo.png';
 import spoon from '../../image/spoon.png';
 import fork from '../../image/fork.png';
-//import CreateModal from '../modal/CreateModal';
-import '../signUp/SignUp.css';
-
-// interface UserInfo {
-//   nickname: string;
-// }
+// import CreateModal from '../modal/CreateModal';
+import {
+  LoginPage,
+  Header,
+  EatenImage,
+  BackButton,
+  LoginBody,
+  Fork,
+  Spoon,
+  LoginForm,
+  H2,
+  Label,
+  Input,
+  Submit,
+} from './styles';
 
 export const Login = () => {
   const [id, setId] = useState('');
@@ -25,7 +33,7 @@ export const Login = () => {
     if (id && password) {
       // 로그인 성공 시
       localStorage.setItem('login', JSON.stringify(true));
-      localStorage.setItem('nickname', nickname)
+      localStorage.setItem('nickname', nickname);
       navigate('/'); // 메인 페이지로 이동
     } else {
       // 로그인 실패 시
@@ -34,34 +42,34 @@ export const Login = () => {
   };
 
   return (
-    <div className="login">
-      <div className="only-header">
-        <button className="back-button" onClick={navigateToBack}></button>
-        <img src={logo} alt="로고 이미지" />
-      </div>
-      <div className="create-page">
+    <LoginPage>
+      <Header>
+        <BackButton onClick={navigateToBack} />
+        <EatenImage src={logo} alt="로고 이미지" />
+      </Header>
+      <LoginBody>
         <div>
-          <img className="fork" src={fork} />
+          <Fork src={fork} />
         </div>
-        <div className="signup-form">
-          <h2>로그인</h2>
-          <label>아이디</label>
-          <input type="text" value={id} onChange={e => setId(e.target.value)} />
-          <label>비밀번호</label>
-          <input
+        <LoginForm>
+          <H2>로그인</H2>
+          <Label>아이디</Label>
+          <Input type="text" value={id} onChange={e => setId(e.target.value)} />
+          <Label>비밀번호</Label>
+          <Input
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
-          <button className="submit-button" onClick={handleLogin}></button>
-        </div>
+          <Submit onClick={handleLogin} />
+        </LoginForm>
         <div>
-          <img className="spoon" src={spoon} />
+          <Spoon src={spoon} />
         </div>
         {/* <div>
           <CreateModal isVisible={isLoggedIn} />
         </div> */}
-      </div>
-    </div>
+      </LoginBody>
+    </LoginPage>
   );
 };

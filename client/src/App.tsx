@@ -8,7 +8,6 @@ import Setting from './components/myPage/setting/Setting';
 import Nickname from './components/myPage/setting/Nickname';
 import Delete from './components/myPage/setting/Delete';
 import './App.css';
-import Footer from './components/myPage/Footer';
 
 interface UserInfo {
   nickname: string;
@@ -42,7 +41,6 @@ const App = () => {
                 />
                 <div>
                   <Add />
-                  <Footer />
                 </div>
               </>
             }

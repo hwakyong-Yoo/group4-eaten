@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
 import { useState } from 'react';
-import './Setting.css'
+import { SettingBody, SettingForm, CheckButton } from './styles';
 
 const NicknamePage = () => {
   const [inputValue, setInputValue] = useState<string>('');
@@ -13,24 +13,18 @@ const NicknamePage = () => {
 
 
   return (
-    <div className="click-modal">
+    <SettingBody>
       <div></div>
-      <div className="modal-content">
+      <SettingForm>
         <p>변경하실 닉네임을 입력해 주세요</p>
-      <input
-        type="text"
-        id="myInput"
-        value={inputValue}
-        onChange={handleInputChange}
-      />
-      <Link to="/mypage">
-        <button className="check-button"/>
-      </Link>
-        
-      </div>
+        <input type="text" value={inputValue} onChange={handleInputChange} />
+        <Link to="/mypage">
+          <CheckButton />
+        </Link>
+      </SettingForm>
       <div></div>
-    </div>
-  )
+    </SettingBody>
+  );
 }
 
 export default NicknamePage

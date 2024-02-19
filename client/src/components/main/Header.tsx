@@ -1,5 +1,16 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from '../../image/logo.png';
+import {
+  MainHeader,
+  HeaderBar,
+  P,
+  SignUp,
+  Login,
+  EatenImage,
+  MyPage,
+  Logout,
+  AddPost,
+} from './styles';
 
 interface HeaderProps {
   isLoggedIn: boolean;
@@ -12,37 +23,38 @@ export const Header: React.FC<HeaderProps> = () => {
     localStorage.setItem('login', JSON.stringify(false));
   };
 
-  const LoggedIn = localStorage.getItem('login')
-  const IsLoggedIn = LoggedIn === 'true'
- const nickname = localStorage.getItem('nickname')
+  const LoggedIn = localStorage.getItem('login');
+  const IsLoggedIn = LoggedIn === 'true';
+  const nickname = localStorage.getItem('nickname');
+
   return (
-    <header className="header">
-      <div className="header-bar">
+    <MainHeader>
+      <HeaderBar>
         {IsLoggedIn ? (
           <>
-            <p>{nickname}님</p>
-            <Link to='/mypage'>
-              <button id="mypage-button" >
-              마이페이지
-              </button>
+            <P>{nickname}님</P>
+            <Link to="/mypage">
+              <MyPage>마이페이지</MyPage>
             </Link>
-            <Link to='/'><button id="header-logout-button" onClick={handleLogout}></button></Link>
-            <Link to='/new'><button id="new-post"/></Link>
-            
+            <Link to="/">
+              <Logout onClick={handleLogout} />
+            </Link>
+            <Link to="/new">
+              <AddPost />
+            </Link>
           </>
         ) : (
           <>
             <Link to="/signup">
-             <button id="header-signup-button">회원가입</button>
+              <SignUp>회원가입</SignUp>
             </Link>
             <Link to="/login">
-             <button id="header-login-button"/>
+              <Login />
             </Link>
-            
           </>
         )}
-      </div>
-      <div className="header-logo">{<img src={logo} alt="로고 이미지" />}</div>
-    </header>
+      </HeaderBar>
+      <div>{<EatenImage src={logo} alt="로고 이미지" />}</div>
+    </MainHeader>
   );
 };

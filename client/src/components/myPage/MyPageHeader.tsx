@@ -1,5 +1,13 @@
 import { Link } from 'react-router-dom';
 import logo from '../../image/logo.png';
+import {
+  Header,
+  EatenImage,
+  Nickname,
+  SettingButton,
+  BackButton,
+  LogoutButton,
+} from './styles';
 
 interface HeaderProps {
   isLoggedIn: boolean;
@@ -21,19 +29,23 @@ const MyPageHeader: React.FC<HeaderProps> = ({ setLoggedIn }) => {
   const nickname = localStorage.getItem('nickname')
 
   return (
-    <header className="mypage-header">
-      <Link to='/'><button className="back-button" /></Link>
-      
+    <Header>
+      <Link to="/">
+        <BackButton />
+      </Link>
       <div>
-        <img src={logo} alt="로고 이미지" />
+        <EatenImage src={logo} />
       </div>
       <div>
-        <p className="mypage-nickname">{nickname}님</p>
+        <Nickname>{nickname}님</Nickname>
       </div>
-      <Link to='/mypage/setting'><button className="gear-button"/></Link>
-      <Link to='/'><button className="logout-button" onClick={handleLogout}></button></Link>
-      
-    </header>
+      <Link to="/mypage/setting">
+        <SettingButton />
+      </Link>
+      <Link to="/">
+        <LogoutButton onClick={handleLogout}></LogoutButton>
+      </Link>
+    </Header>
   );
 };
 

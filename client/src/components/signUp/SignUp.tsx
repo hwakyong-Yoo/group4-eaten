@@ -1,9 +1,23 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './SignUp.css';
 import logo from '../../image/logo.png';
 import spoon from '../../image/spoon.png';
 import fork from '../../image/fork.png';
+import {
+  SignupPage,
+  Header,
+  EatenImage,
+  SignupBody,
+  Fork,
+  Spoon,
+  SignupForm,
+  H2,
+  Input,
+  Label,
+  Submit,
+  Back,
+  CheckMsg,
+} from './styles';
 
 
 export const SignUp: React.FC = () => {
@@ -50,52 +64,45 @@ export const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="login">
-      <div className="only-header">
-        <Link to="/" className='back-button'></Link>
-        <img src={logo} alt="로고 이미지" />
-      </div>
-      <div className="create-page">
+    <SignupPage>
+      <Header>
+        <Link to="/">
+          <Back />
+        </Link>
+        <EatenImage src={logo} />
+      </Header>
+      <SignupBody>
         {/* TODO: 회원가입, 로그인 창 디자인 수정 */}
         <div>
-          <img className="fork" src={fork} alt="fork 이미지" />
+          <Fork src={fork} />
         </div>
-        <div className="signup-form">
-          <h2>회원가입</h2>
-          <label>아이디</label>
-          <input type="text" value={id} onChange={e => setId(e.target.value)} />
+        <SignupForm>
+          <H2>회원가입</H2>
+          <Label>아이디</Label>
+          <Input type="text" value={id} onChange={e => setId(e.target.value)} />
           <button>중복체크</button>
-          <label>비밀번호</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-          {showErrorMessage && (
-            <p className="check-msg">비밀번호를 8자 이상 입력해 주세요.</p>
-          )}
-          <label>비밀번호 확인</label>
-          <input
+          <Label>비밀번호</Label>
+          <Input type="password" value={password} onChange={handlePasswordChange} />
+          {showErrorMessage && <CheckMsg>비밀번호를 8자 이상 입력해 주세요.</CheckMsg>}
+          <Label>비밀번호 확인</Label>
+          <Input
             type="password"
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
           />
-          {showMessage && <p className="check-msg">비밀번호가 일치하지 않습니다.</p>}
-          <label>닉네임</label>
-          <input
+          {showMessage && <CheckMsg>비밀번호가 일치하지 않습니다.</CheckMsg>}
+          <Label>닉네임</Label>
+          <Input
             type="text"
             value={nickname}
             onChange={e => setNickname(e.target.value)}
           />
-          <button className="submit-button" onClick={handleLogin}>
-            
-          </button>
-        </div>
+          <Submit onClick={handleLogin} />
+        </SignupForm>
         <div>
-          <img className="spoon" src={spoon} alt="spoon 이미지" />
+          <Spoon src={spoon} />
         </div>
-      </div>
-    </div>
+      </SignupBody>
+    </SignupPage>
   );
 };
