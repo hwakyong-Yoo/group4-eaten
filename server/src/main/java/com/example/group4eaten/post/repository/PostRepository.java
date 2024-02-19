@@ -3,7 +3,6 @@ package com.example.group4eaten.post.repository;
 import com.example.group4eaten.entity.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,7 +11,11 @@ import java.util.List;
 
 
 public interface PostRepository extends JpaRepository<Post, Long> {
-    @Query(value = "SELECT * FROM tb_post WHERE user_id = :userId", nativeQuery = true)
+    @Query(value = "SELECT p.*, " +
+            "CASE WHEN u.nickname IS NULL THEN '탈퇴한 회원' ELSE u.nickname END AS nickname " + // 사용자(User) 테이블에서 아이디가 NULL이면 '탈퇴한 회원', 아니면 닉네임을 선택
+            "FROM tb_post p " +
+            "LEFT JOIN tb_user u ON p.user_id = u.userId " + // 게시물의 작성자와 사용자(User) 테이블을 아이디를 기준으로 LEFT JOIN
+            "WHERE p.user_id = :userId", nativeQuery = true)
     List<Post> findByUserId(@Param("userId") String userId);
 
     @Query(value = "SELECT p.* FROM tb_like l " +
@@ -22,5 +25,4 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     List<Post> findTopPosts();
 
     Page<Post> findAll(Pageable pageable);
-
 }
