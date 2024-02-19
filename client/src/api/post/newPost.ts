@@ -12,7 +12,7 @@ interface PostsResponse {
 
 export async function fetchNewPosts(): Promise<PostType[]> {
   try {
-    const response = await fetch(`https://${API}/posts`);
+    const response = await fetch(`http://${API}/posts`);
     const data: PostsResponse = await response.json();
 
     if (response.ok && data.totalPosts > 0) {
@@ -28,7 +28,7 @@ export async function fetchNewPosts(): Promise<PostType[]> {
 
 export async function fetchNextPage(page: number): Promise<PostType[]> {
   try {
-    const response = await fetch(`https://${API}/posts?page=${page}`);
+    const response = await fetch(`http://${API}/posts?page=${page}`);
     const data: PostsResponse = await response.json();
 
     if (response.ok && data.totalPosts > 0) {
