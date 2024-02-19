@@ -1,6 +1,15 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AddPost, AddPage,  FileUpload, TextArea, ImageUpload, Image, Submit, Footer } from './styles';
+import {
+  AddPost,
+  AddPage,
+  FileUpload,
+  TextArea,
+  ImageUpload,
+  Image,
+  Submit,
+  Footer,
+} from './styles';
 import { AddHeader } from './AddHeader';
 import { addPost } from '../../api/post/addPost';
 
@@ -9,6 +18,7 @@ export const Add = () => {
   const [image, setImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [content, setContent] = useState('');
+
   // 이미지 변경 핸들러
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -27,14 +37,13 @@ export const Add = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault(); // 기본 이벤트 방지
 
-  //const userId = localStorage.getItem('userId');
-  const userId = '12345'
+    //const userId = localStorage.getItem('userId');
+    const userId = '12345';
 
     try {
       if (!image) {
         throw new Error('이미지를 선택해주세요.');
       }
-
 
       // 서버로 새 게시물을 생성하는 요청 보내기
       const response = await addPost(userId, content, image);
@@ -73,9 +82,7 @@ export const Add = () => {
               rows={5}></TextArea>
 
             {/* 완료 버튼 */}
-            <Link to="/">
-              <Submit type="submit" />
-            </Link>
+            <Submit type="submit" />
           </div>
         </AddPost>
       </form>

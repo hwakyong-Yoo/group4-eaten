@@ -2,14 +2,24 @@
 import { API } from '../api.const';
 import { PostType } from '../../components/post';
 
+interface PostsResponse {
+  totalPosts: number;
+  totalPages: number;
+  pagenum: number;
+  numberOfPostsInThisPage: number;
+  posts: PostType[];
+}
+
 export async function fetchNewPosts(): Promise<PostType[]> {
   try {
-    const response = await fetch(`http://${API}/posts`);
-    if (!response.ok) {
+    const response = await fetch(`https://${API}/posts`);
+    const data: PostsResponse = await response.json();
+
+    if (response.ok && data.totalPosts > 0) {
+      return data.posts;
+    } else {
       throw new Error('Failed to fetch initial posts');
     }
-    const data = await response.json();
-    return data.posts;
   } catch (error) {
     console.error('Error fetching initial posts:', error);
     return [];
@@ -18,12 +28,14 @@ export async function fetchNewPosts(): Promise<PostType[]> {
 
 export async function fetchNextPage(page: number): Promise<PostType[]> {
   try {
-    const response = await fetch(`http://${API}/posts`);
-    if (!response.ok) {
+    const response = await fetch(`https://${API}/posts?page=${page}`);
+    const data: PostsResponse = await response.json();
+
+    if (response.ok && data.totalPosts > 0) {
+      return data.posts;
+    } else {
       throw new Error('Failed to fetch next page');
     }
-    const data = await response.json();
-    return data.posts; // 서버에서 게시물 목록을 posts 키로 받아온다고 가정합니다.
   } catch (error) {
     console.error('Error fetching next page:', error);
     return [];

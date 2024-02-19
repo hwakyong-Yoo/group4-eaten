@@ -9,18 +9,23 @@ import { PostType } from '../post';
 
 export const MyPage = () => {
 
-  const [userPosts, setUserPosts] = useState<PostType[]>([]);
+  const [myPosts, setMyPosts] = useState<PostType[]>([]);
   //const userId = localStorage.getItem('userId')
   const userId = '12345'
 
   useEffect(() => {
-    // 마이페이지에서 유저가 작성한 게시물 목록을 가져옴
-    const fetchUserPosts = async () => {
-      const posts = await getMyPosts(userId);
-      setUserPosts(posts);
+    const fetchMyPosts = async () => {
+      try {
+        const posts = await getMyPosts(userId);
+        setMyPosts(posts);
+      } catch (error) {
+        console.error('Error fetching my posts:', error);
+      }
     };
-    fetchUserPosts();
+
+    fetchMyPosts();
   }, [userId]);
+
 
   return (
     <div>
@@ -30,7 +35,7 @@ export const MyPage = () => {
       <div>
         <H1>My Page</H1>
         <MyPostList posts={MyPosts} />
-         {/* <MyPostList posts={userPosts} /> 서버와 연결 시 게시물 받아옴*/}
+        <MyPostList posts={myPosts} />
       </div>
     </div>
   );
