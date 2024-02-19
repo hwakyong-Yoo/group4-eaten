@@ -177,6 +177,15 @@ public List<PostDto> getMyPosts(String userId) {
                 })
                 .collect(Collectors.toList());
     }
+
+    public void updatePostsAfterUserDeletion(String userId) {
+        List<Post> posts = postRepository.findByUserId(userId);
+
+        for (Post post : posts) {
+            post.setUser(null);
+            postRepository.save(post);
+        }
+    }
 }
 
 
