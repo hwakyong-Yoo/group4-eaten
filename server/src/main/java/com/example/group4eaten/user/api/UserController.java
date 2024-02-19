@@ -18,7 +18,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@CrossOrigin(origins = {"http://localhost:8080/", "http://localhost:80", "http://219.254.47.198:80"})
+@CrossOrigin(origins = {"http://localhost:8080/", "http://localhost:80", "http://219.254.47.198:80", "https://eaten-five.vercel.app/"})
 public class UserController {
 
     @Autowired
