@@ -8,6 +8,8 @@ export type PostType = {
   text: string;
   nickname?: string;
   date?: string;
+  userId?: string;
+  edit_YN?: boolean;
 
   heart?: number;
   hungry?: number;

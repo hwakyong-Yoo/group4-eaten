@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import back from '../../image/back.png';
-import create from '../../image/create.png';
+import orange_recipe from '../../image/orange_recipe.png';
 import submit from '../../image/submit.png';
 
 export const LoginPage = styled.div`
@@ -43,9 +43,9 @@ export const LoginBody = styled.div`
 `;
 
 export const LoginForm = styled.div`
-  width: 30vw;
+  width: 40vw;
   height: 80vh;
-  background-image: url(${create});
+  background-image: url(${orange_recipe});
   background-size: contain;
   background-repeat: no-repeat;
   background-color: rgba(255, 178, 14, 0);
@@ -70,7 +70,7 @@ export const H2 = styled.h2`
 `;
 
 export const Label = styled.label`
-  padding-left: 1vw;
+  padding-left: 6vw;
 `;
 
 export const Input = styled.input`
@@ -78,10 +78,9 @@ export const Input = styled.input`
   border-left: none; /* 좌측에는 border 없음 */
   border-right: none; /* 우측에는 border 없음 */
   border-top: none; /* 위쪽에는 border 없음 */
-
+  width: 30vw;
   align-items: center;
-  margin-left: 1vw;
-  margin-right: 10vw;
+  margin-left: 6vw;
 `;
 
 export const Submit = styled.button`
@@ -92,5 +91,8 @@ export const Submit = styled.button`
   border: none;
   width: 7vw;
   height: 7vw;
-  text-align: center;
+
+  position: absolute;
+  left: 50%;
+  bottom: 15%;
 `;

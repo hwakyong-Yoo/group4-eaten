@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import click_modal from '../../../image/click_modal.png';
+import orange_recipe from '../../../image/orange_recipe.png';
 import check from '../../../image/check.png';
 
 export const SettingBody = styled.div`
@@ -16,9 +16,10 @@ export const SettingBody = styled.div`
 export const SettingForm = styled.div`
 width: 50vw;
   height: 70vh;
-  background-image: url(${click_modal});
+  background-image: url(${orange_recipe});
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center;
 }`;
 
 export const Button = styled.button`

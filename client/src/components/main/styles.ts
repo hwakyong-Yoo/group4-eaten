@@ -7,8 +7,7 @@ import newpost from '../../image/newpost.png';
 
 export const PopularPost = styled.div`
   width: 100%;
-  margin: 20px auto;
-  margin-top: 5vh;
+  height: 60vh;
 `;
 
 export const NewPost = styled.div`
@@ -36,26 +35,20 @@ export const HeaderBar = styled.div`
   height: 7vh;
 `;
 
-export const P = styled.p`
-  position: absolute;
-  right: 17vw;
-  top: 1vh;
-  color: red;
-  font-weight: bold;
-`;
-
 export const SignUp = styled.button`
-  position: absolute; /* 절대 위치 지정 */
+  position: absolute;
   right: 10vw;
+  top: 1vh;
   color: red;
   background-color: rgba(255, 178, 14, 0);
   cursor: pointer;
-  width: 20vw;
-  height: 10vh;
+  width: 10vw;
+  height: 4vh;
+  border: none;
 `;
 
 export const Login = styled.button`
-  right: 1vw;
+  margin-right: 2vw;
   margin-top: 1vh;
   background-image: url(${login});
   background-color: rgba(255, 178, 14, 0);
@@ -71,6 +64,14 @@ export const EatenImage = styled.img`
   width: 10%;
   margin-top: 1vh;
   margin-bottom: 2vh;
+`;
+
+export const P = styled.p`
+  position: absolute;
+  right: 17vw;
+  top: 1vh;
+  color: red;
+  font-weight: bold;
 `;
 
 export const MyPage = styled.button`

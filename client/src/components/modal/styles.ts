@@ -7,7 +7,7 @@ export const Modal = styled.div`
   top: 50vh;
   height: 20%;
   width: 25vw;
-  border: solid 5px #ffad84;
+  border: solid 5px rgba(255, 178, 14, 1);
   border-radius: 10%;
   background-color: white;
   transform: translate(-50%, -50%);

@@ -1,7 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Add_Image from '../../image/Add_Image.png';
 import post_submit from '../../image/post_submit.png';
 import back from '../../image/back.png';
+import logout from '../../image/logout.png';
+import orange_recipe from '../../image/orange_recipe.png';
 
 export const AddPage = styled.div`
   display: grid;
@@ -13,16 +15,32 @@ export const AddPost = styled.div`
   grid-template-columns: 1fr 1fr;
 `;
 
+const noFocus = css`
+  &:focus {
+    outline: none;
+  }
+`;
+
 export const TextArea = styled.textarea`
-  width: 25vw;
+  width: 30vw;
   height: 60vh;
-  font-size: 4em;
+  font-size: 3em;
+  padding-top: 8vh;
+  padding-left: 3vw;
+  line-height: 1.7;
+  border: none;
+  background-image: url(${orange_recipe});
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  ${noFocus}
 `;
 
 export const FileUpload = styled.label`
   display: inline-block;
-  width: 30vw;
-  height: 30vw;
+  width: 40vw;
+  height: 40vw;
   background-color: white;
   background-image: url(${Add_Image});
   background-size: 20%;
@@ -30,7 +48,7 @@ export const FileUpload = styled.label`
   background-repeat: no-repeat;
   border-radius: 50%;
   cursor: pointer;
-  border: 10px solid rgba(255, 178, 14, 0.5);
+  border: 10px solid rgba(255, 178, 14, 1);
 `;
 
 export const ImageUpload = styled.input`
@@ -84,7 +102,7 @@ export const BackButton = styled.button`
 
 export const NickName = styled.p`
   position: absolute;
-  right: 8vw;
+  right: 13vw;
   top: 1vh;
   color: red;
 `;
@@ -92,8 +110,8 @@ export const NickName = styled.p`
 export const Logout = styled.button`
   position: absolute;
   right: 1vw;
-  top: 15vh;
-  background-image: url('../../image/logout.png');
+  top: 1vh;
+  background-image: url(${logout});
   background-size: contain;
   background-repeat: no-repeat;
   background-color: white;
