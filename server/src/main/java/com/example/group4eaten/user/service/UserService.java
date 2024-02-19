@@ -1,6 +1,7 @@
 package com.example.group4eaten.user.service;
 
 import com.example.group4eaten.entity.User;
+import com.example.group4eaten.post.service.PostService;
 import com.example.group4eaten.user.SHA256;
 import com.example.group4eaten.user.dto.UserForm;
 import com.example.group4eaten.user.repository.UserRepository;
@@ -16,6 +17,9 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PostService postService;
 
     public void registerUser(UserForm userForm) throws NoSuchAlgorithmException {
         User user = userForm.toEntity();
@@ -66,6 +70,9 @@ public class UserService {
     public void delete(String userId) {
         User target = userRepository.findById(userId).orElse(null);
         if(target != null) {
+            // 사용자 삭제 전에 연결된 Post 엔터티들의 user 필드를 NULL로 업데이트
+            postService.updatePostsAfterUserDeletion(userId);
+
             userRepository.delete(target);
             log.info("사용자 삭제 성공");
         }
