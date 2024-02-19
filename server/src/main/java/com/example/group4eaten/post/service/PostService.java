@@ -42,7 +42,9 @@ public class PostService {
                 .map(post -> {
                     Map<String, Object> postMap = new HashMap<>();
                     postMap.put("postId", post.getPostId());
-                    postMap.put("nickname", post.getUser().getNickname());
+                    //nickname이 null이면 "탈퇴함"으로 설정
+                    String nickname = post.getUser() != null ? post.getUser().getNickname() : "탈퇴함";
+                    postMap.put("nickname", nickname);
                     postMap.put("content", post.getContent());
                     postMap.put("date", post.getDate());
                     postMap.put("imagepath", post.getImagepath());
@@ -65,10 +67,18 @@ public class PostService {
     public Map<String, Object> getPostDetails(Long postId) {
         Post post = postRepository.findById(postId).orElse(null);
         if (post != null) {
+            String nickname;
+            if (post.getUser() != null) {
+                nickname = post.getUser().getNickname();
+            } else {
+                // userId가 null이면 "탈퇴함"으로 설정
+                nickname = "탈퇴함";
+            }
+
             // Post 엔티티를 Map<String, Object>로 변환
             return Map.of(
                     "postId", post.getPostId(),
-                    "nickname", post.getUser().getNickname(),  // userId 대신 nickname 사용
+                    "nickname", nickname,
                     "content", post.getContent(),
                     "date", post.getDate(),
                     "imagepath", post.getImagepath(),
