@@ -1,5 +1,4 @@
 export * from './addPost';
-export * from './signUp';
 export * from './detail';
 export * from './login';
 export * from './main';
@@ -8,3 +7,4 @@ export * from './myPage';
 export * from './new';
 export * from './popular';
 export * from './post';
+export * from './signUp';

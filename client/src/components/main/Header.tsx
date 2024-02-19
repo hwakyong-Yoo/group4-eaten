@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 import logo from '../../image/logo.png';
 import {
-  MainHeader,
+  AddPost,
+  EatenImage,
   HeaderBar,
+  Login,
+  Logout,
+  MainHeader,
+  MyPage,
   P,
   SignUp,
-  Login,
-  EatenImage,
-  MyPage,
-  Logout,
-  AddPost,
 } from './styles';
 
 export const Header: React.FC = () => {

@@ -1,24 +1,24 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import fork from '../../image/fork.png';
 import logo from '../../image/logo.png';
 import spoon from '../../image/spoon.png';
-import fork from '../../image/fork.png';
 // import CreateModal from '../modal/CreateModal';
+import loginUser from '../../api/login/login';
 import {
-  LoginPage,
-  Header,
-  EatenImage,
   BackButton,
-  LoginBody,
+  EatenImage,
   Fork,
-  Spoon,
-  LoginForm,
   H2,
-  Label,
+  Header,
   Input,
+  Label,
+  LoginBody,
+  LoginForm,
+  LoginPage,
+  Spoon,
   Submit,
 } from './styles';
-import loginUser from '../../api/login/login';
 
 export const Login = () => {
   const [id, setId] = useState('');
@@ -27,31 +27,31 @@ export const Login = () => {
   const [loginError, setLoginError] = useState('');
   const navigate = useNavigate();
 
-   const handleLogin = async () => {
-     try {
-       const { success, nickname, error } = await loginUser(id, password);
-       if (success) {
-         // 로그인 성공 시
-         console.log('로그인 성공! 사용자 닉네임:', nickname);
-       } else {
-         // 로그인 실패 시
-         setLoginError(error || '아이디 또는 비밀번호가 올바르지 않습니다.');
-       }
-     } catch (error) {
-       console.error('로그인 과정에서 오류가 발생했습니다:', error);
-       setLoginError('로그인 과정에서 오류가 발생했습니다.');
-     }
+  const handleLogin = async () => {
+    try {
+      const { success, nickname, error } = await loginUser(id, password);
+      if (success) {
+        // 로그인 성공 시
+        console.log('로그인 성공! 사용자 닉네임:', nickname);
+      } else {
+        // 로그인 실패 시
+        setLoginError(error || '아이디 또는 비밀번호가 올바르지 않습니다.');
+      }
+    } catch (error) {
+      console.error('로그인 과정에서 오류가 발생했습니다:', error);
+      setLoginError('로그인 과정에서 오류가 발생했습니다.');
+    }
 
-     if (id && password) {
-       // 로그인 성공 시
-       localStorage.setItem('login', JSON.stringify(true));
-       localStorage.setItem('nickname', nickname);
-       navigate('/'); // 메인 페이지로 이동
-     } else {
-       // 로그인 실패 시
-       alert('입력 정보를 확인해주세요.');
-     }
-   };
+    if (id && password) {
+      // 로그인 성공 시
+      localStorage.setItem('login', JSON.stringify(true));
+      localStorage.setItem('nickname', nickname);
+      navigate('/'); // 메인 페이지로 이동
+    } else {
+      // 로그인 실패 시
+      alert('입력 정보를 확인해주세요.');
+    }
+  };
 
   return (
     <LoginPage>

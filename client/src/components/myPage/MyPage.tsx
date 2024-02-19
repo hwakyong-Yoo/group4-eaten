@@ -1,17 +1,15 @@
-import MyPostList from './MyPostList'
-import { useState, useEffect } from 'react';
-import {MyPosts} from '../../mock.const';
-import {MyPageHeader} from './MyPageHeader';
-import {H1} from './styles'
+import { useEffect, useState } from 'react';
 import { getMyPosts } from '../../api/myPage/myPost';
+import { MyPosts } from '../../mock.const';
 import { PostType } from '../post';
-
+import { H1 } from './MyPage.style';
+import { MyPageHeader } from './MyPageHeader';
+import MyPostList from './MyPostList';
 
 export const MyPage = () => {
-
   const [myPosts, setMyPosts] = useState<PostType[]>([]);
   //const userId = localStorage.getItem('userId')
-  const userId = 'ewha1'
+  const userId = 'ewha1';
 
   useEffect(() => {
     const fetchMyPosts = async () => {
@@ -25,7 +23,6 @@ export const MyPage = () => {
 
     fetchMyPosts();
   }, [userId]);
-
 
   return (
     <div>

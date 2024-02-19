@@ -1,22 +1,22 @@
 import { Link } from 'react-router-dom';
 import logo from '../../image/logo.png';
 import {
-  Header,
+  BackButton,
   EatenImage,
+  Header,
+  LogoutButton,
   Nickname,
   SettingButton,
-  BackButton,
-  LogoutButton,
-} from './styles';
+} from './MyPage.style';
 
 export const MyPageHeader: React.FC = () => {
   const handleLogout = () => {
     // 로그아웃 시
-    localStorage.setItem('login', 'false')
-    window.localStorage.removeItem('nickname')
+    localStorage.setItem('login', 'false');
+    window.localStorage.removeItem('nickname');
   };
 
-  const nickname = localStorage.getItem('nickname')
+  const nickname = localStorage.getItem('nickname');
 
   return (
     <Header>

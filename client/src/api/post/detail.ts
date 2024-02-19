@@ -1,7 +1,7 @@
 import { PostType } from '../../components/post';
 import { API } from '../api.const';
 
-export async function detail(postId: number): Promise<PostType> {
+export const detail = async (postId: number): Promise<PostType> => {
   try {
     const response = await fetch(`http://${API}/posts/${postId}`);
     if (!response.ok) {
@@ -13,4 +13,4 @@ export async function detail(postId: number): Promise<PostType> {
     console.error('게시물을 불러오는 데 실패했습니다:', error);
     throw error;
   }
-}
+};
