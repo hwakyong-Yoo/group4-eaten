@@ -2,7 +2,7 @@ import { PostType } from '../post';
 import { Post } from '../post';
 import {PostList} from './styles'
 import { useEffect, useState } from 'react';
-import { fetchNewlPosts, fetchNextPage } from '../../api/post/newPost';
+import { fetchNewPosts, fetchNextPage } from '../../api/post/newPost';
 
 interface NewPostListProps {
   posts: PostType[]; // props 형식 수정
@@ -11,6 +11,19 @@ interface NewPostListProps {
 export const NewPostList: React.FC<NewPostListProps> = ({ posts: initialPosts }) => {
   const [posts, setPosts] = useState<PostType[]>(initialPosts);
   const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    const getNewPosts = async () => {
+      try {
+        const newPosts = await fetchNewPosts();
+        setPosts(newPosts);
+      } catch (error) {
+        console.error('Error fetching new posts:', error);
+      }
+    };
+
+    getNewPosts();
+  }, []);
 
   useEffect(() => {
     // 최초 렌더링 시 초기 게시물을 가져옴
@@ -47,7 +60,6 @@ export const NewPostList: React.FC<NewPostListProps> = ({ posts: initialPosts })
         <div>게시글이 없습니다.</div>
       ) : (
         posts.map(post => <Post key={post.id} post={post} />)
-        //fetchNewlPosts.map(post => <Post key={post.id} post={post} />)
       )}
     </PostList>
   );

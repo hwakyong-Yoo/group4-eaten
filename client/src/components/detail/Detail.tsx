@@ -1,39 +1,30 @@
-
-import {DetailHeater} from './DetailHeader'
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { DetailHeater } from './DetailHeader';
 import { DetailPost, DetailPage, Footer, Img, Text } from './styles';
-
+import { PostType } from '../post';
+import { detail } from '../../api/post/detail';
 
 export const Detail = () => {
-  // const { postId } = useParams<{ postId: string }>();
-  // if (!postId) {
-  //   return <div>포스트 ID가 존재하지 않습니다.</div>;
-  // }
-  // const post = posts.find(post => post.id === parseInt(postId, 10));
+  const postId: number = 123;
+  const [post, setPost] = useState<PostType | null>(null);
 
-  // postId와 일치하는 포스트 찾기
+  useEffect(() => {
+    const getPostDetails = async () => {
+      try {
+        const postData = await detail(postId);
+        setPost(postData);
+      } catch (error) {
+        console.error('Error fetching post details:', error);
+      }
+    };
 
-  // const [post, setPost] = useState<PostType | null>(null);
+    getPostDetails();
+  }, [postId]);
 
-  // useEffect(() => {
-  //   const fetchPost = async () => {
-  //     try {
-  //       const response = await fetch(`/api/posts/${postId}`);
-  //       if (!response.ok) {
-  //         throw new Error('Failed to fetch post');
-  //       }
-  //       const postData = await response.json();
-  //       setPost(postData);
-  //     } catch (error) {
-  //       console.error('Error fetching post:', error);
-  //     }
-  //   };
-
-  //   fetchPost();
-  // }, [postId]);
-
-  // if (!post) {
-  //   return <div>Loading...</div>;
-  // }
+  if (!post) {
+    return <div>Loading...</div>;
+  }
 
   const imgURL = 'https://placekitten.com/204/204';
   const text = '맛있어요 어쩌구 저쩌구';

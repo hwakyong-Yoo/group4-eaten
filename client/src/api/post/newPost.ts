@@ -2,9 +2,9 @@
 import { API } from '../api.const';
 import { PostType } from '../../components/post';
 
-export async function fetchNewlPosts(): Promise<PostType[]> {
+export async function fetchNewPosts(): Promise<PostType[]> {
   try {
-    const response = await fetch(`http://${API}/posts?limit=8`);
+    const response = await fetch(`http://${API}/posts`);
     if (!response.ok) {
       throw new Error('Failed to fetch initial posts');
     }
@@ -18,7 +18,7 @@ export async function fetchNewlPosts(): Promise<PostType[]> {
 
 export async function fetchNextPage(page: number): Promise<PostType[]> {
   try {
-    const response = await fetch(`http://${API}/posts?limit=16`);
+    const response = await fetch(`http://${API}/posts`);
     if (!response.ok) {
       throw new Error('Failed to fetch next page');
     }
