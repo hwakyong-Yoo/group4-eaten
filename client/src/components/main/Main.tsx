@@ -4,15 +4,13 @@ import { PopularPosts } from '../popular';
 import { Header } from './Header';
 
 export function Main() {
-  const setLoggedIn = () => {};
 
-  const userInfo = localStorage.getItem('userInfo');
-  console.log(123, userInfo);
-  const { nickname = '', isLoggedIn = false } = userInfo ? JSON.parse(userInfo) : {};
-
+  const LoggedIn = localStorage.getItem('login')
+  const isLoggedIn = LoggedIn === 'true'
+  const nickname = localStorage.getItem('nickname')
   return (
     <>
-      <Header isLoggedIn={isLoggedIn} userInfo={nickname} setLoggedIn={setLoggedIn} />
+      <Header isLoggedIn={isLoggedIn} userInfo={nickname}/>
       <div className="popular-posts">
         <h2>인기 게시물</h2>
         <PopularPosts posts={mockPopularPosts} />

@@ -1,5 +1,4 @@
 import MyPostList from './MyPostList'
-import {useNavigate} from 'react-router-dom'
 
 const MyPosts = [
   {
@@ -46,7 +45,6 @@ const MyPosts = [
 ]
 
 const MyPage = () => {
-  const navigate = useNavigate()
   return (
     <div className="mypage">
       <h1>My Page</h1>

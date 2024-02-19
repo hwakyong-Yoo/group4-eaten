@@ -31,8 +31,9 @@
   display: inline-block;
   width: 5vw;
   height: 5vw;
+  margin-top: 25vh;
   background-color: rgba(255, 178, 14, 0);
-  /* background-image: url('../image/back.png'); */
+  background-image: url('../../image/back.png');
   background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;

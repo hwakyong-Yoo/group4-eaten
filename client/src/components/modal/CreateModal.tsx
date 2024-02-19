@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const CreateModal: React.FC<{ isVisible: boolean }> = ({ isVisible }) => {
   const [modalVisible, setModalVisible] = useState(isVisible);

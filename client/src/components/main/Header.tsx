@@ -1,60 +1,48 @@
-import { useNavigate } from 'react-router-dom';
-// import logo from '../image/logo.png';
+import {Link} from 'react-router-dom';
+import logo from '../../image/logo.png';
 
 interface HeaderProps {
   isLoggedIn: boolean;
-  userInfo: UserInfo | null;
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  userInfo: string | null;
 }
 
-interface UserInfo {
-  nickname: string;
-}
-
-export const Header: React.FC<HeaderProps> = ({ isLoggedIn, userInfo, setLoggedIn }) => {
-  const navigate = useNavigate();
+export const Header: React.FC<HeaderProps> = () => {
   const handleLogout = () => {
     // 로그아웃 시
-    setLoggedIn(false);
-  };
-  const navigateToMyPage = () => {
-    // 마이페이지로 이동
-    navigate('/mypage');
-  };
-  const navigateToCreate = () => {
-    // 로그인 페이지로 이동
-    navigate('/create');
-  };
-  const navigateToLogin = () => {
-    // 로그인 페이지로 이동
-    navigate('/login');
-  };
-  const navigateToNew = () => {
-    navigate('/new');
+    localStorage.setItem('login', JSON.stringify(false));
   };
 
+  const LoggedIn = localStorage.getItem('login')
+  const IsLoggedIn = LoggedIn === 'true'
+ const nickname = localStorage.getItem('nickname')
   return (
     <header className="header">
       <div className="header-bar">
-        {isLoggedIn ? (
+        {IsLoggedIn ? (
           <>
-            <p>{userInfo?.nickname}님</p>
-            <button id="mypage-button" onClick={navigateToMyPage}>
+            <p>{nickname}님</p>
+            <Link to='/mypage'>
+              <button id="mypage-button" >
               마이페이지
-            </button>
-            <button id="header-logout-button" onClick={handleLogout}></button>
-            <button id="new-post" onClick={navigateToNew}></button>
+              </button>
+            </Link>
+            <Link to='/'><button id="header-logout-button" onClick={handleLogout}></button></Link>
+            <Link to='/new'><button id="new-post"/></Link>
+            
           </>
         ) : (
           <>
-            <button id="header-signup-button" onClick={navigateToCreate}>
-              회원가입
-            </button>
-            <button id="header-login-button" onClick={navigateToLogin}></button>
+            <Link to="/signup">
+             <button id="header-signup-button">회원가입</button>
+            </Link>
+            <Link to="/login">
+             <button id="header-login-button"/>
+            </Link>
+            
           </>
         )}
       </div>
-      <div className="header-logo">{/* <img src={logo} alt="로고 이미지" /> */}</div>
+      <div className="header-logo">{<img src={logo} alt="로고 이미지" />}</div>
     </header>
   );
 };

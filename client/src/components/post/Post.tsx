@@ -1,4 +1,4 @@
-// Post.tsx
+
 import { Link } from 'react-router-dom';
 
 export type PostType = {
