@@ -74,7 +74,7 @@ public class PostApiController {
 
     //새 게시물 작성
     @PostMapping(value = "/posts", consumes = { "multipart/form-data" })
-    public ResponseEntity<PostDto> create(@RequestPart MultipartFile imageFile, @RequestBody PostDto dto) {
+    public ResponseEntity<PostDto> create(@RequestPart MultipartFile imageFile, @ModelAttribute PostDto dto) {
         try {
             //dto의 postId 값 검증
             if (dto.getPostId() != null)
