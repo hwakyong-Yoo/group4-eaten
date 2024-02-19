@@ -3,7 +3,6 @@ import { NewPostList } from '../new';
 import { PopularPosts } from '../popular';
 import { Header } from './Header';
 import { PopularPost, NewPost } from './styles';
-import Client from '../../clientTest';
 
 export function Main() {
   return (
@@ -17,7 +16,6 @@ export function Main() {
         <h2>최신 게시물</h2>
         <NewPostList posts={mockRecentPosts} />
       </NewPost>
-      <Client/>
     </>
   );
 }

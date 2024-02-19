@@ -9,7 +9,7 @@ export const deleteUser = async (
 ): Promise<{ success: boolean; error?: string }> => {
   try {
     // 서버로 요청을 보내 회원 탈퇴를 시도
-    await axios.delete(`https://${API}/user/${userId}/delete`);
+    await axios.delete(`http://${API}/user/${userId}/delete`);
     // 회원 탈퇴 성공 시
     return { success: true };
   } catch (error) {
