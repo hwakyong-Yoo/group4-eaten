@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@CrossOrigin(origins = {"http://localhost:8080/", "http://localhost:80", "http://219.254.47.198:80", "https://eaten-five.vercel.app/"})
+@CrossOrigin(origins = {"http://localhost:80", "http://43.202.63.5","https://43.202.63.5", "http://219.254.47.198:80", "https://eaten-five.vercel.app/"})
 public class PostApiController {
     @Autowired
     private PostService postService;
@@ -73,15 +73,15 @@ public class PostApiController {
     }
 
     //새 게시물 작성
-    @PostMapping("/posts")
-    public ResponseEntity<PostDto> create(@RequestBody PostDto dto) {
+    @PostMapping(value = "/posts", consumes = { "multipart/form-data" })
+    public ResponseEntity<PostDto> create(@RequestPart MultipartFile imageFile, @RequestBody PostDto dto) {
         try {
             //dto의 postId 값 검증
             if (dto.getPostId() != null)
                 throw new IllegalArgumentException("포스트 생성 실패! 포스트 아이디는 null이어야 합니다!");
 
             // 이미지를 업로드하고 이미지 경로를 얻어옴
-            ResponseEntity<String> uploadResponse = handleFileUpload(dto.getImageFile());
+            ResponseEntity<String> uploadResponse = handleFileUpload(imageFile);
             if (uploadResponse.getStatusCode() == HttpStatus.OK) {
                 // 이미지 업로드 성공 시 이미지 경로를 설정
                 dto.setImagepath(uploadResponse.getBody());
@@ -93,6 +93,35 @@ public class PostApiController {
         } catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    private ResponseEntity<String> handleFileUpload(MultipartFile file) {
+        try {
+            // 이미지만 업로드 가능
+            if (file != null && !file.isEmpty() && file.getContentType() != null) {
+                // 업로드할 디렉토리 생성
+                File uploadDir = new File(uploadPath);
+                if (!uploadDir.exists()) {
+                    uploadDir.mkdirs();
+                }
+
+                // 업로드할 파일 경로 설정
+                String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+                File dest = new File(uploadDir.getAbsolutePath() + File.separator + fileName);
+
+                // 파일 업로드
+                Files.copy(file.getInputStream(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                // 업로드 성공 시 파일 경로 반환
+                return ResponseEntity.ok(dest.getAbsolutePath());
+            } else {
+                // 이미지 업로드 실패 시 에러 반환
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid or no image file provided");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 업로드 실패 시 에러 로깅
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload file.");        }
     }
 
 
@@ -182,35 +211,4 @@ public class PostApiController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
-    // 이미지 업로드
-    @PostMapping("/upload")
-    public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
-        try {
-            // 이미지만 업로드 가능
-            if (file != null && !file.isEmpty() && file.getContentType() != null && file.getContentType().startsWith("image/")) {
-                // 업로드할 디렉토리 생성
-                File uploadDir = new File(uploadPath);
-                if (!uploadDir.exists()) {
-                    uploadDir.mkdirs();
-                }
-
-                // 업로드할 파일 경로 설정
-                String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-                File dest = new File(uploadDir.getAbsolutePath() + File.separator + fileName);
-
-                // 파일 업로드
-                Files.copy(file.getInputStream(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-                // 업로드 성공 시 파일 경로 반환
-                return ResponseEntity.ok(dest.getAbsolutePath());
-            } else {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid or no image file provided");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            // 업로드 실패 시 에러 반환
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload file.");
-        }
-    }
-
 }
