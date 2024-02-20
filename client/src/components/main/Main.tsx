@@ -7,7 +7,7 @@ import { PopularPost, NewPost } from './styles';
 export function Main() {
   return (
     <>
-      <Header/>
+      <Header />
       <PopularPost>
         <h2>인기 게시물</h2>
         <PopularPosts posts={mockPopularPosts} />

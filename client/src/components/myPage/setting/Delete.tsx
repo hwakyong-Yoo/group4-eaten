@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { SettingBody, SettingForm } from './styles';
-import {MyPageHeader} from '../MyPageHeader';
+import { MyPageHeader } from '../MyPageHeader';
 import { deleteUser } from '../../../api/myPage/delete';
 
 export const Delete = () => {

@@ -1,6 +1,5 @@
-
 import { Link } from 'react-router-dom';
-import { Posts, PostImage, PostContent, PostReaction, Emoji} from './styles';
+import { Posts, PostImage, PostContent, PostReaction, Emoji } from './styles';
 
 export type PostType = {
   id: number;
@@ -31,7 +30,7 @@ export const Post = ({ post }: { post: PostType }) => {
   return (
     <Posts key={post.id}>
       <Link to={`/post/${post.id}`}>
-          <PostImage src={post.imageURL} />
+        <PostImage src={post.imageURL} />
         <PostContent>
           <p>{post.text}</p>
         </PostContent>

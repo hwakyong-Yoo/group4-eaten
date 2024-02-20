@@ -1,7 +1,7 @@
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { SettingBody, SettingForm, CheckButton } from './styles';
-import {MyPageHeader} from '../MyPageHeader';
+import { MyPageHeader } from '../MyPageHeader';
 import changeNickname from '../../../api/myPage/changeNickname';
 
 export const Nickname = () => {

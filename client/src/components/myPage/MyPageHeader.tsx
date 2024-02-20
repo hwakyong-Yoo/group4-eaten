@@ -12,11 +12,11 @@ import {
 export const MyPageHeader: React.FC = () => {
   const handleLogout = () => {
     // 로그아웃 시
-    localStorage.setItem('login', 'false')
-    window.localStorage.removeItem('nickname')
+    localStorage.setItem('login', 'false');
+    window.localStorage.removeItem('nickname');
   };
 
-  const nickname = localStorage.getItem('nickname')
+  const nickname = localStorage.getItem('nickname');
 
   return (
     <Header>

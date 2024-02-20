@@ -1,6 +1,5 @@
-
 import { Post, PostType } from '../post';
-import {PostList} from './styles'
+import { PostList } from './styles';
 
 export type PostsType = PostType[];
 
