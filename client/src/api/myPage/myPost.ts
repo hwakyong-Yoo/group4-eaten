@@ -7,7 +7,7 @@ import { API } from '../api.const';
 export const getMyPosts = async (userId: string): Promise<PostType[]> => {
   try {
     // 서버로 요청을 보내 유저가 작성한 게시물 목록을 가져옴
-    const response = await axios.get(`http://${API}/mypage/${userId}`);
+    const response = await axios.get(`${API}/mypage/${userId}`);
     // 가져온 게시물 목록 반환
     return response.data.posts;
   } catch (error) {

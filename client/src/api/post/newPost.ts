@@ -28,7 +28,7 @@ export async function fetchNewPosts(): Promise<PostType[]> {
 
 export async function fetchNextPage(page: number): Promise<PostType[]> {
   try {
-    const response = await fetch(`http://${API}/posts?page=${page}`);
+    const response = await fetch(`${API}/posts?page=${page}`);
     const data: PostsResponse = await response.json();
 
     if (response.ok && data.totalPosts > 0) {

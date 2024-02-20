@@ -46,6 +46,7 @@ export const Login = () => {
        // 로그인 성공 시
        localStorage.setItem('login', JSON.stringify(true));
        localStorage.setItem('nickname', nickname);
+       localStorage.setItem('userId', id)
        navigate('/'); // 메인 페이지로 이동
      } else {
        // 로그인 실패 시

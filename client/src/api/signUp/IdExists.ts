@@ -9,7 +9,7 @@ const checkUserIdExists = async (
 ): Promise<{ success: boolean; message: string }> => {
   try {
     // 서버에 요청을 보냄
-    const response = await axios.get(`http://${API}/userId/exists`);
+    const response = await axios.get(`${API}/userId/exists`);
 
     // 응답 데이터에서 중복 여부를 가져옴
     const { exists } = response.data;

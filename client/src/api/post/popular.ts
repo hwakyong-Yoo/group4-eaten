@@ -6,7 +6,7 @@ import { API } from '../api.const';
 // 서버로부터 게시물 데이터를 받아오는 함수
 export const fetchHotPosts = async (): Promise<PostType[]> => {
   try {
-    const response = await axios.get(`http://${API}/hot-posts`);
+    const response = await axios.get(`${API}/hot-posts`);
     if (response.data.statusCode !== 200) {
       throw new Error(response.data.msg);
     }

@@ -3,7 +3,7 @@ import { API } from '../api.const';
 
 export async function detail(postId: number): Promise<PostType> {
   try {
-    const response = await fetch(`http://${API}/posts/${postId}`);
+    const response = await fetch(`${API}/posts/${postId}`);
     if (!response.ok) {
       throw new Error('존재하지 않는 게시물입니다.');
     }
