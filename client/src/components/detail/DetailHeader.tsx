@@ -1,15 +1,8 @@
 import { Link } from 'react-router-dom';
-import logo from '../../image/logo.png';
-import {
-  Header,
-  EatenImage,
-  Nickname,
-  SettingButton,
-  BackButton,
-  LogoutButton,
-} from './styles';
+import eaten from '../../image/eaten.png';
+import { Header, EatenImage, BackButton, NickName, Logout } from './styles';
 
-export const MyPageHeader: React.FC = () => {
+export const DetailHeater: React.FC = () => {
   const handleLogout = () => {
     // 로그아웃 시
     localStorage.setItem('login', 'false');
@@ -24,16 +17,13 @@ export const MyPageHeader: React.FC = () => {
         <BackButton />
       </Link>
       <div>
-        <EatenImage src={logo} />
+        <EatenImage src={eaten} alt="이튼 이미지" />
       </div>
       <div>
-        <Nickname>{nickname}님</Nickname>
+        <NickName>{nickname}님</NickName>
       </div>
-      <Link to="/mypage/setting">
-        <SettingButton />
-      </Link>
       <Link to="/">
-        <LogoutButton onClick={handleLogout}></LogoutButton>
+        <Logout onClick={handleLogout} />
       </Link>
     </Header>
   );

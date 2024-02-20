@@ -1,27 +1,25 @@
-import { useNavigate } from 'react-router-dom';
-import './Setting.css';
+import { Link } from 'react-router-dom';
+import { SettingBody, Button, SettingForm } from './styles';
+import { MyPageHeader } from '../MyPageHeader';
 
-const Setting = () => {
-  const navigate = useNavigate();
-
-  const navigateToNickname = () => {
-    navigate('/myPage/setting/nickname');
-  };
-
-  const navigateToDelete = () => {
-    navigate('/myPage/setting/delete');
-  };
-
+export const Setting = () => {
   return (
-    <div className="click-modal">
-      <div></div>
-      <div className="modal-content">
-        <button onClick={navigateToNickname}>닉네임 변경</button>
-        <button onClick={navigateToDelete}>회원탈퇴</button>
+    <div>
+      <div>
+        <MyPageHeader />
       </div>
-      <div></div>
+      <SettingBody>
+        <div></div>
+        <SettingForm>
+          <Link to="/mypage/setting/nickname">
+            <Button>닉네임 변경</Button>
+          </Link>
+          <Link to="/mypage/setting/delete">
+            <Button>회원탈퇴</Button>
+          </Link>
+        </SettingForm>
+        <div></div>
+      </SettingBody>
     </div>
   );
 };
-
-export default Setting;

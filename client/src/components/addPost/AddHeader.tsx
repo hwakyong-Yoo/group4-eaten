@@ -1,50 +1,35 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import CancelNew from '../modal/CancelNew';
-// import eaten from '../../image/eaten.png';
+import eaten from '../../image/eaten.png';
+import { Header, EatenImage, BackButton, NickName, Logout } from './styles';
 
-interface HeaderProps {
-  isLoggedIn: boolean;
-  userInfo: UserInfo | null;
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-interface UserInfo {
-  nickname: string;
-}
-
-export const AddHeader: React.FC<HeaderProps> = ({
-  isLoggedIn,
-  userInfo,
-  setLoggedIn,
-}) => {
-  const navigate = useNavigate();
+export const AddHeader: React.FC = () => {
   const handleLogout = () => {
     // 로그아웃 시
-    setLoggedIn(false);
-    navigate('/');
-  };
-  const navigateToBack = () => {
-    navigate('/');
+    localStorage.setItem('login', 'false');
+    window.localStorage.removeItem('nickname');
   };
   const [modalOpen, setModalOpen] = useState(false);
+  const nickname = localStorage.getItem('nickname');
 
   const handleCloseModal = () => {
     setModalOpen(false);
-    // 뒤로 가는 로직을 추가할 수 있습니다.
   };
 
   return (
-    <header className="mypage-header">
-      <button className="back-button" onClick={() => setModalOpen(true)}></button>
+    <Header>
+      <BackButton onClick={() => setModalOpen(true)} />
       {modalOpen && <CancelNew onClose={handleCloseModal} />}
       <div>
-        <img src="" alt="이튼 이미지" />
+        <EatenImage src={eaten} alt="이튼 이미지" />
       </div>
       <div>
-        <p className="mypage-nickname">{userInfo?.nickname}님</p>
+        <NickName>{nickname}님</NickName>
       </div>
-      <button className="logout-button" onClick={handleLogout}></button>
-    </header>
+      <Link to="/">
+        <Logout onClick={handleLogout} />
+      </Link>
+    </Header>
   );
 };

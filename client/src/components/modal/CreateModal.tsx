@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const CreateModal: React.FC<{ isVisible: boolean }> = ({ isVisible }) => {
   const [modalVisible, setModalVisible] = useState(isVisible);
@@ -18,7 +18,7 @@ const CreateModal: React.FC<{ isVisible: boolean }> = ({ isVisible }) => {
   }, [isVisible]);
 
   return (
-    <div className="modal" style={{ display: modalVisible ? "block" : "none" }}>
+    <div className="modal" style={{ display: modalVisible ? 'block' : 'none' }}>
       <div>회원가입이 완료되었습니다</div>
     </div>
   );

@@ -1,60 +1,55 @@
-import { useNavigate } from 'react-router-dom';
-// import logo from '../image/logo.png';
+import { Link } from 'react-router-dom';
+import logo from '../../image/logo.png';
+import {
+  MainHeader,
+  HeaderBar,
+  P,
+  SignUp,
+  Login,
+  EatenImage,
+  MyPage,
+  Logout,
+  AddPost,
+} from './styles';
 
-interface HeaderProps {
-  isLoggedIn: boolean;
-  userInfo: UserInfo | null;
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-interface UserInfo {
-  nickname: string;
-}
-
-export const Header: React.FC<HeaderProps> = ({ isLoggedIn, userInfo, setLoggedIn }) => {
-  const navigate = useNavigate();
+export const Header: React.FC = () => {
   const handleLogout = () => {
     // 로그아웃 시
-    setLoggedIn(false);
-  };
-  const navigateToMyPage = () => {
-    // 마이페이지로 이동
-    navigate('/mypage');
-  };
-  const navigateToCreate = () => {
-    // 로그인 페이지로 이동
-    navigate('/create');
-  };
-  const navigateToLogin = () => {
-    // 로그인 페이지로 이동
-    navigate('/login');
-  };
-  const navigateToNew = () => {
-    navigate('/new');
+    localStorage.setItem('login', JSON.stringify(false));
   };
 
+  const LoggedIn = localStorage.getItem('login');
+  const IsLoggedIn = LoggedIn === 'true';
+  const nickname = localStorage.getItem('nickname');
+
   return (
-    <header className="header">
-      <div className="header-bar">
-        {isLoggedIn ? (
+    <MainHeader>
+      <HeaderBar>
+        {IsLoggedIn ? (
           <>
-            <p>{userInfo?.nickname}님</p>
-            <button id="mypage-button" onClick={navigateToMyPage}>
-              마이페이지
-            </button>
-            <button id="header-logout-button" onClick={handleLogout}></button>
-            <button id="new-post" onClick={navigateToNew}></button>
+            <P>{nickname}님</P>
+            <Link to="/mypage">
+              <MyPage>마이페이지</MyPage>
+            </Link>
+            <Link to="/">
+              <Logout onClick={handleLogout} />
+            </Link>
+            <Link to="/new">
+              <AddPost />
+            </Link>
           </>
         ) : (
           <>
-            <button id="header-signup-button" onClick={navigateToCreate}>
-              회원가입
-            </button>
-            <button id="header-login-button" onClick={navigateToLogin}></button>
+            <Link to="/signup">
+              <SignUp>회원가입</SignUp>
+            </Link>
+            <Link to="/login">
+              <Login />
+            </Link>
           </>
         )}
-      </div>
-      <div className="header-logo">{/* <img src={logo} alt="로고 이미지" /> */}</div>
-    </header>
+      </HeaderBar>
+      <div>{<EatenImage src={logo} alt="로고 이미지" />}</div>
+    </MainHeader>
   );
 };

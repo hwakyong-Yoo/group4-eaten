@@ -1,5 +1,5 @@
-// Post.tsx
 import { Link } from 'react-router-dom';
+import { Posts, PostImage, PostContent, PostReaction, Emoji } from './styles';
 
 export type PostType = {
   id: number;
@@ -7,6 +7,8 @@ export type PostType = {
   text: string;
   nickname?: string;
   date?: string;
+  userId?: string;
+  edit_YN?: boolean;
 
   heart?: number;
   hungry?: number;
@@ -26,22 +28,20 @@ export const defaultPost: PostType = {
 
 export const Post = ({ post }: { post: PostType }) => {
   return (
-    <div className="post" key={post.id}>
-      <Link to={`/post/${post.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-        <div className="post-image">
-          <img src={post.imageURL} alt="게시물 이미지" />
-        </div>
-        <div className="post-content">
+    <Posts key={post.id}>
+      <Link to={`/post/${post.id}`}>
+        <PostImage src={post.imageURL} />
+        <PostContent>
           <p>{post.text}</p>
-        </div>
-        <div className="post-reactions">
-          <div className="reaction">❤️{post.heart}</div>
-          <div className="reaction">🤤{post.hungry}</div>
-          <div className="reaction">😲{post.wow}</div>
-          <div className="reaction">👍{post.good}</div>
-          <div className="reaction">🔥{post.fire}</div>
-        </div>
+        </PostContent>
+        <PostReaction>
+          <Emoji>❤️{post.heart}</Emoji>
+          <Emoji>🤤{post.hungry}</Emoji>
+          <Emoji>😲{post.wow}</Emoji>
+          <Emoji>👍{post.good}</Emoji>
+          <Emoji>🔥{post.fire}</Emoji>
+        </PostReaction>
       </Link>
-    </div>
+    </Posts>
   );
 };

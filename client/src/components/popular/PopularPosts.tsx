@@ -1,11 +1,26 @@
-import { useState } from 'react';
-import { Post, defaultPost } from '../post';
-import { PostsType } from '../myPage';
+import { useState, useEffect } from 'react';
+import { Post } from '../post';
+import { PostType } from '../post';
 import { POSTS_PER_PAGE } from './popularPosts.const';
-import './PopularPosts.css';
+import { PostSlider, LeftButton, RightButton, PostList } from './styles';
+import { fetchHotPosts } from '../../api/post/popular';
+import { defaultPost } from '../post';
 
-export const PopularPosts = ({ posts }: { posts: PostsType }) => {
+interface PopularPostsProps {
+  posts: PostType[];
+}
+
+export const PopularPosts = ({ posts }: PopularPostsProps) => {
   const [currentPage, setCurrentPage] = useState(0);
+  const [hotPosts, setHotPosts] = useState<PostType[]>([]);
+
+  useEffect(() => {
+    const getHotPosts = async () => {
+      const hotPosts = await fetchHotPosts();
+      setHotPosts(hotPosts);
+    };
+    getHotPosts();
+  }, []);
 
   const prevPage = () => {
     if (currentPage > 0) {
@@ -23,20 +38,20 @@ export const PopularPosts = ({ posts }: { posts: PostsType }) => {
   const startIdx = currentPage * POSTS_PER_PAGE;
   const endIdx = startIdx + POSTS_PER_PAGE;
   const currentPosts = posts.slice(startIdx, endIdx);
-
   const postsToDisplay = currentPosts.length === 0 ? [defaultPost] : currentPosts;
 
   return (
-    <div className="post-slider">
-      <button id="left-button" onClick={prevPage} />
-      <div className={`post-list ${currentPage > 0 ? 'slide-left' : ''}`}>
+    <PostSlider>
+      <LeftButton onClick={prevPage} />
+      <PostList>
+        {hotPosts.map(post => (
+          <Post key={post.id} post={post} />
+        ))}
         {postsToDisplay.map(post => (
           <Post key={post.id} post={post} />
         ))}
-      </div>
-      <button id="right-button" onClick={nextPage}>
-        {'>'}
-      </button>
-    </div>
+      </PostList>
+      <RightButton onClick={nextPage} />
+    </PostSlider>
   );
 };

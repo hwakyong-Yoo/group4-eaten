@@ -1,23 +1,46 @@
-import { useNavigate } from 'react-router-dom';
-import './Setting.css';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { SettingBody, SettingForm } from './styles';
+import { MyPageHeader } from '../MyPageHeader';
+import { deleteUser } from '../../../api/myPage/delete';
 
-const Delete = () => {
-  const navigate = useNavigate();
-  const navigateToNickname = () => {
-    navigate('/mypage/nickname');
+export const Delete = () => {
+  //const userId = localStorage.getItem('userId')
+  const userId = '12345';
+
+  const [error, setError] = useState('');
+
+  const handleDelete = async () => {
+    // 회원 탈퇴 함수 호출
+    const { success, error: errorMessage } = await deleteUser(userId);
+    if (success) {
+      // 회원 탈퇴 성공 시
+      console.log('회원 탈퇴가 성공적으로 처리되었습니다.');
+    } else {
+      // 회원 탈퇴 실패 시
+      setError(errorMessage || '회원 탈퇴에 실패했습니다.');
+    }
   };
 
   return (
-    <div className="click-modal">
-      <div></div>
-      <div className="modal-content">
-        <p>회원을 탈퇴하시겠습니까?</p>
-        <button onClick={navigateToNickname}>예</button>
-        <button>아니요</button>
+    <div>
+      <div>
+        <MyPageHeader />
       </div>
-      <div></div>
+      <SettingBody>
+        <div></div>
+        <SettingForm>
+          <p>회원을 탈퇴하시겠습니까?</p>
+          <Link to="/">
+            <button onClick={handleDelete}>예</button>
+            {error && <div>{error}</div>}
+          </Link>
+          <Link to="/mypage">
+            <button>아니요</button>
+          </Link>
+        </SettingForm>
+        <div></div>
+      </SettingBody>
     </div>
   );
 };
-
-export default Delete;
