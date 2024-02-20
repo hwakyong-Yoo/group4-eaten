@@ -12,7 +12,7 @@ interface PostsResponse {
 
 export async function fetchNewPosts(): Promise<PostType[]> {
   try {
-    const response = await fetch(`http://${API}/posts`);
+    const response = await fetch(`${API}/posts`);
     const data: PostsResponse = await response.json();
 
     if (response.ok && data.totalPosts > 0) {
