@@ -1,6 +1,6 @@
 package com.example.group4eaten;
 
-import org.apache.catalina.filters.CorsFilter;
+import org.springframework.web.filter.CorsFilter; // 이 부분을 추가
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -37,8 +37,13 @@ public class WebConfig implements WebMvcConfigurer {
     @Bean
     public FilterRegistrationBean<CorsFilter> corsFilterRegistrationBean() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(false);
-        config.addAllowedOrigin("*");
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("http://localhost:80");
+        config.addAllowedOrigin("http://localhost:3000");
+        config.addAllowedOrigin("http://43.202.63.5");
+        config.addAllowedOrigin("https://eaten-ecc.site");
+        config.addAllowedOrigin("http://eaten-ecc.site");
+        config.addAllowedOrigin("https://eaten-five.vercel.app");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         config.setMaxAge(6000L);
