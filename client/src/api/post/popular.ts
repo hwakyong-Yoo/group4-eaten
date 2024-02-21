@@ -2,11 +2,13 @@
 import axios from 'axios';
 import { PostType } from '../../components/post';
 import { API } from '../api.const';
+axios.defaults.withCredentials = true;
 
 // 서버로부터 게시물 데이터를 받아오는 함수
 export const fetchHotPosts = async (): Promise<PostType[]> => {
   try {
-    const response = await axios.get(`${API}/hot-posts`);
+    axios.defaults.withCredentials = true;
+    const response = await axios.get(`${API}/hot-posts`, { withCredentials: true });
     if (response.data.statusCode !== 200) {
       throw new Error(response.data.msg);
     }

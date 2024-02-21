@@ -1,6 +1,4 @@
 // TODO: 로그인 하고 아이디와 비밀번호 일치 여부 체크 /user/login
-
-import axios from 'axios';
 import { API } from '../api.const';
 
 interface LoginResponse {
@@ -18,6 +16,7 @@ const loginUser = async (
     // 서버에 로그인 요청을 보내고, 사용자 정보를 받아옴
     const response = await fetch(`${API}/user/login`, {
       method: 'POST',
+      credentials: 'include',
       headers: {
         'Content-Type': 'application/json',
       },
