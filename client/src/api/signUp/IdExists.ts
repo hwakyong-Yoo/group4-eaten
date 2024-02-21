@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import { API } from '../api.const';
+axios.defaults.withCredentials = true;
 
 // 유저 아이디의 중복 여부를 확인하는 함수
 const checkUserIdExists = async (
