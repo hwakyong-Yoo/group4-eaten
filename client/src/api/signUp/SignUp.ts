@@ -11,7 +11,7 @@ const CreateSignUp = async (
   password: string,
 ): Promise<{ msg: string; statusCode: number }> => {
   try {
-    const url = `${API}/user/create`;
+    axios.defaults.withCredentials = true;
 
     // POST 요청을 보낼 데이터
     const data = {
@@ -21,7 +21,9 @@ const CreateSignUp = async (
     };
 
     // POST 요청 보내기
-    const response = await axios.post(url, data);
+    const response = await axios.post(`${API}/user/create`, data, {
+      withCredentials: true,
+    });
 
     // 응답 처리
     console.log('User created successfully:', response.data);

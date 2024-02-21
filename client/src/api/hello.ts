@@ -6,7 +6,8 @@ axios.defaults.withCredentials = true;
 const fetchHelloData = async () => {
   try {
     // GET 요청 보내기
-    const response = await axios.get(`${API}/api/hello`);
+    `${API}/user/create`;
+    const response = await axios.get(`${API}/api/hello`, { withCredentials: true });
 
     // 응답 데이터 반환
     return response.data;
