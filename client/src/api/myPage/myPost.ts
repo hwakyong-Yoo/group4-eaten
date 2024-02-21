@@ -2,6 +2,7 @@
 import axios, { AxiosError } from 'axios'; // AxiosError를 import합니다.
 import { PostType } from '../../components/post';
 import { API } from '../api.const';
+axios.defaults.withCredentials = true;
 
 // 마이페이지에서 유저가 작성한 게시물 목록을 가져오는 함수
 export const getMyPosts = async (userId: string): Promise<PostType[]> => {

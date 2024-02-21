@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import { API } from '../api.const';
+axios.defaults.withCredentials = true;
 
 // 사용자 정보를 AWS 서버에 저장하는 함수
 const CreateSignUp = async (

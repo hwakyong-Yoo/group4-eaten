@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import { API } from '../api.const';
+axios.defaults.withCredentials = true;
 
 // 회원 탈퇴 함수
 export const deleteUser = async (

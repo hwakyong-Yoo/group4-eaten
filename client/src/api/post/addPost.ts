@@ -1,8 +1,7 @@
 // TODO: 새 포스트 작성 시 서버에 add
-
 import axios, { AxiosError } from 'axios'; // AxiosError를 import합니다.
-import { PostType } from '../../components/post';
 import { API } from '../api.const';
+axios.defaults.withCredentials = true;
 
 // 새 게시물 작성하는 함수
 export const addPost = async (
