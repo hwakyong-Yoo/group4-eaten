@@ -21,6 +21,7 @@ public class PostDto {
     private String content;
     private String date;
     private String imagepath;
+    @Builder.Default
     private Boolean edit_YN = false;
     private MultipartFile imageFile;
 
