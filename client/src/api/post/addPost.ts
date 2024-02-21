@@ -10,6 +10,7 @@ export const addPost = async (
   imagePath: File,
 ): Promise<{ success: boolean; postId?: number; error?: string }> => {
   try {
+    axios.defaults.withCredentials = true;
     // 현재 날짜를 ISO 포맷으로 가져옴
     const date = new Date().toISOString();
     // FormData를 생성하여 파일 데이터를 추가
@@ -20,6 +21,7 @@ export const addPost = async (
     formData.append('imagePath', imagePath);
     // 서버로 요청을 보내서 새 게시물을 생성하고 그 결과를 받아옴
     const response = await axios.post(`${API}/posts`, formData, {
+      withCredentials: true,
       headers: {
         'Content-Type': 'multipart/form-data', // 파일 업로드 시에는 Content-Type을 multipart/form-data로 설정해야 합니다.
       },
