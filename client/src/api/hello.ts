@@ -5,7 +5,7 @@ import { API } from './api.const';
 const fetchHelloData = async () => {
   try {
     // GET 요청 보내기
-    const response = await axios.get(`${API}/hello`);
+    const response = await axios.get(`${API}/api/hello`);
 
     // 응답 데이터 반환
     return response.data;
