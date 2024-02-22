@@ -30,7 +30,7 @@ export async function fetchNewPosts(): Promise<PostType[]> {
     }
   } catch (error) {
     //console.error('Error fetching initial posts:', error);
-    console.log('최신 게시물 서버 로딩 실패');
+    console.log('최신 게시물 서버 로딩 실패', error);
     return [];
   }
 }
@@ -55,7 +55,7 @@ export async function fetchNextPage(page: number): Promise<PostType[]> {
     }
   } catch (error) {
     //console.error('Error fetching next page:', error);
-    console.log('최신 게시물 페이징 서버 로딩 실패');
+    console.log('최신 게시물 페이징 서버 로딩 실패', error);
     return [];
   }
 }
