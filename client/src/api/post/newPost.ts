@@ -13,6 +13,10 @@ interface PostsResponse {
 export async function fetchNewPosts(): Promise<PostType[]> {
   try {
     const response = await fetch(`/posts`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://eaten-ecc.site',
+      },
       method: 'GET',
       credentials: 'include',
     });
@@ -30,18 +34,18 @@ export async function fetchNewPosts(): Promise<PostType[]> {
   }
 }
 
-// export async function fetchNextPage(page: number): Promise<PostType[]> {
-//   try {
-//     const response = await fetch(`${API}/posts?page=${page}`);
-//     const data: PostsResponse = await response.json();
+export async function fetchNextPage(page: number): Promise<PostType[]> {
+  try {
+    const response = await fetch(`${API}/posts?pagenum=${page}`);
+    const data: PostsResponse = await response.json();
 
-//     if (response.ok && data.totalPosts > 0) {
-//       return data.posts;
-//     } else {
-//       throw new Error('Failed to fetch next page');
-//     }
-//   } catch (error) {
-//     console.error('Error fetching next page:', error);
-//     return [];
-//   }
-// }
+    if (response.ok && data.totalPosts > 0) {
+      return data.posts;
+    } else {
+      throw new Error('Failed to fetch next page');
+    }
+  } catch (error) {
+    console.error('Error fetching next page:', error);
+    return [];
+  }
+}

@@ -9,7 +9,16 @@ xhr.withCredentials = true;
 const fetchHelloData = async () => {
   try {
     // GET 요청 보내기
-    const response = await axios.get(`/api/hello`, { withCredentials: true });
+    const response = await axios.get(`/api/hello`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://eaten-ecc.site',
+      },
+      withCredentials: true,
+    });
+
+    //const data: string = await response.json();
 
     // 응답 데이터 반환
     return response.data.message;

@@ -4,6 +4,10 @@ import { API } from '../api.const';
 export async function detail(postId: number): Promise<PostType> {
   try {
     const response = await fetch(`/posts/${postId}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://eaten-ecc.site',
+      },
       method: 'GET',
       credentials: 'include',
     });
