@@ -12,7 +12,7 @@ interface PostsResponse {
 
 export async function fetchNewPosts(): Promise<PostType[]> {
   try {
-    const response = await fetch(`${API}/posts`, {
+    const response = await fetch(`/posts`, {
       method: 'GET',
       credentials: 'include',
     });

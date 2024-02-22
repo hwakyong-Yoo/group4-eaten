@@ -20,7 +20,7 @@ export const addPost = async (
     formData.append('date', date);
     formData.append('imagePath', imagePath);
     // 서버로 요청을 보내서 새 게시물을 생성하고 그 결과를 받아옴
-    const response = await axios.post(`${API}/posts`, formData, {
+    const response = await axios.post(`/posts`, formData, {
       withCredentials: true,
       headers: {
         'Content-Type': 'multipart/form-data', // 파일 업로드 시에는 Content-Type을 multipart/form-data로 설정해야 합니다.

@@ -9,7 +9,7 @@ export const getMyPosts = async (userId: string): Promise<PostType[]> => {
   try {
     // 서버로 요청을 보내 유저가 작성한 게시물 목록을 가져옴
     axios.defaults.withCredentials = true;
-    const response = await axios.get(`${API}/mypage/${userId}`, {
+    const response = await axios.get(`/mypage/${userId}`, {
       withCredentials: true,
     });
     // 가져온 게시물 목록 반환

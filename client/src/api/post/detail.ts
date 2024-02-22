@@ -3,7 +3,7 @@ import { API } from '../api.const';
 
 export async function detail(postId: number): Promise<PostType> {
   try {
-    const response = await fetch(`${API}/posts/${postId}`, {
+    const response = await fetch(`/posts/${postId}`, {
       method: 'GET',
       credentials: 'include',
     });

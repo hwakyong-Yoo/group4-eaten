@@ -11,7 +11,7 @@ export const deleteUser = async (
   try {
     axios.defaults.withCredentials = true;
     // 서버로 요청을 보내 회원 탈퇴를 시도
-    await axios.delete(`${API}/user/${userId}/delete`, { withCredentials: true });
+    await axios.delete(`/user/${userId}/delete`, { withCredentials: true });
     // 회원 탈퇴 성공 시
     return { success: true };
   } catch (error) {

@@ -14,7 +14,7 @@ const loginUser = async (
 ): Promise<{ success: boolean; nickname?: string; error?: string }> => {
   try {
     // 서버에 로그인 요청을 보내고, 사용자 정보를 받아옴
-    const response = await fetch(`${API}/user/login`, {
+    const response = await fetch(`/user/login`, {
       method: 'POST',
       credentials: 'include',
       headers: {

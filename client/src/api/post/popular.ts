@@ -8,7 +8,7 @@ axios.defaults.withCredentials = true;
 export const fetchHotPosts = async (): Promise<PostType[]> => {
   try {
     axios.defaults.withCredentials = true;
-    const response = await axios.get(`${API}/hot-posts`, { withCredentials: true });
+    const response = await axios.get(`/hot-posts`, { withCredentials: true });
     if (response.data.statusCode !== 200) {
       throw new Error(response.data.msg);
     }

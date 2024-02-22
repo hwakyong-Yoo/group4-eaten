@@ -7,7 +7,7 @@ const changeNickname = async (
 ): Promise<{ success: boolean; error?: string }> => {
   try {
     // AWS 서버에 사용자의 닉네임을 수정하는 요청을 보냄
-    const response = await fetch(`${API}/user/${userId}/edit`, {
+    const response = await fetch(`/user/${userId}/edit`, {
       method: 'PUT',
       credentials: 'include',
       headers: {
