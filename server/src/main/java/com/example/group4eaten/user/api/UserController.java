@@ -26,7 +26,7 @@ public class UserController {
 
     @GetMapping("/api/hello")
     public String hello() {
-        return "hello world!";
+        return "hello world! 0222 4:21";
     }
 
     @PostMapping("/user/create") //회원가입
