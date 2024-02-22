@@ -21,7 +21,7 @@ const CreateSignUp = async (
     };
 
     // POST 요청 보내기
-    const response = await axios.post(`/user/create`, data, {
+    const response = await axios.post(`${API}/user/create`, data, {
       withCredentials: true,
     });
 

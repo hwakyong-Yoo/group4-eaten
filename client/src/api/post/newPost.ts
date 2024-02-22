@@ -12,10 +12,10 @@ interface PostsResponse {
 
 export async function fetchNewPosts(): Promise<PostType[]> {
   try {
-    const response = await fetch(`/posts`, {
+    const response = await fetch(`${API}/posts`, {
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://eaten-ecc.site',
+        'Access-Control-Allow-Origin': 'https://eaten-five.vercel.app/',
       },
       method: 'GET',
       credentials: 'include',

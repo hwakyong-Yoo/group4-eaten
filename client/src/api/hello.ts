@@ -10,7 +10,7 @@ const fetchHelloData = async () => {
     const response = await axios.get(`${API}/api/hello`, {
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://eaten-ecc.site',
+        'Access-Control-Allow-Origin': 'https://eaten-five.vercel.app/',
       },
       withCredentials: true,
     });
