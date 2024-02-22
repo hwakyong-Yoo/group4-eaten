@@ -2,7 +2,7 @@ import { PostType } from '../post';
 import { Post } from '../post';
 import { PostList } from './styles';
 import { useEffect, useState } from 'react';
-import { fetchNewPosts, fetchNextPage } from '../../api/post/newPost';
+import { fetchNextPage } from '../../api/post/newPost';
 // { fetchNewPosts } from '../../api/post/newPost';
 
 interface NewPostListProps {
@@ -12,19 +12,6 @@ interface NewPostListProps {
 export const NewPostList: React.FC<NewPostListProps> = ({ posts: initialPosts }) => {
   const [posts, setPosts] = useState<PostType[]>(initialPosts);
   const [page, setPage] = useState(1);
-
-  useEffect(() => {
-    const getNewPosts = async () => {
-      try {
-        const newPosts = await fetchNewPosts();
-        setPosts(newPosts);
-      } catch (error) {
-        console.error('Error fetching new posts:', error);
-      }
-    };
-
-    getNewPosts();
-  }, []);
 
   useEffect(() => {
     // 최초 렌더링 시 초기 게시물을 가져옴
