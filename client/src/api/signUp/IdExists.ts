@@ -22,7 +22,8 @@ const checkUserIdExists = async (
     // 결과 반환
     return { success: !exists, message };
   } catch (error) {
-    console.error('Error checking if user ID exists:', error);
+    //console.error('Error checking if user ID exists:', error);
+    console.log('아이디 중복 체크 서버 연결 실패');
     // 에러가 발생하면 false를 반환하여 중복 여부를 확인할 수 없음을 알림
     return {
       success: false,

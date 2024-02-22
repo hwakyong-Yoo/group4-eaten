@@ -34,7 +34,8 @@ const loginUser = async (
     }
   } catch (error) {
     // 네트워크 오류 등의 예외 처리
-    console.error('로그인 과정에서 오류가 발생했습니다:', error);
+    //console.error('로그인 과정에서 오류가 발생했습니다:', error);
+    console.log('로그인 과정에서 서버 오류 발생');
     return { success: false, error: '로그인 과정에서 오류가 발생했습니다.' };
   }
 };
