@@ -194,7 +194,7 @@ public class PostApiController {
 
     // 내 페이지 (내가 작성한 게시물 조회 가능)
     @GetMapping("/mypage")
-    public ResponseEntity<List<PostDto>> getmypage(@RequestHeader(name = "sessionId") String sessionId, HttpSession session) {
+    public ResponseEntity<List<PostDto>> getmypage(HttpSession session) {
         List<PostDto> myPosts;
         //session을 바로 받아오는 방식 사용
         if (session != null) {
