@@ -44,13 +44,14 @@ export const PopularPosts = ({ posts }: PopularPostsProps) => {
     <PostSlider>
       <LeftButton onClick={prevPage} />
       <PostList>
-        {hotPosts.map(post => (
-          <Post key={post.id} post={post} />
-        ))}
-        {postsToDisplay.map(post => (
-          <Post key={post.id} post={post} />
-        ))}
+        {hotPosts &&
+          hotPosts.length > 0 &&
+          hotPosts.map(post => <Post key={post.id} post={post} />)}
+        {postsToDisplay &&
+          postsToDisplay.length > 0 &&
+          postsToDisplay.map(post => <Post key={post.id} post={post} />)}
       </PostList>
+
       <RightButton onClick={nextPage} />
     </PostSlider>
   );

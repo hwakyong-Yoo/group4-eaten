@@ -44,10 +44,10 @@ export const NewPostList: React.FC<NewPostListProps> = ({ posts: initialPosts })
 
   return (
     <PostList>
-      {posts.length === 0 ? (
-        <div>게시글이 없습니다.</div>
-      ) : (
+      {posts && posts.length > 0 ? (
         posts.map(post => <Post key={post.id} post={post} />)
+      ) : (
+        <div>게시글이 없습니다.</div>
       )}
     </PostList>
   );
