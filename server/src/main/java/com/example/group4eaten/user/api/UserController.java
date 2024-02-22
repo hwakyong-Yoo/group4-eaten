@@ -29,7 +29,6 @@ public class UserController {
         Map<String, Object> response = new HashMap<>();
         response.put("msg", "Hello World! 0222");
         return new ResponseEntity<>(response, HttpStatus.OK);
-    }
 
     @PostMapping("/user/create") //회원가입
     public ResponseEntity<Map<String, Object>> createUser(@RequestBody UserForm userForm) throws NoSuchAlgorithmException {
