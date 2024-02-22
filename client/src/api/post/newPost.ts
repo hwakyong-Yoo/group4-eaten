@@ -12,7 +12,7 @@ interface PostsResponse {
 
 export async function fetchNextPage(page: number): Promise<PostType[]> {
   try {
-    const response = await fetch(`/posts?pagenum=${page}`, {
+    const response = await fetch(`${API}/posts?pagenum=${page}`, {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': 'https://eaten-ecc.site',
