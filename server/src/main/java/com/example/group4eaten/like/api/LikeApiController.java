@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-//@CrossOrigin(origins = {"http://localhost:80", "http://43.202.63.5","https://eaten-ecc.site/", "http://219.254.47.198:80", "https://eaten-five.vercel.app"})
 public class LikeApiController {
 
     @Autowired
