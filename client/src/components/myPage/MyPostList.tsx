@@ -7,7 +7,11 @@ const MyPostList = ({ posts }: { posts: PostsType }) => {
   return (
     <PostList>
       {posts?.map(post =>
-        post ? <Post key={post.id} post={post} /> : <div>Error: Post does not exist</div>,
+        post ? (
+          <Post key={post.postId} post={post} />
+        ) : (
+          <div>Error: Post does not exist</div>
+        ),
       )}
     </PostList>
   );

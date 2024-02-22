@@ -3,7 +3,6 @@ import { Post } from '../post';
 import { PostList } from './styles';
 import { useEffect, useState } from 'react';
 import { fetchNextPage } from '../../api/post/newPost';
-// { fetchNewPosts } from '../../api/post/newPost';
 
 interface NewPostListProps {
   posts: PostType[]; // props 형식 수정
