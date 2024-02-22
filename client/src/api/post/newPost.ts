@@ -24,7 +24,8 @@ export async function fetchNewPosts(): Promise<PostType[]> {
       throw new Error('Failed to fetch initial posts');
     }
   } catch (error) {
-    console.error('Error fetching initial posts:', error);
+    //console.error('Error fetching initial posts:', error);
+    console.log('최신 게시물 서버 로딩 실패');
     return [];
   }
 }

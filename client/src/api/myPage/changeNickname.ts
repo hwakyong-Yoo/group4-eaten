@@ -25,7 +25,8 @@ const changeNickname = async (
     }
   } catch (error) {
     // 네트워크 오류 등의 예외 처리
-    console.error('닉네임 수정 과정에서 오류가 발생했습니다:', error);
+    //console.error('닉네임 수정 과정에서 오류가 발생했습니다:', error);
+    console.log('닉네임 수정 서버 오류');
     return { success: false, error: '닉네임 수정 과정에서 오류가 발생했습니다.' };
   }
 };
