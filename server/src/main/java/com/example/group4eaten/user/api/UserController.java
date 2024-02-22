@@ -25,8 +25,10 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/api/hello")
-    public String hello() {
-        return "hello world!";
+    public ResponseEntity<Map<String, Object>> hello() {
+        Map<String, Object> response = new HashMap<>();
+        response.put("msg", "Hello World! 0222");
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping("/user/create") //회원가입
