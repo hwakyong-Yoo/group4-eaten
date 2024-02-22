@@ -12,7 +12,7 @@ const fetchHelloData = async () => {
     const response = await axios.get(`/api/hello`, { withCredentials: true });
 
     // 응답 데이터 반환
-    return response.data.message;
+    return response.data;
   } catch (error) {
     // 오류 처리
     //console.error('Error fetching data from API:', error);

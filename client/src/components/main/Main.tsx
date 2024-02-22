@@ -7,13 +7,13 @@ import fetchHelloData from '../../api/hello';
 import { useState, useEffect } from 'react';
 
 export function Main() {
-  const [helloData, setHelloData] = useState(null);
+  const [helloData, setHelloData] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await fetchHelloData();
-        setHelloData(data);
+        setHelloData(data.message);
       } catch (error) {
         console.error('Error fetching hello data:', error);
       }
