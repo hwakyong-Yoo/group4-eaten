@@ -21,6 +21,7 @@ export async function fetchNewPosts(): Promise<PostType[]> {
       credentials: 'include',
     });
     const data: PostsResponse = await response.json();
+    console.log('최신 게시물: ', data);
 
     if (response.ok && data.totalPosts > 0) {
       return data.posts;
@@ -45,6 +46,7 @@ export async function fetchNextPage(page: number): Promise<PostType[]> {
       credentials: 'include',
     });
     const data: PostsResponse = await response.json();
+    console.log('최신 게시물 페이징: ', data);
 
     if (response.ok && data.totalPosts > 0) {
       return data.posts;
@@ -52,7 +54,8 @@ export async function fetchNextPage(page: number): Promise<PostType[]> {
       throw new Error('Failed to fetch next page');
     }
   } catch (error) {
-    console.error('Error fetching next page:', error);
+    //console.error('Error fetching next page:', error);
+    console.log('최신 게시물 페이징 서버 로딩 실패');
     return [];
   }
 }

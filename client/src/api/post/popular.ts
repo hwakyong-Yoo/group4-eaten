@@ -12,7 +12,8 @@ export const fetchHotPosts = async (): Promise<PostType[]> => {
     if (response.data.statusCode !== 200) {
       throw new Error(response.data.msg);
     }
-    return response.data.hots;
+    console.log('인기 게시물: ', response.data);
+    return response.data;
   } catch (error) {
     //console.error('인기 게시물을 불러오는 데 실패했습니다:', error);
     console.log('인기 게시물 서버 로딩 실패');

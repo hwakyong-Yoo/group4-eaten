@@ -18,10 +18,8 @@ const fetchHelloData = async () => {
       withCredentials: true,
     });
 
-    //const data: string = await response.json();
-
     // 응답 데이터 반환
-    return response.data.message;
+    return response.data;
   } catch (error) {
     // 오류 처리
     //console.error('Error fetching data from API:', error);
