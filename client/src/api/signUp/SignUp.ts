@@ -15,9 +15,9 @@ const CreateSignUp = async (
 
     // POST 요청을 보낼 데이터
     const data = {
-      nickname,
       userId,
       password,
+      nickname,
     };
 
     // POST 요청 보내기

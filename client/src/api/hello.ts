@@ -7,7 +7,7 @@ const fetchHelloData = async () => {
   try {
     // GET 요청 보내기
     axios.defaults.withCredentials = true;
-    const response = await axios.get(`/api/hello`, {
+    const response = await axios.get(`${API}/api/hello`, {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': 'https://eaten-ecc.site',
