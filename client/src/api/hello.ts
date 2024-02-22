@@ -19,7 +19,7 @@ const fetchHelloData = async () => {
     });
 
     // 응답 데이터 반환
-    return response.data;
+    return response.data.msg;
   } catch (error) {
     // 오류 처리
     //console.error('Error fetching data from API:', error);
