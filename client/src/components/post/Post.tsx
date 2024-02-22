@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 import { Posts, PostImage, PostContent, PostReaction, Emoji } from './styles';
 
 export type PostType = {
-  id: number;
-  imageURL: string;
-  text: string;
+  postId: number;
   nickname?: string;
+  content: string;
   date?: string;
+  imagepath: string;
   userId?: string;
   edit_YN?: boolean;
 
@@ -18,9 +18,9 @@ export type PostType = {
 };
 
 export const defaultPost: PostType = {
-  id: 0,
-  imageURL: '',
-  text: 'Default Text', // text가 없는 경우에는 'Default Text'로 설정
+  postId: 0,
+  imagepath: '',
+  content: 'Default Text', // text가 없는 경우에는 'Default Text'로 설정
   nickname: '익명',
   date: '2024-02-11',
   heart: 0,
@@ -28,11 +28,11 @@ export const defaultPost: PostType = {
 
 export const Post = ({ post }: { post: PostType }) => {
   return (
-    <Posts key={post.id}>
-      <Link to={`/post/${post.id}`}>
-        <PostImage src={post.imageURL} />
+    <Posts key={post.postId}>
+      <Link to={`/post/${post.postId}`}>
+        <PostImage src={post.imagepath} />
         <PostContent>
-          <p>{post.text}</p>
+          <p>{post.content}</p>
         </PostContent>
         <PostReaction>
           <Emoji>❤️{post.heart}</Emoji>

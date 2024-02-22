@@ -46,10 +46,10 @@ export const PopularPosts = ({ posts }: PopularPostsProps) => {
       <PostList>
         {hotPosts &&
           hotPosts.length > 0 &&
-          hotPosts.map(post => <Post key={post.id} post={post} />)}
+          hotPosts.map(post => <Post key={post.postId} post={post} />)}
         {postsToDisplay &&
           postsToDisplay.length > 0 &&
-          postsToDisplay.map(post => <Post key={post.id} post={post} />)}
+          postsToDisplay.map(post => <Post key={post.postId} post={post} />)}
       </PostList>
 
       <RightButton onClick={nextPage} />
