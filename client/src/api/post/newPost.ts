@@ -36,7 +36,14 @@ export async function fetchNewPosts(): Promise<PostType[]> {
 
 export async function fetchNextPage(page: number): Promise<PostType[]> {
   try {
-    const response = await fetch(`${API}/posts?pagenum=${page}`);
+    const response = await fetch(`${API}/posts?pagenum=${page}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://eaten-ecc.site',
+      },
+      method: 'GET',
+      credentials: 'include',
+    });
     const data: PostsResponse = await response.json();
 
     if (response.ok && data.totalPosts > 0) {
