@@ -13,7 +13,7 @@ export function Main() {
     const fetchData = async () => {
       try {
         const data = await fetchHelloData();
-        setHelloData(data.message);
+        setHelloData(data);
       } catch (error) {
         console.error('Error fetching hello data:', error);
       }
