@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import orange_recipe from '../../image/orange_recipe.png';
 import submit from '../../image/submit.png';
 import back from '../../image/back.png';
@@ -30,27 +30,87 @@ export const SignupBody = styled.div`
 
 export const SignupForm = styled.div`
   width: 40vw;
-  height: 80vh;
+  height: 75vh;
   background-image: url(${orange_recipe});
   background-size: contain;
   background-repeat: no-repeat;
+  margin-left: 100px;
+  margin-top: 32px;
   background-color: rgba(255, 178, 14, 0);
 `;
 
-export const Input = styled.input`
-  border-bottom: 1px solid orange;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  width: 30vw;
+//Input==============================
 
-  align-items: center;
-  margin-left: 6vw;
+const noFocus = css`
+  &:focus {
+    outline: none;
+  }
 `;
+
+export const Input = styled.input`
+  border: none;
+
+  position: absolute;
+  width: 350px;
+  height: 45px;
+  font-size: 1.5em;
+  background-color: rgba(0, 0, 0, 0);
+  align-items: center;
+  margin-left: 5vw;
+
+  ${noFocus}
+`;
+
+export const IdInput = styled(Input)`
+  bottom: 460px;
+  left: 500px;
+`;
+
+export const PwdInput = styled(Input)`
+  bottom: 380px;
+  left: 500px;
+`;
+
+export const PwdCheckInput = styled(Input)`
+  bottom: 290px;
+  left: 500px;
+`;
+
+export const NicknameInput = styled(Input)`
+  bottom: 210px;
+  left: 500px;
+`;
+
+//Label================================
 
 export const Label = styled.label`
-  padding-left: 6vw;
+  position: absolute;
+  margin-top: 300px;
+  margin-left: 60px;
+  font-size: 1.2em;
 `;
+
+export const IdLabel = styled(Label)`
+  bottom: 510px;
+  left: 500px;
+`;
+
+export const PwdLabel = styled(Label)`
+  bottom: 430px;
+  left: 500px;
+`;
+
+export const PwdCheckLabel = styled(Label)`
+  bottom: 350px;
+  left: 500px;
+`;
+
+export const NicknameLabel = styled(Label)`
+  bottom: 260px;
+  left: 500px;
+`;
+
+//---------------------------------------
 
 export const Submit = styled.button`
   background-image: url(${submit});
@@ -62,12 +122,23 @@ export const Submit = styled.button`
   height: 7vw;
 
   position: absolute;
-  left: 50%;
-  bottom: 15%;
+  left: 700px;
+  bottom: 60px;
 `;
 
 export const H2 = styled.h2`
+  position: absolute;
+  left: 550px;
+  top: 145px;
   color: orange;
+`;
+
+export const Duplicate = styled.button`
+  border: none;
+  background-color: white;
+  position: absolute;
+  left: 800px;
+  top: 210px;
 `;
 
 export const Fork = styled.img`
@@ -98,9 +169,22 @@ export const Back = styled.button`
   cursor: pointer;
 `;
 
+//CheckMsg==============================
+
 export const CheckMsg = styled.p`
+  position: absolute;
   color: orange;
   font-size: 1em;
   width: 40vw;
   margin-right: 30vw;
+`;
+
+export const CheckMsg1 = styled(CheckMsg)`
+  top: 270px;
+  left: 650px;
+`;
+
+export const CheckMsg2 = styled(CheckMsg)`
+  top: 353px;
+  left: 700px;
 `;

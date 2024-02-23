@@ -5,7 +5,7 @@ import { API } from '../api.const';
 axios.defaults.withCredentials = true;
 
 // 사용자 정보를 AWS 서버에 저장하는 함수
-const CreateSignUp = async (
+export const CreateSignUp = async (
   nickname: string,
   userId: string,
   password: string,
@@ -34,5 +34,3 @@ const CreateSignUp = async (
     return { msg: '회원가입 중 오류가 발생했습니다.', statusCode: 500 };
   }
 };
-
-export default CreateSignUp;

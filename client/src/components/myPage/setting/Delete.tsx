@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { SettingBody, SettingForm } from './styles';
+import { SettingBody, SettingForm, P, YNButton } from './Setting.style';
 import { MyPageHeader } from '../MyPageHeader';
-import { deleteUser } from '../../../api/myPage/delete';
+import { deleteUser } from '../../../api/declaration';
 
 export const Delete = () => {
   //const userId = localStorage.getItem('userId')
-  const userId = '12345';
+  const userId = 'ewha1';
 
   const [error, setError] = useState('');
 
@@ -30,13 +30,14 @@ export const Delete = () => {
       <SettingBody>
         <div></div>
         <SettingForm>
-          <p>회원을 탈퇴하시겠습니까?</p>
+          <P>회원을 탈퇴하시겠습니까?</P>
           <Link to="/">
-            <button onClick={handleDelete}>예</button>
+            <YNButton onClick={handleDelete}>예</YNButton>
             {error && <div>{error}</div>}
           </Link>
+          /
           <Link to="/mypage">
-            <button>아니요</button>
+            <YNButton>아니요</YNButton>
           </Link>
         </SettingForm>
         <div></div>

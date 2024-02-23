@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { SettingBody, Button, SettingForm } from './styles';
+import { SettingBody, Button, SettingForm } from './Setting.style';
 import { MyPageHeader } from '../MyPageHeader';
 
 export const Setting = () => {

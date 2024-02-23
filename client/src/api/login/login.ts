@@ -8,7 +8,7 @@ interface LoginResponse {
   nickname?: string;
 }
 
-const loginUser = async (
+export const loginUser = async (
   userId: string,
   password: string,
 ): Promise<{ success: boolean; nickname?: string; error?: string }> => {
@@ -39,5 +39,3 @@ const loginUser = async (
     return { success: false, error: '로그인 과정에서 오류가 발생했습니다.' };
   }
 };
-
-export default loginUser;

@@ -1,14 +1,14 @@
 import { PostType } from '../post';
 import { Post } from '../post';
-import { PostList } from './styles';
+import { PostList } from './New.style';
 import { useEffect, useState } from 'react';
-import { fetchNextPage } from '../../api/post/newPost';
+import { fetchNextPage } from '../../api/declaration';
 
 interface NewPostListProps {
   posts: PostType[]; // props 형식 수정
 }
 
-export const NewPostList: React.FC<NewPostListProps> = ({ posts: initialPosts }) => {
+export const NewPostList = ({ posts: initialPosts }: NewPostListProps) => {
   const [posts, setPosts] = useState<PostType[]>(initialPosts);
   const [page, setPage] = useState(1);
 

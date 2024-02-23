@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Posts, PostImage, PostContent, PostReaction, Emoji } from './styles';
+import { Posts, PostImage, PostContent, PostReaction, Emoji } from './Post.style';
 
 export type PostType = {
   postId: number;

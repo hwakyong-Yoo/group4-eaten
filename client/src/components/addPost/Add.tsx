@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import {
   AddPost,
   AddPage,
@@ -9,9 +8,9 @@ import {
   Image,
   Submit,
   Footer,
-} from './styles';
+} from './Add.style';
 import { AddHeader } from './AddHeader';
-import { addPost } from '../../api/post/addPost';
+import { addPost } from '../../api/declaration';
 
 export const Add = () => {
   // 상태 설정

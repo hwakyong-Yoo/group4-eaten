@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import back from '../../image/back.png';
 import orange_recipe from '../../image/orange_recipe.png';
 import submit from '../../image/submit.png';
@@ -44,10 +44,12 @@ export const LoginBody = styled.div`
 
 export const LoginForm = styled.div`
   width: 40vw;
-  height: 80vh;
+  height: 75vh;
   background-image: url(${orange_recipe});
   background-size: contain;
   background-repeat: no-repeat;
+  margin-left: 100px;
+  margin-top: 32px;
   background-color: rgba(255, 178, 14, 0);
 `;
 
@@ -66,22 +68,64 @@ export const Spoon = styled.img`
 `;
 
 export const H2 = styled.h2`
+  position: absolute;
+  left: 550px;
+  top: 145px;
   color: orange;
 `;
 
+//Label======================
+
 export const Label = styled.label`
-  padding-left: 6vw;
+  position: absolute;
+  margin-top: 300px;
+  margin-left: 60px;
+  font-size: 1.2em;
+`;
+
+export const IdLabel = styled(Label)`
+  bottom: 430px;
+  left: 500px;
+`;
+
+export const PwdLabel = styled(Label)`
+  bottom: 345px;
+  left: 500px;
+`;
+
+//Input=========================
+
+const noFocus = css`
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const Input = styled.input`
-  border-bottom: 1px solid orange;
-  border-left: none; /* 좌측에는 border 없음 */
-  border-right: none; /* 우측에는 border 없음 */
-  border-top: none; /* 위쪽에는 border 없음 */
-  width: 30vw;
+  border: none;
+
+  position: absolute;
+  width: 350px;
+  height: 45px;
+  font-size: 1.5em;
+  background-color: rgba(0, 0, 0, 0);
   align-items: center;
-  margin-left: 6vw;
+  margin-left: 5vw;
+
+  ${noFocus}
 `;
+
+export const IdInput = styled(Input)`
+  bottom: 380px;
+  left: 500px;
+`;
+
+export const PwdInput = styled(Input)`
+  bottom: 290px;
+  left: 500px;
+`;
+
+//---------------------------
 
 export const Submit = styled.button`
   background-image: url(${submit});
@@ -93,6 +137,6 @@ export const Submit = styled.button`
   height: 7vw;
 
   position: absolute;
-  left: 50%;
-  bottom: 15%;
+  left: 700px;
+  bottom: 60px;
 `;

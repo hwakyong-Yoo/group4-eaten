@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import eaten from '../../image/eaten.png';
-import { Header, EatenImage, BackButton, NickName, Logout } from './styles';
+import { Header, EatenImage, BackButton, NickName, Logout } from './Detail.style';
 
-export const DetailHeater: React.FC = () => {
+export const DetailHeater = () => {
   const handleLogout = () => {
     // 로그아웃 시
     localStorage.setItem('login', 'false');

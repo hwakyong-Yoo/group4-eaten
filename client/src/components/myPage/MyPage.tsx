@@ -2,8 +2,8 @@ import MyPostList from './MyPostList';
 import { useState, useEffect } from 'react';
 import { MyPosts } from '../../mock.const';
 import { MyPageHeader } from './MyPageHeader';
-import { H1 } from './styles';
-import { getMyPosts } from '../../api/myPage/myPost';
+import { H1, MyPost } from './MyPage.style';
+import { getMyPosts } from '../../api/declaration';
 import { PostType } from '../post';
 
 export const MyPage = () => {
@@ -31,8 +31,10 @@ export const MyPage = () => {
       </div>
       <div>
         <H1>My Page</H1>
-        <MyPostList posts={MyPosts} />
-        <MyPostList posts={myPosts} />
+        <MyPost>
+          <MyPostList posts={MyPosts} />
+          <MyPostList posts={myPosts} />
+        </MyPost>
       </div>
     </div>
   );

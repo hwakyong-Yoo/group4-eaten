@@ -1,9 +1,8 @@
-import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { DetailHeater } from './DetailHeader';
-import { DetailPost, DetailPage, Footer, Img, Text } from './styles';
+import { DetailPost, DetailPage, Footer, Img, Text } from './Detail.style';
 import { PostType } from '../post';
-import { detail } from '../../api/post/detail';
+import { detail } from '../../api/declaration';
 
 export const Detail = () => {
   const postId: number = 1;

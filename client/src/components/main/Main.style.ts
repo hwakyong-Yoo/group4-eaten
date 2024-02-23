@@ -32,15 +32,16 @@ export const MainHeader = styled.header`
 export const HeaderBar = styled.div`
   background-color: rgba(255, 178, 14, 0.26);
   text-align: right;
-  height: 7vh;
+  height: 50px;
 `;
 
 export const SignUp = styled.button`
   position: absolute;
-  right: 10vw;
-  top: 1vh;
+  right: 100px;
+  top: 10px;
   color: red;
   background-color: rgba(255, 178, 14, 0);
+  font-weight: bold;
   cursor: pointer;
   width: 10vw;
   height: 4vh;
@@ -62,14 +63,13 @@ export const Login = styled.button`
 
 export const EatenImage = styled.img`
   width: 10%;
-  margin-top: 1vh;
-  margin-bottom: 2vh;
+  margin-top: 10px;
+  margin-bottom: 20px;
 `;
 
 export const P = styled.p`
   position: absolute;
-  right: 17vw;
-  top: 1vh;
+  right: 280px;
   color: red;
   font-weight: bold;
 `;
@@ -79,8 +79,8 @@ export const MyPage = styled.button`
   position: absolute;
   color: red;
   font-weight: bold;
-  top: 1vh;
-  right: 8vw;
+  top: 15px;
+  right: 150px;
   border: none;
 `;
 

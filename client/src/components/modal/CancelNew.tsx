@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Modal } from './styles';
+import { Modal, P, Button } from './Modal.style';
 
 type onCloseFunction = () => void;
 
@@ -7,17 +7,18 @@ interface ModalProps {
   onClose: onCloseFunction;
 }
 
-const CancelNew: React.FC<ModalProps> = ({ onClose }) => {
+const CancelNew = ({ onClose }: ModalProps) => {
   const handleConfirm = () => {
-    onClose(); // 뒤로 가는 함수 호출
+    onClose();
   };
 
   return (
     <Modal>
-      <p>작성 중인 내용이 삭제됩니다. 계속하시겠습니까?</p>
+      <P>작성 중인 내용이 삭제됩니다. 계속하시겠습니까?</P>
       <Link to="/">
-        <button onClick={handleConfirm}>확인</button>
+        <Button onClick={handleConfirm}>예</Button>
       </Link>
+      /<Button onClick={handleConfirm}>아니오</Button>
     </Modal>
   );
 };

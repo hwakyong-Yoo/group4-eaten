@@ -14,11 +14,13 @@ import {
   Spoon,
   LoginForm,
   H2,
-  Label,
-  Input,
   Submit,
-} from './styles';
-import loginUser from '../../api/login/login';
+  IdLabel,
+  PwdLabel,
+  IdInput,
+  PwdInput,
+} from './Login.style';
+import { loginUser } from '../../api/declaration';
 
 export const Login = () => {
   const [id, setId] = useState('');
@@ -68,14 +70,14 @@ export const Login = () => {
         </div>
         <LoginForm>
           <H2>로그인</H2>
-          <Label>아이디</Label>
+          <IdLabel>아이디</IdLabel>
           <br />
-          <Input type="text" value={id} onChange={e => setId(e.target.value)} />
+          <IdInput type="text" value={id} onChange={e => setId(e.target.value)} />
           <br />
           <br />
-          <Label>비밀번호</Label>
+          <PwdLabel>비밀번호</PwdLabel>
           <br />
-          <Input
+          <PwdInput
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}

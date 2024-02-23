@@ -5,7 +5,7 @@ import { API } from '../api.const';
 axios.defaults.withCredentials = true;
 
 // 유저 아이디의 중복 여부를 확인하는 함수
-const checkUserIdExists = async (
+export const checkUserIdExists = async (
   userId: string,
 ): Promise<{ success: boolean; message: string }> => {
   try {
@@ -31,5 +31,3 @@ const checkUserIdExists = async (
     };
   }
 };
-
-export default checkUserIdExists;

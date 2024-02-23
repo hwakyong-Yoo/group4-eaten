@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { SettingBody, SettingForm, CheckButton } from './styles';
+import { SettingBody, SettingForm, CheckButton, P, Input } from './Setting.style';
 import { MyPageHeader } from '../MyPageHeader';
-import changeNickname from '../../../api/myPage/changeNickname';
+import { changeNickname } from '../../../api/declaration';
 
 export const Nickname = () => {
   //const userId = localStorage.getItem('userId')
-  const userId = '12345';
+  const userId = 'ewha1';
 
   const [newNickname, setNewNickname] = useState('');
   const [error, setError] = useState('');
@@ -38,8 +38,8 @@ export const Nickname = () => {
         <div></div>
         <SettingForm>
           <form onSubmit={handleSubmit}>
-            <p>변경하실 닉네임을 입력해 주세요</p>
-            <input type="text" value={newNickname} onChange={handleNicknameChange} />
+            <P>변경하실 닉네임을 입력해 주세요</P>
+            <Input type="text" value={newNickname} onChange={handleNicknameChange} />
             <Link to="/mypage">
               <CheckButton type="submit" />
             </Link>

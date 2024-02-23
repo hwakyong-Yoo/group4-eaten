@@ -22,7 +22,7 @@ const noFocus = css`
 `;
 
 export const TextArea = styled.textarea`
-  width: 30vw;
+  width: 350px;
   height: 60vh;
   font-size: 3em;
   padding-top: 8vh;
@@ -39,8 +39,9 @@ export const TextArea = styled.textarea`
 
 export const FileUpload = styled.label`
   display: inline-block;
-  width: 40vw;
-  height: 40vw;
+  width: 500px;
+  height: 500px;
+  margin-left: 180px;
   background-color: white;
   background-image: url(${Add_Image});
   background-size: 20%;
@@ -72,6 +73,9 @@ export const Submit = styled.button`
   background-color: rgba(0, 0, 0, 0);
   border: none;
 
+  position: absolute;
+  right: 500px;
+  bottom: 200px;
   width: 5vw;
   height: 5vw;
 `;
@@ -94,8 +98,8 @@ export const BackButton = styled.button`
   background-size: contain;
   background-repeat: no-repeat;
   background-color: white;
-  width: 7vw;
-  height: 5vh;
+  width: 9vw;
+  height: 7vh;
   border: none;
   cursor: pointer;
 `;
@@ -105,6 +109,7 @@ export const NickName = styled.p`
   right: 13vw;
   top: 1vh;
   color: red;
+  font-weight: bold;
 `;
 
 export const Logout = styled.button`
