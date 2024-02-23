@@ -28,25 +28,25 @@ export const defaultPost: PostType = {
 };
 
 export const Post = ({ post }: { post: PostType }) => {
-  const imagepath = post.imagepath;
-  const relativePath = imagepath.replace(/\\/g, '/');
-  const imageUrl = { API } + '/' + relativePath;
+  // const imagepath = post.imagepath;
+  // const relativePath = imagepath.replace(/\\/g, '/');
+  // const imageUrl = { API } + '/' + relativePath;
 
   return (
     <Posts key={post.postId}>
       <Link to={`/post/${post.postId}`}>
-        <PostImage src={imageUrl} />
-        <PostContent>
-          <p>{post.content}</p>
-        </PostContent>
-        <PostReaction>
-          <Emoji>❤️{post.heart}</Emoji>
-          <Emoji>🤤{post.hungry}</Emoji>
-          <Emoji>😲{post.wow}</Emoji>
-          <Emoji>👍{post.good}</Emoji>
-          <Emoji>🔥{post.fire}</Emoji>
-        </PostReaction>
+        <PostImage src={post.imagepath} />
       </Link>
+      <PostContent>
+        <p>{post.content}</p>
+      </PostContent>
+      <PostReaction>
+        <Emoji>❤️{post.heart}</Emoji>
+        <Emoji>🤤{post.hungry}</Emoji>
+        <Emoji>😲{post.wow}</Emoji>
+        <Emoji>👍{post.good}</Emoji>
+        <Emoji>🔥{post.fire}</Emoji>
+      </PostReaction>
     </Posts>
   );
 };

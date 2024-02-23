@@ -1,8 +1,9 @@
 export const mockPopularPosts = [
   {
     postId: 1,
-    imagepath: 'https://placekitten.com/200/200',
-    content: '고양이 대스타 어쩌구',
+    imagepath:
+      'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D',
+    content: '너무 맛있어요',
     nickname: 'eee',
     date: '2024-5-5',
     heart: 10,
@@ -13,22 +14,25 @@ export const mockPopularPosts = [
   },
   {
     postId: 2,
-    imagepath: 'https://placekitten.com/201/201',
-    content: '고양이 귀여워 어쩌구',
+    imagepath:
+      'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D',
+    content: '식당 가보세요',
     nickname: 'eee',
     hungry: 12,
   },
   {
     postId: 3,
-    imagepath: 'https://placekitten.com/202/202',
-    content: '고양이가 짱이야 어쩌구',
+    imagepath:
+      'https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDR8fGZvb2R8ZW58MHx8MHx8fDA%3D',
+    content: '인생 최고의 음식',
     nickname: 'eee',
     fire: 6,
   },
   {
     postId: 4,
-    imagepath: 'https://placekitten.com/201/201',
-    content: '고양이 대스타 어쩌구',
+    imagepath:
+      'https://images.unsplash.com/photo-1574484284002-952d92456975?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDh8fGZvb2R8ZW58MHx8MHx8fDA%3D',
+    content: '20대 여사장이 30년 동안 개발한 레시피',
     nickname: 'eee',
     date: '2024-5-5',
     heart: 1,
@@ -39,22 +43,25 @@ export const mockPopularPosts = [
   },
   {
     postId: 5,
-    imagepath: 'https://placekitten.com/202/202',
-    content: '고양이 귀여워 어쩌구',
+    imagepath:
+      'https://plus.unsplash.com/premium_photo-1680172800885-61c5f1fc188e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTd8fGZvb2R8ZW58MHx8MHx8fDA%3D',
+    content: '고양이가 강아지보다 콧구멍이 큰 이유',
     nickname: 'eee',
     hungry: 12,
   },
   {
     postId: 6,
-    imagepath: 'https://placekitten.com/205/205',
-    content: '고양이가 짱이야 어쩌구',
+    imagepath:
+      'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjZ8fGZvb2R8ZW58MHx8MHx8fDA%3D',
+    content: '손 안 씻고 만든 파스타',
     nickname: 'eee',
     fire: 6,
   },
   {
     postId: 7,
-    imagepath: 'https://placekitten.com/207/207',
-    content: '고양이 대스타 어쩌구',
+    imagepath:
+      'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTQ3fHxmb29kfGVufDB8fDB8fHww',
+    content: '도넛의 행복',
     nickname: 'eee',
     date: '2024-5-5',
     heart: 10,
@@ -65,18 +72,20 @@ export const mockPopularPosts = [
   },
   {
     postId: 8,
-    imagepath: 'https://placekitten.com/201/201',
-    content: '고양이 귀여워 어쩌구',
+    imagepath:
+      'https://images.unsplash.com/photo-1536816579748-4ecb3f03d72a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTc2fHxmb29kfGVufDB8fDB8fHww',
+    content: '달걀 세우기 나보다 잘 하는 사람',
     nickname: 'eee',
     hungry: 12,
   },
-  // {
-  //   postId: 9,
-  //   imagepath: 'https://placekitten.com/202/202',
-  //   content: '고양이가 짱이야 어쩌구',
-  //   nickname: 'eee',
-  //   fire: 6,
-  // },
+  {
+    postId: 9,
+    imagepath:
+      'https://images.unsplash.com/photo-1520218508822-998633d997e6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjQwfHxmb29kfGVufDB8fDB8fHww',
+    content: '맛있는 미트볼',
+    nickname: 'eee',
+    fire: 6,
+  },
 ];
 
 export const mockRecentPosts = [

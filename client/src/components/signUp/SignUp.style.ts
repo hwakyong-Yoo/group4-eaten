@@ -188,3 +188,11 @@ export const CheckMsg2 = styled(CheckMsg)`
   top: 353px;
   left: 700px;
 `;
+
+export const Img = styled.img`
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 210px;
+  left: 870px;
+`;
