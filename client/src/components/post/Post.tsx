@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Posts, PostImage, PostContent, PostReaction, Emoji } from './Post.style';
+import { API } from '../../api/api.const';
 
 export type PostType = {
   postId: number;
@@ -27,10 +28,14 @@ export const defaultPost: PostType = {
 };
 
 export const Post = ({ post }: { post: PostType }) => {
+  const imagepath = post.imagepath;
+  const relativePath = imagepath.replace(/\\/g, '/');
+  const imageUrl = { API } + '/' + relativePath;
+
   return (
     <Posts key={post.postId}>
       <Link to={`/post/${post.postId}`}>
-        <PostImage src={post.imagepath} />
+        <PostImage src={imageUrl} />
         <PostContent>
           <p>{post.content}</p>
         </PostContent>

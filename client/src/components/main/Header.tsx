@@ -16,6 +16,8 @@ export const Header = () => {
   const handleLogout = () => {
     // 로그아웃 시
     localStorage.setItem('login', JSON.stringify(false));
+    localStorage.removeItem('userId');
+    localStorage.removeItem('nickname');
   };
 
   const LoggedIn = localStorage.getItem('login');

@@ -70,13 +70,13 @@ export const mockPopularPosts = [
     nickname: 'eee',
     hungry: 12,
   },
-  {
-    postId: 9,
-    imagepath: 'https://placekitten.com/202/202',
-    content: '고양이가 짱이야 어쩌구',
-    nickname: 'eee',
-    fire: 6,
-  },
+  // {
+  //   postId: 9,
+  //   imagepath: 'https://placekitten.com/202/202',
+  //   content: '고양이가 짱이야 어쩌구',
+  //   nickname: 'eee',
+  //   fire: 6,
+  // },
 ];
 
 export const mockRecentPosts = [

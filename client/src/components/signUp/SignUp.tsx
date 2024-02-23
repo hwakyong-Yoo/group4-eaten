@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../image/logo.png';
 import spoon from '../../image/spoon.png';
 import fork from '../../image/fork.png';
+import check from '../../image/check.png';
 import {
   SignupPage,
   Header,
@@ -12,11 +13,8 @@ import {
   Spoon,
   SignupForm,
   H2,
-  Input,
-  Label,
   Submit,
   Back,
-  CheckMsg,
   IdLabel,
   PwdLabel,
   PwdCheckLabel,
@@ -58,7 +56,6 @@ export const SignUp = () => {
     try {
       const { success, message } = await checkUserIdExists(id); // 함수 반환값 변경
       setIsDuplicate(!success);
-      alert(message);
     } catch (error) {
       console.error('Error checking if user ID exists:', error);
     } finally {
@@ -77,7 +74,6 @@ export const SignUp = () => {
       return;
     }
 
-    localStorage.setItem('nickname', nickname);
     navigate('/login');
 
     try {
@@ -109,9 +105,8 @@ export const SignUp = () => {
           <Duplicate onClick={handleCheckDuplicate} disabled={isChecking}>
             중복체크
           </Duplicate>
-          {isDuplicate && (
-            <p>This user ID is already taken. Please choose another one.</p>
-          )}
+          {isDuplicate && <p>이미 사용중인 아이디 입니다.</p>}
+          {!isDuplicate && <img src={check} />}
           <br />
           <br />
           <PwdLabel>비밀번호</PwdLabel>
