@@ -14,7 +14,7 @@ Eaten은 당신이 즐긴 맛있는 순간을 사진으로 기록하고, 사용�
 ## 👩‍💻팀원
 |[박윤형](https://github.com/hello820820)|[유화경](https://github.com/hwakyong-Yoo)|[육 란](https://github.com/Hanrann6) |[여희경](https://github.com/yhee527)|
 |:------:|:-----:|:------:|:-----:|
-|사진|<img src="https://github.com/hwakyong-Yoo/group4-eaten/assets/129262146/f1d060d3-3bcf-482e-886d-3e8ce4dd2e69" width="100" height="100"/> |사진|<img src="https://github.com/hwakyong-Yoo/group4-eaten/assets/144011726/126ca200-75b9-4ff4-aecd-a39436ab8923"/>|
+|<img src="https://github.com/hwakyong-Yoo/group4-eaten/assets/144011726/dd8d53b4-a64f-4ec1-b5e7-a3c4e31e66b6"/>|<img src="https://github.com/hwakyong-Yoo/group4-eaten/assets/144011726/a2e88d2e-d569-484a-8089-ff0cbe38f356"/>|<img src="https://github.com/hwakyong-Yoo/group4-eaten/assets/129262146/f1d060d3-3bcf-482e-886d-3e8ce4dd2e69" width="100" height="100"/> |<img src="https://github.com/hwakyong-Yoo/group4-eaten/assets/144011726/126ca200-75b9-4ff4-aecd-a39436ab8923"/>|
 BE|BE|FE|UI/UX|
 
 ## 🔧기술
