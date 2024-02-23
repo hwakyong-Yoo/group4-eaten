@@ -18,17 +18,17 @@ BE|BE|FE|UI/UX|
 
 ## 🔧기술
 ### Back-End
-| Spec | <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat-square&logo=Spring%20Boot&logoColor=black"/> | <img src="https://img.shields.io/badge/Spring%20Boot-ffffff?style=for-the-badge&logo=3.1.0&logoColor=#6DB33F"/>|
+| SPEC | SpringBoot| |
 | :--: | :--:| :--: |
-| Description | 2 | 3|
+| Description | <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat-square&logo=Spring%20Boot&logoColor=black"/> | <img src="https://img.shields.io/badge/Spring%20Boot-ffffff?style=for-the-badge&logo=3.1.0&logoColor=#6DB33F"/>|
 ### FE
-|SPEC |1 |1 |
+|SPEC | TypeScript | React |
 |:------:|:-----:|:-----:|
-|Description|TypeScript|React|
+|Description|<img alt="Html" src ="https://img.shields.io/badge/TypeScript-3178C6?&style=for-the-badge&logo=TypeScript&logoColor=white"/>|<img alt="Html" src ="https://img.shields.io/badge/react-61DAFB?&style=for-the-badge&logo=react&logoColor=white"/>|
 ### UI/UX
 |SPEC |FIGMA | 
 |:------:|:-----:|
-|DESIGN|<img src="https://github.com/hwakyong-Yoo/group4-eaten/assets/144011726/d9ea3ecb-a09f-460b-a384-e5f50f9ca5be" />|
+|Description|<img src="https://github.com/hwakyong-Yoo/group4-eaten/assets/144011726/d9ea3ecb-a09f-460b-a384-e5f50f9ca5be" />|
 ## 🎨 Color Scheme
 | #FFB20E|  #FFAD84 | #FFA800 |
 | :--: | :--:| :--: |
