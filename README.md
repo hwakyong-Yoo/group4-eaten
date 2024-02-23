@@ -13,7 +13,7 @@ Eaten은 당신이 즐긴 맛있는 순간을 사진으로 기록하고, 사용�
 ## 👩‍💻팀원
 |박윤형|유화경|육 란 |여희경|
 |:------:|:-----:|:------:|:-----:|
-|사진|사진|사진|사진|
+|사진|사진|사진|<img src="https://github.com/hwakyong-Yoo/group4-eaten/assets/144011726/126ca200-75b9-4ff4-aecd-a39436ab8923"/>|
 BE|BE|FE|UI/UX|
 
 ## 🔧기술
@@ -34,5 +34,3 @@ BE|BE|FE|UI/UX|
 | :--: | :--:| :--: |
 | <img src="https://img.shields.io/badge/     -FFB20E?style=flat-square&logoColor=white"/> | <img src="https://img.shields.io/badge/-FFAD84?style=flat-square&logoColor=white"/>|<img src="https://img.shields.io/badge/-FFA800?style=flat-square&logoColor=white"/>|
 
-
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=yhee527&layout=compact"><br><br>
