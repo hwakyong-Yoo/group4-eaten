@@ -3,7 +3,8 @@
 # 맛있는 순간, 나만의 음식이야기 #EatenLife🍕🔍
 ![reversal](https://capsule-render.vercel.app/api?type=Venom&text=맛있는순간,나만의음식이야기&color=6:EEFF00,90:FF8A00&fontColor=F6A508&fontAlign=50&fontSize=30&descAlign=60&descAlignY=50)
 ## 💻프로젝트 소개
-Eaten은 당신이 즐긴 맛있는 순간을 사진으로 기록하고, 사용자들과 공유하는 소셜 푸드 플랫폼입니다. 다양한 음식 문화를 탐험하며, Eaten에서 오늘 먹은 음식의 이야기를 공유하세요!🍷🍴
+Eaten은 당신이 즐긴 맛있는 순간을 사진으로 기록하고, 사용자들과 공유하는 소셜 푸드 플랫폼입니다. <br>
+다양한 음식 문화를 탐험하며, Eaten에서 오늘 먹은 음식의 이야기를 공유하세요!🍷🍴
 <div align="center">
 	<img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white" />
 	<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white" />
