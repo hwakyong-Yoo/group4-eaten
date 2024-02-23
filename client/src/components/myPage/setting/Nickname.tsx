@@ -13,6 +13,7 @@ export const Nickname = () => {
 
   const handleNicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewNickname(e.target.value);
+    localStorage.setItem('nickname', newNickname);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

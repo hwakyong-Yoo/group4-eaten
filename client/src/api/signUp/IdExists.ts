@@ -11,6 +11,7 @@ export const checkUserIdExists = async (
   try {
     // 서버에 요청을 보냄
     axios.defaults.withCredentials = true;
+    axios.defaults.headers.common['userId'] = userId;
     const response = await axios.get(`${API}/userId/exists`, { withCredentials: true });
 
     // 응답 데이터에서 중복 여부를 가져옴

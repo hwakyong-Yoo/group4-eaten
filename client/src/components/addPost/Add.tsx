@@ -37,7 +37,7 @@ export const Add = () => {
     event.preventDefault(); // 기본 이벤트 방지
 
     //const userId = localStorage.getItem('userId');
-    const userId = '12345';
+    const userId = 'ewha';
 
     try {
       if (!image) {
