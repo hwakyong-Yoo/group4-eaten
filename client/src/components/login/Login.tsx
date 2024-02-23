@@ -35,7 +35,7 @@ export const Login = () => {
       if (success) {
         // 로그인 성공 시
         console.log('로그인 성공! 사용자 닉네임:', nickname);
-        if (nickname != undefined) {
+        if (nickname !== undefined) {
           localStorage.setItem('nickname', nickname);
         }
       } else {
