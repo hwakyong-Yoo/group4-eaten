@@ -141,6 +141,13 @@ export const Duplicate = styled.button`
   top: 210px;
 `;
 
+export const DuplicateMsg = styled.p`
+  color: red;
+  position: absolute;
+  left: 700px;
+  bottom: 460px;
+`;
+
 export const Fork = styled.img`
   position: absolute;
   left: 0;

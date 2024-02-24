@@ -26,6 +26,7 @@ import {
   CheckMsg1,
   CheckMsg2,
   Duplicate,
+  DuplicateMsg,
   Img,
 } from './SignUp.style';
 import { checkUserIdExists, CreateSignUp } from '../../api/declaration'; // 수정된 파일 경로로 변경
@@ -75,6 +76,8 @@ export const SignUp = () => {
       return;
     }
 
+    alert('회원가입이 완료되었습니다');
+
     navigate('/login');
 
     try {
@@ -106,7 +109,7 @@ export const SignUp = () => {
           <Duplicate onClick={handleCheckDuplicate} disabled={isChecking}>
             중복체크
           </Duplicate>
-          {isDuplicate && <p>이미 사용중인 아이디 입니다.</p>}
+          {isDuplicate && <DuplicateMsg>이미 사용중인 아이디 입니다.</DuplicateMsg>}
           {!isDuplicate && <Img src={check} />}
           <br />
           <br />
