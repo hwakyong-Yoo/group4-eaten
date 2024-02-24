@@ -558,17 +558,7 @@ export const MyPosts = [
     good: 2,
     fire: 7,
   },
-  {
-    postId: 2,
-    imagepath:
-      'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D',
-    content: '햄버거 맛있당',
-    nickname: 'eee',
-    hungry: 12,
-    wow: 8,
-    good: 2,
-    fire: 7,
-  },
+
   {
     postId: 3,
     imagepath:
