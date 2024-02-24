@@ -13,15 +13,16 @@ export const mockPopularPosts = [
     fire: 7,
   },
   {
-    postId: 2,
+    postId: 3011,
     imagepath:
-      'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D',
-    content: '피자 맛있당',
+      'https://images.unsplash.com/photo-1520201163981-8cc95007dd2a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTMyfHxmb29kfGVufDB8fDB8fHww',
+    content: '치즈 쫘아악',
     nickname: 'eee',
-    hungry: 12,
+    fire: 6,
+    heart: 1,
+    hungry: 5,
     wow: 8,
     good: 2,
-    fire: 7,
   },
   {
     postId: 3,
