@@ -71,6 +71,20 @@ export const Content = styled.textarea`
   ${noFocus}
 `;
 
+export const PostReaction = styled.div`
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+
+  position: absolute;
+  right: 410px;
+  bottom: 250px;
+`;
+
+export const Emoji = styled.div`
+  font-size: 25px;
+`;
+
 export const NicknameP = styled.p`
   position: absolute;
   right: 470px;

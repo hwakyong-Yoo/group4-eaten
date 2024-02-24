@@ -15,6 +15,8 @@ import {
   Edit,
   Submit,
   Edit_Y,
+  PostReaction,
+  Emoji,
 } from './Detail.style';
 import { PostType } from '../post';
 import { detail, EditPost } from '../../api/declaration';
@@ -128,6 +130,13 @@ export const Detail = () => {
             <Submit onClick={() => handleUpdatePost('your-post-id')} />
           ) : (
             <>
+              <PostReaction>
+                <Emoji>❤️1</Emoji>
+                <Emoji>🤤5</Emoji>
+                <Emoji>😯8</Emoji>
+                <Emoji>👍2</Emoji>
+                <Emoji>🔥6</Emoji>
+              </PostReaction>
               <NicknameP>{nickname}</NicknameP>
               <Date>{date}</Date>
               <Edit_Y>{edit_YN ? '(수정됨)' : null}</Edit_Y>
