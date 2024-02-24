@@ -13,6 +13,9 @@ export const Delete = () => {
   const handleDelete = async () => {
     // 회원 탈퇴 함수 호출
     const { success, error: errorMessage } = await deleteUser(userId);
+    localStorage.setItem('login', JSON.stringify(false));
+    localStorage.removeItem('userId');
+    localStorage.removeItem('nickname');
     if (success) {
       // 회원 탈퇴 성공 시
       console.log('회원 탈퇴가 성공적으로 처리되었습니다.');
@@ -20,6 +23,7 @@ export const Delete = () => {
       // 회원 탈퇴 실패 시
       setError(errorMessage || '회원 탈퇴에 실패했습니다.');
     }
+    window.location.reload();
   };
 
   return (

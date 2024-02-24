@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import { Posts, PostImage, PostContent, PostReaction, Emoji } from './Post.style';
 import { API } from '../../api/api.const';
 
 export type PostType = {
-  postId: number;
+  postId?: number;
   nickname?: string;
-  content: string;
+  content?: string;
   date?: string;
-  imagepath: string;
+  imagepath?: string;
   userId?: string;
   edit_YN?: boolean;
 
@@ -25,12 +26,50 @@ export const defaultPost: PostType = {
   nickname: '익명',
   date: '2024-02-11',
   heart: 0,
+  hungry: 0,
 };
 
 export const Post = ({ post }: { post: PostType }) => {
   // const imagepath = post.imagepath;
   // const relativePath = imagepath.replace(/\\/g, '/');
   // const imageUrl = { API } + '/' + relativePath;
+  const [selectedReaction, setSelectedReaction] = useState<keyof PostType | null>(null);
+  const [reactions, setReactions] = useState<PostType>({
+    heart: post.heart || 0,
+    hungry: post.hungry || 0,
+    wow: post.wow || 0,
+    good: post.good || 0,
+    fire: post.fire || 0,
+  });
+
+  const LoggedIn = localStorage.getItem('login');
+  const IsLoggedIn = LoggedIn === 'true';
+
+  const handleReaction = (reaction: keyof PostType) => {
+    if (!IsLoggedIn) {
+      alert('로그인 후 이용 가능합니다');
+      return;
+    }
+    if (selectedReaction === reaction) {
+      setSelectedReaction(null);
+      setReactions(prevReactions => ({
+        ...prevReactions,
+        [reaction]: ((prevReactions[reaction] as number) || 0) - 1,
+      }));
+    } else {
+      if (selectedReaction) {
+        setReactions(prevReactions => ({
+          ...prevReactions,
+          [selectedReaction]: ((prevReactions[selectedReaction] as number) || 0) - 1,
+        }));
+      }
+      setSelectedReaction(reaction);
+      setReactions(prevReactions => ({
+        ...prevReactions,
+        [reaction]: ((prevReactions[reaction] as number) || 0) + 1,
+      }));
+    }
+  };
 
   return (
     <Posts key={post.postId}>
@@ -41,11 +80,11 @@ export const Post = ({ post }: { post: PostType }) => {
         <p>{post.content}</p>
       </PostContent>
       <PostReaction>
-        <Emoji>❤️{post.heart}</Emoji>
-        <Emoji>🤤{post.hungry}</Emoji>
-        <Emoji>😲{post.wow}</Emoji>
-        <Emoji>👍{post.good}</Emoji>
-        <Emoji>🔥{post.fire}</Emoji>
+        <Emoji onClick={() => handleReaction('heart')}>❤️{reactions.heart}</Emoji>
+        <Emoji onClick={() => handleReaction('hungry')}>🤤{reactions.hungry}</Emoji>
+        <Emoji onClick={() => handleReaction('wow')}>😲{reactions.wow}</Emoji>
+        <Emoji onClick={() => handleReaction('good')}>👍{reactions.good}</Emoji>
+        <Emoji onClick={() => handleReaction('fire')}>🔥{reactions.fire}</Emoji>
       </PostReaction>
     </Posts>
   );

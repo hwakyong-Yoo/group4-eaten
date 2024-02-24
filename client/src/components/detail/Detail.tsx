@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { DetailHeater } from './DetailHeader';
 import { DeleteModal } from '../modal';
 import {
@@ -13,6 +14,7 @@ import {
   Delete,
   Edit,
   Submit,
+  Edit_Y,
 } from './Detail.style';
 import { PostType } from '../post';
 import { detail, EditPost } from '../../api/declaration';
@@ -46,16 +48,27 @@ export const Detail = () => {
 
   const userId = localStorage.getItem('userId');
 
-  const imgURL = 'https://placekitten.com/204/204';
-  const text =
-    '맛있어요 어쩌구 저쩌구fkfkfkfkfkkkkf라라라라라라라라러ㅣ라ㅓㅣㄹ너ㅣ어ㅏ리ㅏ러';
-  const nickname = 'user12345';
-  const date = '2024-12-10';
-  const id = 'ewha';
-  const edit_YN = true;
+  const imgURL =
+    'https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDR8fGZvb2R8ZW58MHx8MHx8fDA%3D';
+
+  const text = '인생 최고의 음식';
+  const nickname = '탈퇴함';
+  const date = '2024-02-24';
+  const id = 'ewha1';
 
   const [isEditable, setIsEditable] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const location = useLocation();
+  const [previousPath, setPreviousPath] = useState('');
+  const [edit_YN, setEdit_YN] = useState(false);
+  const [editedText, setEditedText] = useState(text);
+
+  useEffect(() => {
+    // 뒤로가기나 경로 이동 시 이전 경로 저장
+    if (location.state && location.state.from) {
+      setPreviousPath(location.state.from);
+    }
+  }, [location]);
 
   const handleChange = () => {
     setIsEditable(true);
@@ -67,6 +80,7 @@ export const Detail = () => {
 
   const handleUpdatePost = async (postId: string) => {
     setIsEditable(false);
+    setEdit_YN(true);
     try {
       // postId와 함께 게시글 데이터를 전달하여 게시글 수정 요청
       const { msg, statusCode } = await EditPost(postId, postData);
@@ -97,21 +111,26 @@ export const Detail = () => {
           <Img src={imgURL} />
         </div>
         <Text>
-          {userId === id && (
+          {(userId === id || previousPath === 'http://localhost:3000/mypage') && (
             <div>
               <Delete onClick={() => setModalOpen(true)}>삭제 /</Delete>
               {modalOpen && <DeleteModal onClose={handleCloseModal} />}
               <Edit onClick={handleChange}>편집</Edit>
             </div>
           )}
-          <Content readOnly={!isEditable}>{text}</Content>
+          <Content
+            value={editedText}
+            onChange={e => setEditedText(e.target.value)}
+            readOnly={!isEditable}>
+            {text}
+          </Content>
           {isEditable ? (
             <Submit onClick={() => handleUpdatePost('your-post-id')} />
           ) : (
             <>
               <NicknameP>{nickname}</NicknameP>
               <Date>{date}</Date>
-              <div>{edit_YN ? '(수정됨)' : null}</div>
+              <Edit_Y>{edit_YN ? '(수정됨)' : null}</Edit_Y>
             </>
           )}
         </Text>

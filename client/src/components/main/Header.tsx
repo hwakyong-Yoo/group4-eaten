@@ -18,6 +18,7 @@ export const Header = () => {
     localStorage.setItem('login', JSON.stringify(false));
     localStorage.removeItem('userId');
     localStorage.removeItem('nickname');
+    window.location.reload();
   };
 
   const LoggedIn = localStorage.getItem('login');

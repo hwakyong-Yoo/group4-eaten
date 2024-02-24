@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import back from '../../image/back.png';
-import orange_recipe from '../../image/orange_recipe.png';
+import login_recipe from '../../image/login_recipe.png';
 import submit from '../../image/submit.png';
 
 export const LoginPage = styled.div`
@@ -45,7 +45,7 @@ export const LoginBody = styled.div`
 export const LoginForm = styled.div`
   width: 40vw;
   height: 75vh;
-  background-image: url(${orange_recipe});
+  background-image: url(${login_recipe});
   background-size: contain;
   background-repeat: no-repeat;
   margin-left: 100px;
@@ -84,12 +84,12 @@ export const Label = styled.label`
 `;
 
 export const IdLabel = styled(Label)`
-  bottom: 430px;
+  bottom: 460px;
   left: 500px;
 `;
 
 export const PwdLabel = styled(Label)`
-  bottom: 345px;
+  bottom: 320px;
   left: 500px;
 `;
 
@@ -116,12 +116,12 @@ export const Input = styled.input`
 `;
 
 export const IdInput = styled(Input)`
-  bottom: 380px;
+  bottom: 390px;
   left: 500px;
 `;
 
 export const PwdInput = styled(Input)`
-  bottom: 290px;
+  bottom: 250px;
   left: 500px;
 `;
 

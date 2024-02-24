@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import back from '../../image/back.png';
 import logout from '../../image/logout.png';
+import login from '../../image/login.png';
 import orange_recipe from '../../image/orange_recipe.png';
 import post_submit from '../../image/post_submit.png';
 
@@ -116,6 +117,12 @@ export const Submit = styled.button`
   bottom: 180px;
 `;
 
+export const Edit_Y = styled.div`
+  position: absolute;
+  right: 410px;
+  bottom: 185px;
+`;
+
 //Header.Footer==============================
 
 export const Header = styled.header`
@@ -160,6 +167,33 @@ export const Logout = styled.button`
   background-color: white;
   width: 9vw;
   height: 6vh;
+  border: none;
+  cursor: pointer;
+`;
+
+export const SignUp = styled.button`
+  position: absolute;
+  right: 120px;
+  top: 15px;
+  color: red;
+  background-color: rgba(255, 178, 14, 0);
+  font-weight: bold;
+  cursor: pointer;
+  width: 10vw;
+  height: 4vh;
+  border: none;
+`;
+
+export const Login = styled.button`
+  position: absolute;
+  right: 40px;
+  top: 10px;
+  background-image: url(${login});
+  background-color: rgba(255, 178, 14, 0);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 6vw;
+  height: 10vh;
   border: none;
   cursor: pointer;
 `;

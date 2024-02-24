@@ -36,7 +36,9 @@ export const PostReaction = styled.div`
   padding-left: 50px;
 `;
 
-export const Emoji = styled.div`
+export const Emoji = styled.button`
   cursor: pointer;
   padding-left: 10px;
+  border: none;
+  background-color: white;
 `;

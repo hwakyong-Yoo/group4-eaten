@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   AddPost,
   AddPage,
@@ -77,11 +78,11 @@ export const Add = () => {
             <TextArea
               value={content}
               onChange={e => setContent(e.target.value)}
-              placeholder="게시글을 작성하세요..."
               rows={5}></TextArea>
-
-            {/* 완료 버튼 */}
-            <Submit type="submit" />
+            <Link to="/">
+              {/* 완료 버튼 */}
+              <Submit type="submit" />
+            </Link>
           </div>
         </AddPost>
       </form>
