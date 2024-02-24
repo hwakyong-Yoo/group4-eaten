@@ -51,9 +51,9 @@ export const Detail = () => {
   const userId = localStorage.getItem('userId');
 
   const imgURL =
-    'https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDR8fGZvb2R8ZW58MHx8MHx8fDA%3D';
+    'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Zm9vZHxlbnwwfHwwfHx8MA%3D%3D';
 
-  const text = '인생 최고의 음식';
+  const text = '햄버거 맛있당';
   const nickname = '쿨맛탐험가들';
   const date = '2024-02-24';
   const id = 'ewha1';
@@ -131,11 +131,11 @@ export const Detail = () => {
           ) : (
             <>
               <PostReaction>
-                <Emoji>❤️1</Emoji>
-                <Emoji>🤤5</Emoji>
+                <Emoji>❤️0</Emoji>
+                <Emoji>🤤12</Emoji>
                 <Emoji>😯8</Emoji>
                 <Emoji>👍2</Emoji>
-                <Emoji>🔥6</Emoji>
+                <Emoji>🔥7</Emoji>
               </PostReaction>
               <NicknameP>{nickname}</NicknameP>
               <Date>{date}</Date>
