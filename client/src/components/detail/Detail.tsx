@@ -54,7 +54,7 @@ export const Detail = () => {
     'https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDR8fGZvb2R8ZW58MHx8MHx8fDA%3D';
 
   const text = '인생 최고의 음식';
-  const nickname = '탈퇴함';
+  const nickname = '쿨맛탐험가들';
   const date = '2024-02-24';
   const id = 'ewha1';
 
