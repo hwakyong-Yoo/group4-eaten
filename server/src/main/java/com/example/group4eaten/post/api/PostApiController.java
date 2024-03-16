@@ -80,10 +80,11 @@ public class PostApiController {
                 throw new IllegalArgumentException("포스트 생성 실패! 포스트 아이디는 null이어야 합니다!");
 
             // 이미지를 업로드하고 이미지 경로를 얻어옴
-            ResponseEntity<String> uploadResponse = handleFileUpload(imageFile);
-            if (uploadResponse.getStatusCode() == HttpStatus.OK) {
+            String imagePath = handleFileUpload(imageFile);
+            if (!imagePath.isEmpty()) {
                 // 이미지 업로드 성공 시 이미지 경로를 설정
-                dto.setImagepath(uploadResponse.getBody());
+                String imageUrl = "https://eaten-ecc.site/uploads/" + imagePath;
+                dto.setImagepath(imageUrl);
             }
             dto.setDate(PostDto.getCurrentFormattedDate());
             PostDto createdDto = postService.create(dto);
@@ -94,7 +95,7 @@ public class PostApiController {
         }
     }
 
-    private ResponseEntity<String> handleFileUpload(MultipartFile file) {
+    private String handleFileUpload(MultipartFile file) {
         try {
             // 이미지만 업로드 가능
             if (file != null && !file.isEmpty() && file.getContentType() != null) {
@@ -112,23 +113,40 @@ public class PostApiController {
                 Files.copy(file.getInputStream(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
                 // 업로드 성공 시 파일 경로 반환
-                return ResponseEntity.ok(dest.getAbsolutePath());
+                return fileName;
             } else {
                 // 이미지 업로드 실패 시 에러 반환
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid or no image file provided");
+                throw new IOException("Invalid or no image file provided");
             }
         } catch (IOException e) {
             e.printStackTrace();
             // 업로드 실패 시 에러 로깅
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload file.");        }
+            return "Failed to upload image file";
+        }
     }
 
 
     //게시물 수정
-    @PutMapping("/posts/{postId}")
-    public ResponseEntity<PostDto> update(@PathVariable Long postId, @RequestBody PostDto dto){
-        PostDto updatedDto = postService.update(postId, dto);
-        return ResponseEntity.status(HttpStatus.OK).body(updatedDto);
+        //이미지나 글이 그대로라면 edit_YN은 변경하지않음
+        //글이 null로 바뀌면 null로 업데이트
+        //이미지가 null로 바뀌면 error! 이미지를 게시물에 필수로 있어야하니까
+        //새 이미지를 받는다면 기존 파일은 삭제하고 나서, 새 이미지를 업로드하고 그 이미지경로를 게시물의 imagepath로 설정
+    @PutMapping(value = "/posts/{postId}", consumes = { "multipart/form-data" })
+    public ResponseEntity<PostDto> update(@PathVariable Long postId, @RequestPart MultipartFile imageFile, @ModelAttribute PostDto dto){
+        try {
+            // 이미지를 업로드하고 이미지 경로를 얻어옴
+            String imagePath = handleFileUpload(imageFile);
+            if (!imagePath.isEmpty()) {
+                // 이미지 업로드 성공 시 이미지 경로를 설정
+                String imageUrl = "https://eaten-ecc.site/uploads/" + imagePath;
+                dto.setImagepath(imageUrl);
+            }
+
+            PostDto updatedDto = postService.update(postId, dto);
+            return ResponseEntity.status(HttpStatus.OK).body(updatedDto);
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
 
