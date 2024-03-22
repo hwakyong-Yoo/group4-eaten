@@ -9,9 +9,9 @@ import {
   Image,
   Submit,
   Footer,
-} from './styles';
+} from './Add.style';
 import { AddHeader } from './AddHeader';
-import { addPost } from '../../api/post/addPost';
+import { addPost } from '../../api/declaration';
 
 export const Add = () => {
   // 상태 설정
@@ -38,7 +38,7 @@ export const Add = () => {
     event.preventDefault(); // 기본 이벤트 방지
 
     //const userId = localStorage.getItem('userId');
-    const userId = '12345';
+    const userId = 'ewha';
 
     try {
       if (!image) {
@@ -78,11 +78,11 @@ export const Add = () => {
             <TextArea
               value={content}
               onChange={e => setContent(e.target.value)}
-              placeholder="게시글을 작성하세요..."
               rows={5}></TextArea>
-
-            {/* 완료 버튼 */}
-            <Submit type="submit" />
+            <Link to="/">
+              {/* 완료 버튼 */}
+              <Submit type="submit" />
+            </Link>
           </div>
         </AddPost>
       </form>

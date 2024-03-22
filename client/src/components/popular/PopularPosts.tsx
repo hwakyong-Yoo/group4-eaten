@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { Post } from '../post';
 import { PostType } from '../post';
 import { POSTS_PER_PAGE } from './popularPosts.const';
-import { PostSlider, LeftButton, RightButton, PostList } from './styles';
-import { fetchHotPosts } from '../../api/post/popular';
+import { PostSlider, LeftButton, RightButton, PostList } from './Popular.style';
+import { fetchHotPosts } from '../../api/declaration';
 import { defaultPost } from '../post';
 
 interface PopularPostsProps {

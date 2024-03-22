@@ -7,13 +7,14 @@ import {
   SettingButton,
   BackButton,
   LogoutButton,
-} from './styles';
+} from './MyPage.style';
 
-export const MyPageHeader: React.FC = () => {
+export const MyPageHeader = () => {
   const handleLogout = () => {
     // 로그아웃 시
     localStorage.setItem('login', 'false');
     window.localStorage.removeItem('nickname');
+    window.localStorage.removeItem('userId');
   };
 
   const nickname = localStorage.getItem('nickname');

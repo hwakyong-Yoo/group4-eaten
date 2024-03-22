@@ -1,8 +1,16 @@
 import { Link } from 'react-router-dom';
 import eaten from '../../image/eaten.png';
-import { Header, EatenImage, BackButton, NickName, Logout } from './styles';
+import {
+  Header,
+  EatenImage,
+  BackButton,
+  NickName,
+  Logout,
+  SignUp,
+  Login,
+} from './Detail.style';
 
-export const DetailHeater: React.FC = () => {
+export const DetailHeater = () => {
   const handleLogout = () => {
     // 로그아웃 시
     localStorage.setItem('login', 'false');
@@ -10,6 +18,8 @@ export const DetailHeater: React.FC = () => {
   };
 
   const nickname = localStorage.getItem('nickname');
+  const LoggedIn = localStorage.getItem('login');
+  const IsLoggedIn = LoggedIn === 'true';
 
   return (
     <Header>
@@ -19,12 +29,25 @@ export const DetailHeater: React.FC = () => {
       <div>
         <EatenImage src={eaten} alt="이튼 이미지" />
       </div>
-      <div>
-        <NickName>{nickname}님</NickName>
-      </div>
-      <Link to="/">
-        <Logout onClick={handleLogout} />
-      </Link>
+      {IsLoggedIn ? (
+        <>
+          <div>
+            <NickName>{nickname}님</NickName>
+          </div>
+          <Link to="/">
+            <Logout onClick={handleLogout} />
+          </Link>
+        </>
+      ) : (
+        <>
+          <Link to="/signup">
+            <SignUp>회원가입</SignUp>
+          </Link>
+          <Link to="/login">
+            <Login />
+          </Link>
+        </>
+      )}
     </Header>
   );
 };

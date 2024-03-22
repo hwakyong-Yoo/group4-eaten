@@ -1,7 +1,7 @@
 // TODO: 변경한 닉네임을 서버에 전송 /user/{userId}/edit
 import { API } from '../api.const';
 
-const changeNickname = async (
+export const changeNickname = async (
   userId: string,
   newNickname: string,
 ): Promise<{ success: boolean; error?: string }> => {
@@ -30,5 +30,3 @@ const changeNickname = async (
     return { success: false, error: '닉네임 수정 과정에서 오류가 발생했습니다.' };
   }
 };
-
-export default changeNickname;

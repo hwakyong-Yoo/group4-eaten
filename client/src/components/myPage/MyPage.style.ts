@@ -20,9 +20,10 @@ export const EatenImage = styled.img`
 
 export const Nickname = styled.p`
   position: absolute;
-  right: 8vw;
-  top: 1vh;
+  right: 150px;
+  top: 15px;
   color: red;
+  font-weight: bold;
 `;
 
 export const SettingButton = styled.button`
@@ -33,8 +34,8 @@ export const SettingButton = styled.button`
   background-size: contain;
   background-repeat: no-repeat;
   background-color: white;
-  width: 6vw;
-  height: 6vh;
+  width: 8vw;
+  height: 8vh;
   border: none;
   cursor: pointer;
 `;
@@ -55,13 +56,13 @@ export const BackButton = styled.button`
 
 export const LogoutButton = styled.button`
   position: absolute;
-  right: 1vw;
-  top: 15vh;
+  right: 80px;
+  top: 80px;
   background-image: url(${logout});
   background-size: contain;
   background-repeat: no-repeat;
-  background-color: white;
-  width: 9vw;
+  background-color: rgba(0, 0, 0, 0);
+  width: 7vw;
   height: 6vh;
   border: none;
   cursor: pointer;
@@ -71,4 +72,8 @@ export const PostList = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+`;
+
+export const MyPost = styled.div`
+  background-color: rgba(255, 178, 14, 0.3);
 `;

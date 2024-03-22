@@ -15,7 +15,7 @@ export const Button = styled.button`
   display: inline-block;
   width: 10vw;
   height: 10vw;
-  margin-top: 20vh;
+  margin-top: 17vh;
   background-color: rgba(255, 178, 14, 0);
   background-size: contain;
   background-repeat: no-repeat;

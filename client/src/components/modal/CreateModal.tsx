@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 
-const CreateModal: React.FC<{ isVisible: boolean }> = ({ isVisible }) => {
+interface CreateModalProps {
+  isVisible: boolean;
+}
+
+const CreateModal = ({ isVisible }: CreateModalProps) => {
   const [modalVisible, setModalVisible] = useState(isVisible);
 
   useEffect(() => {

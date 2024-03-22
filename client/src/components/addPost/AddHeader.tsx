@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CancelNew from '../modal/CancelNew';
 import eaten from '../../image/eaten.png';
-import { Header, EatenImage, BackButton, NickName, Logout } from './styles';
+import { Header, EatenImage, BackButton, NickName, Logout } from './Add.style';
 
-export const AddHeader: React.FC = () => {
+export const AddHeader = () => {
   const handleLogout = () => {
     // 로그아웃 시
     localStorage.setItem('login', 'false');

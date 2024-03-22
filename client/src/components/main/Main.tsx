@@ -2,26 +2,9 @@ import { mockPopularPosts, mockRecentPosts } from '../../mock.const';
 import { NewPostList } from '../new';
 import { PopularPosts } from '../popular';
 import { Header } from './Header';
-import { PopularPost, NewPost } from './styles';
-import fetchHelloData from '../../api/hello';
-import { useState, useEffect } from 'react';
+import { PopularPost, NewPost } from './Main.style';
 
 export function Main() {
-  const [helloData, setHelloData] = useState('');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchHelloData();
-        setHelloData(data);
-      } catch (error) {
-        console.error('Error fetching hello data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   return (
     <>
       <Header />
@@ -33,15 +16,6 @@ export function Main() {
         <h2>최신 게시물</h2>
         <NewPostList posts={mockRecentPosts} />
       </NewPost>
-      <div>
-        {helloData ? (
-          <div>
-            <p>Hello: {helloData}</p>
-          </div>
-        ) : (
-          <p>Loading...</p>
-        )}
-      </div>
     </>
   );
 }

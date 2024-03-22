@@ -14,11 +14,13 @@ import {
   Spoon,
   LoginForm,
   H2,
-  Label,
-  Input,
   Submit,
-} from './styles';
-import loginUser from '../../api/login/login';
+  IdLabel,
+  PwdLabel,
+  IdInput,
+  PwdInput,
+} from './Login.style';
+import { loginUser } from '../../api/declaration';
 
 export const Login = () => {
   const [id, setId] = useState('');
@@ -33,6 +35,9 @@ export const Login = () => {
       if (success) {
         // 로그인 성공 시
         console.log('로그인 성공! 사용자 닉네임:', nickname);
+        if (nickname !== undefined) {
+          localStorage.setItem('nickname', nickname);
+        }
       } else {
         // 로그인 실패 시
         setLoginError(error || '아이디 또는 비밀번호가 올바르지 않습니다.');
@@ -45,7 +50,6 @@ export const Login = () => {
     if (id && password) {
       // 로그인 성공 시
       localStorage.setItem('login', JSON.stringify(true));
-      localStorage.setItem('nickname', nickname);
       localStorage.setItem('userId', id);
       navigate('/'); // 메인 페이지로 이동
     } else {
@@ -68,14 +72,14 @@ export const Login = () => {
         </div>
         <LoginForm>
           <H2>로그인</H2>
-          <Label>아이디</Label>
+          <IdLabel>아이디</IdLabel>
           <br />
-          <Input type="text" value={id} onChange={e => setId(e.target.value)} />
+          <IdInput type="text" value={id} onChange={e => setId(e.target.value)} />
           <br />
           <br />
-          <Label>비밀번호</Label>
+          <PwdLabel>비밀번호</PwdLabel>
           <br />
-          <Input
+          <PwdInput
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
